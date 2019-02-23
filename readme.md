@@ -4,9 +4,9 @@ this should be the latest stable version.
 
 still working….
 
-### Quick Setup -  for unix/mac ONLY
+## Quick Setup -  for unix/mac ONLY
 
-##### 1, Intall Node.js
+### 1, Intall Node.js
 
 Check if you have `node.js` ([download_link](https://nodejs.org/en/download/)).
 
@@ -14,7 +14,7 @@ Check if you have `node.js` ([download_link](https://nodejs.org/en/download/)).
 node --version
 ```
 
-##### 2, Ionic CLI && Angular && ionic@angular
+### 2, Ionic CLI && Angular && ionic@angular
 
 This comes with all of the Ionic components and Angular specific services and features.
 
@@ -24,7 +24,7 @@ npm install -g @angular/cli
 npm install @ionic/angular@latest --save
 ```
 
-##### 3, iOS Support (optional & mac users ONLY)
+### 3, iOS Support (optional & mac users ONLY)
 
 Make sure you have Xcode(version 8.0 above) installed.
 
@@ -33,7 +33,7 @@ npm install -g ios-sim
 npm install -g ios-deploy
 ```
 
-### Test on your web
+## Test on your web
 
 pull this repo, and `cd` to it
 
