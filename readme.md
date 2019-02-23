@@ -1,8 +1,6 @@
 # YaleMealDate - FrontEnd
 
-this should be the latest stable version.
-
-still working….
+this should be the latest stable version. still working….
 
 ## Quick Setup -  for unix/mac ONLY
 
@@ -33,16 +31,16 @@ npm install -g ios-sim
 npm install -g ios-deploy
 ```
 
-## Test on your web
+## Run on Web
 
 pull this repo, and `cd` to it
 
 ```bash
-% Run this if you are running the app for the first time to 
-% install additional packages, can take a while
+# Run this if you are running the app for the first time to 
+# install additional packages, can take a while
 npm install	
 
-% Serve the app
+# Serve the app
 ionic serve
 ```
 
