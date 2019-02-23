@@ -1,23 +1,43 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab One
+      Schedule A Meal
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-card class="welcome-card">
+    <ion-card class="active-card">
       <ion-img src="/assets/shapes.svg"></ion-img>
       <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
+        <ion-card-subtitle>Two People</ion-card-subtitle>
+        <ion-card-title>Eat Now</ion-card-title>
       </ion-card-header>
-      <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
-      </ion-card-content>
     </ion-card>
-    <ion-list lines="none">
+
+    <ion-card class="active-card">
+      <ion-img src="/assets/shapes.svg"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>Two People</ion-card-subtitle>
+        <ion-card-title>Schedule a Time</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card class="inactive-card" color="medium" >
+      <!-- <ion-img src="/assets/shapes.svg"></ion-img> -->
+      <ion-card-header>
+        <ion-card-subtitle>Group Meal</ion-card-subtitle>
+        <ion-card-title>Coming Soon</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-footer padding>
+        <div text-center>
+          <ion-label color="medium"> we are building more features </ion-label>
+        </div>
+    </ion-footer>
+    
+    <!-- <ion-list lines="none">
       <ion-list-header>
         <ion-label>Resources</ion-label>
       </ion-list-header>
@@ -37,5 +57,9 @@
         <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
         <ion-label>Theme Your App</ion-label>
       </ion-item>
-    </ion-list>
+    </ion-list> -->
+
+
+
 </ion-content>
+

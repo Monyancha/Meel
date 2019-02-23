@@ -15,3 +15,4 @@ import { Tab1Page } from './tab1.page';
   declarations: [Tab1Page]
 })
 export class Tab1PageModule {}
+
