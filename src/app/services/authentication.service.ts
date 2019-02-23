@@ -18,7 +18,6 @@ const TOKEN_KEY = 'auth-token';
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthenticationService {
  
   authenticationState = new BehaviorSubject(false);
@@ -30,23 +29,26 @@ export class AuthenticationService {
   }
  
   checkToken() {
-    this.storage.get(TOKEN_KEY).then(res => {
-      if (res) {
-        this.authenticationState.next(true);
-      }
-    })
+    this.authenticationState.next(false);
+    // this.storage.get(TOKEN_KEY).then(res => {
+    //   if (res) {
+    //     this.authenticationState.next(true);
+    //   }
+    // })
   }
  
   login() {
-    return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
-      this.authenticationState.next(true);
-    });
+    return this.authenticationState.next(true);
+    // return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
+    //   this.authenticationState.next(true);
+    // });
   }
  
   logout() {
-    return this.storage.remove(TOKEN_KEY).then(() => {
-      this.authenticationState.next(false);
-    });
+    this.authenticationState.next(false);
+    // return this.storage.remove(TOKEN_KEY).then(() => {
+    //   this.authenticationState.next(false);
+    // });
   }
  
   isAuthenticated() {

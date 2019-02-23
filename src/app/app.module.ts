@@ -55,7 +55,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule, 
     MatCardModule, 
     MatFormFieldModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
   // --- Feb 22, 2019: New Import ---
 

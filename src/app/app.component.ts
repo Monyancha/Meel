@@ -33,6 +33,7 @@ export class AppComponent {
       
       // Added Feb 22, 2019: init auth service
       // route to tabs page automatically without login if the auth successs
+      
       this.authenticationService.authenticationState.subscribe(state => {
         if (state) {
           this.router.navigate(['tabs']);
