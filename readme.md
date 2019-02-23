@@ -14,9 +14,8 @@ node --version
 
 ### 2, Ionic CLI && Angular && ionic@angular
 
-This comes with all of the Ionic components and Angular specific services and features.
-
 ```bash
+# This comes with all of the Ionic components and Angular specific services and features.
 npm install -g ionic
 npm install -g @angular/cli
 npm install @ionic/angular@latest --save
@@ -24,9 +23,8 @@ npm install @ionic/angular@latest --save
 
 ### 3, iOS Support (optional & mac users ONLY)
 
-Make sure you have Xcode(version 8.0 above) installed.
-
 ```bash
+# Make sure you have Xcode(version 8.0 above) installed.
 npm install -g ios-sim
 npm install -g ios-deploy
 ```
