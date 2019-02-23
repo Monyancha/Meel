@@ -4,7 +4,9 @@ this should be the latest stable version. still working….
 
 ## Quick Setup -  for unix/mac ONLY
 
-### 1, Intall Node.js
+#### 0, Good luck...
+
+#### 1, Intall Node.js
 
 Check if you have `node.js` ([download_link](https://nodejs.org/en/download/)).
 
@@ -12,7 +14,7 @@ Check if you have `node.js` ([download_link](https://nodejs.org/en/download/)).
 node --version
 ```
 
-### 2, Ionic CLI && Angular && ionic@angular
+#### 2, Ionic CLI && Angular && ionic@angular
 
 ```bash
 # This comes with all of the Ionic components 
@@ -22,7 +24,7 @@ npm install -g @angular/cli
 npm install @ionic/angular@latest --save
 ```
 
-### 3, iOS Support (optional & mac users ONLY)
+#### 3, iOS Support (optional & mac users ONLY)
 
 ```bash
 # Make sure you have Xcode(version 8.0 above) installed.
@@ -36,11 +38,11 @@ pull this repo, and `cd` to it
 
 ```bash
 # Run this if you are running the app for the first time to 
-# install additional packages, could take a while(~400MB)....
+# install additional packages, could take a while(~400MB)...
 npm install	
 
 # Serve the app
 ionic serve
 ```
 
-The app should load automatically on your default browser. 
+The app should load automatically on your default web browser. 
