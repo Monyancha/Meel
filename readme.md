@@ -15,7 +15,8 @@ node --version
 ### 2, Ionic CLI && Angular && ionic@angular
 
 ```bash
-# This comes with all of the Ionic components and Angular specific services and features.
+# This comes with all of the Ionic components 
+# and Angular specific services and features.
 npm install -g ionic
 npm install -g @angular/cli
 npm install @ionic/angular@latest --save
@@ -35,7 +36,7 @@ pull this repo, and `cd` to it
 
 ```bash
 # Run this if you are running the app for the first time to 
-# install additional packages, can take a while
+# install additional packages, could take a while(~400MB)....
 npm install	
 
 # Serve the app
