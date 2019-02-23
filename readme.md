@@ -4,8 +4,6 @@ this should be the latest stable version. still working….
 
 ## Quick Setup -  for unix/mac ONLY
 
-#### 0, Good luck...
-
 #### 1, Intall Node.js
 
 Check if you have `node.js` ([download_link](https://nodejs.org/en/download/)).
@@ -15,6 +13,8 @@ node --version
 ```
 
 #### 2, Ionic CLI && Angular && ionic@angular
+
+Good luck
 
 ```bash
 # This comes with all of the Ionic components 
