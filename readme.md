@@ -1,6 +1,13 @@
-# YaleMealDate - FrontEnd - Beta
+# MealDate - FE
 
 this should be the latest stable version. still working….
+
+### Update Log
+
+```
+2019-02-24 00:32: add a static login page
+2019-02-23 01:00: app created
+```
 
 ## Quick Setup -  for unix/mac ONLY
 
@@ -46,11 +53,3 @@ ionic serve
 ```
 
 The app should load automatically on your default web browser. 
-
-### Update Log
-
-```
-2019-02-24 00:32: add a static login page
-2019-02-23 01:00: app created
-```
-
