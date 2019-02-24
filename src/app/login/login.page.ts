@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -7,8 +7,17 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  @Input() events: any;
 
-  constructor(private authService: AuthenticationService) { }
+  public username: string;
+  public password: string;
+  public isUsernameValid: boolean;
+  public isPasswordValid: boolean;
+
+  constructor(private authService: AuthenticationService) { 
+    this.isUsernameValid = true;
+    this.isPasswordValid = true
+  }
 
   ngOnInit() {
   }

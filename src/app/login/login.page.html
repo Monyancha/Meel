@@ -1,12 +1,62 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content padding>
-    <ion-button (click)="login()" expand="block">Login</ion-button>
-    <ion-button expand="block" color="secondary" routerLink="/register" routerDirection="forward">Register</ion-button>
-  </ion-content>
 
-  
+<ion-content padding no-bounce>
+  <ion-grid no-padding>
+
+    <ion-col align-items-center align-items-stretch>
+
+      <form padding>
+
+        <!-- Message -->
+        <ion-col col-12>
+            <h1> <strong>Welcome back</strong> please login to your account</h1>
+        </ion-col>
+
+        <!-- Input Field -->
+        <ion-row>
+          <ion-col col-12>
+            <div input-field>
+              <ion-item no-padding>
+                  <ion-input text-center type="email" placeholder="  Email"></ion-input>
+              </ion-item>
+              <ion-item no-padding>
+                  <ion-input text-center type="password" placeholder="  Password"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <!-- Buttons -->
+        <ion-col col-12 no-padding>
+          <ion-button full (click)="login()">LOGIN</ion-button>
+        </ion-col>
+
+        
+        <!-- Others -->
+        <div description text-center>
+          <ion-col col-12 no-padding no-margin>
+            <p no-margin no-padding>Forgot Password? <a> Click to reset </a> </p>
+          </ion-col>
+          <ion-col col-12padding>
+            <p no-margin no-padding> Don't have an account?  <a> Create one now </a> </p>
+          </ion-col>
+        </div>
+
+      </form>
+    </ion-col>
+
+
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-col>
+    <div text-center>
+        <img logo src="../../assets/img/yale-logo3.png" width="8%" />
+    </div>
+    <div text-center>
+        <div class="footnote-header">Yale Meal Date</div>
+        <div class="footnote-subheader">v1.2.0 beta</div>
+    </div>
+  </ion-col>
+</ion-footer>

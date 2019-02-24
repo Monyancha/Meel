@@ -1,0 +1,121 @@
+   /* Settings font size
+  =========================================*/
+  $settings-font-size-header: 24px;
+  $settings-font-size-button: 12px;
+  $settings-font-size-input-field: 14px;
+  $settings-font-size-input-placeholder: 14px;
+  $settings-font-size-description: 10px;
+  $settings-font-size-label: 10px;
+
+  /* Settings font weight
+  =========================================*/
+  $settings-font-weight-header: 300;
+  $settings-font-weight-button: 700;
+  $settings-font-weight-input-field: 400;
+  $settings-font-weight-input-placeholder: 400;
+  $settings-font-weight-description: 400;
+  $settings-font-weight-label: 600;
+
+ /* Settings text color
+  =========================================*/
+  $settings-text-color-header: #CCCCCC;
+  $settings-text-color-button: #FFFFFF;
+  $settings-text-input-color: #242424;
+  $settings-text-input-placeholder: #CCCCCC;
+  $settings-text-color-description: #242424;
+  $settings-text-color-description-links: #687DFC;
+  $settings-text-label-color: #FF0000;
+
+
+ion-content {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+
+    // padding-bottom: 0 !important;
+    // min-height: 100%;
+    // flex: 1;
+    
+    ion-grid {
+
+        strong {
+            display: block;
+        }
+
+        h1 {
+            color: #86888f;
+            font-size: $settings-font-size-header;
+            font-weight: $settings-font-weight-header;
+            line-height: 29px;
+            margin-right: 20%;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        form {
+            margin-top: 33%;
+            margin-left: 10%;
+            margin-right: 10%;
+
+            [input-field] {
+                border-radius: 8px;
+                overflow: hidden;
+                border: 1px solid #CCCCCC;
+                margin: 0 auto;
+
+                .item:nth-last-child(1){
+                .item-inner {
+                    border-bottom: none !important;
+                }
+                }
+        
+                .item-block {
+                overflow: visible !important;
+                }
+            }
+            
+            [description] {
+                margin: 10px 0;
+        
+                a {
+                  color: $settings-text-color-description-links;
+                  font-size: $settings-font-size-description;
+                  font-weight: $settings-font-weight-description;
+                  text-decoration: none;
+                  margin-bottom: 3px;
+                }
+        
+                p {
+                  color: $settings-text-color-description;
+                  font-size: $settings-font-size-description;
+                  font-weight: $settings-font-weight-description;
+                  line-height: 5px;
+                }
+            }
+
+            [full] {
+                min-height: 57px;
+                border-radius: 8px;
+                width: 100%;
+                margin-top: 15px;
+
+                letter-spacing: 2px;
+                color: $settings-text-color-button;
+                font-size: $settings-font-size-button;
+                font-weight: $settings-font-weight-button;
+                background: #687DFC !important;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16) !important;
+            }
+
+        }
+
+    }
+}
+
+.footnote-header {
+    font-size: 10px;
+    margin-bottom: 3px;
+}
+
+.footnote-subheader {
+    font-size: 8px;
+}
