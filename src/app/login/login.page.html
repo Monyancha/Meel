@@ -31,8 +31,17 @@
           <ion-button full (click)="login()">LOGIN</ion-button>
         </ion-col>
 
-        
-        <!-- Others -->
+        <ion-row align-items-center align-items-stretch>
+          <ion-col col-12 no-padding>
+            <ion-button class="sub-buttons">Forgot password?</ion-button>
+          </ion-col>
+          <ion-col col-12 no-padding>
+            <ion-button class="sub-buttons">Don't have an account?</ion-button>
+          </ion-col>
+        </ion-row>
+
+
+        <!-- Others
         <div description text-center>
           <ion-col col-12 no-padding no-margin>
             <p no-margin no-padding>Forgot Password? <a> Click to reset </a> </p>
@@ -40,7 +49,7 @@
           <ion-col col-12padding>
             <p no-margin no-padding> Don't have an account?  <a> Create one now </a> </p>
           </ion-col>
-        </div>
+        </div> -->
 
       </form>
     </ion-col>
@@ -50,13 +59,17 @@
 </ion-content>
 
 <ion-footer>
-  <ion-col>
-    <div text-center>
-        <img logo src="../../assets/img/yale-logo3.png" width="8%" />
-    </div>
-    <div text-center>
-        <div class="footnote-header">Yale Meal Date</div>
-        <div class="footnote-subheader">v1.2.0 beta</div>
-    </div>
-  </ion-col>
+  <ion-row class="foot-row">
+    <ion-col size="5.3">
+      <div text-center>
+          <img logo float-right src="../../assets/img/yale-logo3.png" width="12%" />
+      </div>
+    </ion-col>
+    <ion-col size="6.7">
+      <div text-center float-left>
+          <div class="footnote-header">Meal Date</div>
+          <div class="footnote-subheader">v1.3.0 dev beta</div>
+      </div>
+    </ion-col>
+  </ion-row>
 </ion-footer>

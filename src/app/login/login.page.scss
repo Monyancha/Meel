@@ -73,24 +73,24 @@ ion-content {
                 }
             }
             
-            [description] {
-                margin: 10px 0;
+            // [description] {
+            //     margin: 10px 0;
         
-                a {
-                  color: $settings-text-color-description-links;
-                  font-size: $settings-font-size-description;
-                  font-weight: $settings-font-weight-description;
-                  text-decoration: none;
-                  margin-bottom: 3px;
-                }
+            //     a {
+            //       color: $settings-text-color-description-links;
+            //       font-size: $settings-font-size-description;
+            //       font-weight: $settings-font-weight-description;
+            //       text-decoration: none;
+            //       margin-bottom: 3px;
+            //     }
         
-                p {
-                  color: $settings-text-color-description;
-                  font-size: $settings-font-size-description;
-                  font-weight: $settings-font-weight-description;
-                  line-height: 5px;
-                }
-            }
+            //     p {
+            //       color: $settings-text-color-description;
+            //       font-size: $settings-font-size-description;
+            //       font-weight: $settings-font-weight-description;
+            //       line-height: 5px;
+            //     }
+            // }
 
             [full] {
                 min-height: 57px;
@@ -111,11 +111,35 @@ ion-content {
     }
 }
 
+.sub-buttons {
+    text-align: center;
+    border-color: transparent;
+    --background: transparent;
+    --background-activated: #CCCCCC; 
+    box-shadow: none;
+    
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+
+    color: #687DFC;
+    font-size: $settings-font-size-description;
+    font-weight: $settings-font-weight-description;
+}
+
+
 .footnote-header {
-    font-size: 10px;
-    margin-bottom: 3px;
+    margin-top: 0px;
+    color: #86888f;
+    font-size: 8px;
+    margin-bottom: 0px;
 }
 
 .footnote-subheader {
+    color: #86888f;
     font-size: 8px;
+}
+
+.foot-row {
+    margin-bottom: 5%;
 }
