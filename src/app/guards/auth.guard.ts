@@ -6,13 +6,6 @@ import { AuthenticationService } from '../services/authentication.service';
 @Injectable({
   providedIn: 'root'
 })
-// export class AuthGuard implements CanActivate {
-//   canActivate(
-//     next: ActivatedRouteSnapshot,
-//     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-//     return true;
-//   }
-// }
 export class AuthGuard implements CanActivate {
  
   constructor(public auth: AuthenticationService) {}
@@ -20,5 +13,13 @@ export class AuthGuard implements CanActivate {
   canActivate(): boolean {
     return this.auth.isAuthenticated();
   }
+  
 }
 
+// export class AuthGuard implements CanActivate {
+//   canActivate(
+//     next: ActivatedRouteSnapshot,
+//     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+//     return true;
+//   }
+// }

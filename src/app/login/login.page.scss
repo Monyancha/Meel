@@ -26,15 +26,20 @@
   $settings-text-color-description-links: #687DFC;
   $settings-text-label-color: #FF0000;
 
+.logintoast {
+    > div {
+        --width: 50%;
+        text-align: center;
+    }
+    
+}
+
+
 
 ion-content {
     font-family: 'Montserrat', sans-serif;
     position: relative;
 
-    // padding-bottom: 0 !important;
-    // min-height: 100%;
-    // flex: 1;
-    
     ion-grid {
 
         strong {
@@ -72,25 +77,6 @@ ion-content {
                 overflow: visible !important;
                 }
             }
-            
-            // [description] {
-            //     margin: 10px 0;
-        
-            //     a {
-            //       color: $settings-text-color-description-links;
-            //       font-size: $settings-font-size-description;
-            //       font-weight: $settings-font-weight-description;
-            //       text-decoration: none;
-            //       margin-bottom: 3px;
-            //     }
-        
-            //     p {
-            //       color: $settings-text-color-description;
-            //       font-size: $settings-font-size-description;
-            //       font-weight: $settings-font-weight-description;
-            //       line-height: 5px;
-            //     }
-            // }
 
             [full] {
                 min-height: 57px;
