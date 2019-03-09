@@ -3,10 +3,16 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
+import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
+  animations: [
+    fadeInOnEnterAnimation(),
+    fadeOutOnLeaveAnimation()
+  ],
 })
 export class LoginPage implements OnInit {
   @Input() events: any;
@@ -45,7 +51,7 @@ export class LoginPage implements OnInit {
   register() {
     if(this.mainButtonText == "LOGIN") {
       this.mainButtonText = "REGISTER";
-      this.createAccountText = "Have an account?";
+      this.createAccountText = "Already have an account?";
       // this.presentToast("Please fill in username and password to create an account.")
     } else {
       this.mainButtonText = "LOGIN";

@@ -8,7 +8,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // --- Feb 22, 2019: New Import ---
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -22,7 +21,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './services/interceptor.service';
 // --- Feb 24, 2019: For RESTful API Service ---
 
-
+// --- March 9, 2019: Animations ---
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// --- March 9, 2019: Animations ---
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,6 +41,7 @@ import { TokenInterceptor } from './services/interceptor.service';
     DragDropModule,
     ScrollingModule, 
     IonicStorageModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   // --- Feb 22, 2019: New Import ---
 
