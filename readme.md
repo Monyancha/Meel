@@ -26,7 +26,7 @@ node --version
 # This comes with all of the Ionic components 
 # and Angular specific services and features.
 # Good Luck
-npm install -g ionic
+npm install -g ionic 
 npm install -g @angular/cli
 npm install @ionic/angular@latest --save
 ```
@@ -38,7 +38,7 @@ npm install @ionic/angular@latest --save
 # then run the following command
 npm i -g cordova
 ionic cordova plugin add cordova-plugin-advanced-http
-npm install @ionic-native/http
+npm install @ionic-native/http --save
 ```
 
 ## Emulation

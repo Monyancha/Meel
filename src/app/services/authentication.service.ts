@@ -42,7 +42,8 @@ export class AuthenticationService {
   }
 
   register(username : string, password : string) {
-    this.http.post(this.apiUrl + '/register', {username, password})
+    this.http.post(this.apiUrl + '/register', 
+    {}, { params: {'username': username, 'password': password }})
     .subscribe(response => {
       console.log(response);
     })
