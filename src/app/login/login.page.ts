@@ -43,7 +43,7 @@ export class LoginPage implements OnInit {
       if(this.mainButtonText == "LOGIN"){
         this.authService.login(username, password);
       } else {
-        this.authService.login(username, password);
+        this.authService.register(username, password);
       }
     }
   }
