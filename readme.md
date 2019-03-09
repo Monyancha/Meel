@@ -77,9 +77,3 @@ ionic serve -l
 3, Select Buikd » and select your device to run the app!	
 ```
 
-## Examples
-
-|                            Login                             |                             Main                             |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/login.png) | ![](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/main.png) |
-
