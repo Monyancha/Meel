@@ -25,8 +25,18 @@ import { TokenInterceptor } from './services/interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // --- March 9, 2019: Animations ---
 
+// --- March 9, 2019: Firbase Auth ---
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { firebaseConfig } from '../config';
+import {LoginPage} from './login/login.page'
+// --- March 9, 2019: Firbase Auth ---
+
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent, 
+  ],
   entryComponents: [],
 
   // --- Feb 22, 2019: New Import ---
@@ -42,6 +52,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ScrollingModule, 
     IonicStorageModule.forRoot(),
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(firebaseConfig.fire),
   ],
   // --- Feb 22, 2019: New Import ---
 
@@ -53,7 +64,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    AngularFireAuth,
   ],
   bootstrap: [AppComponent]
 })

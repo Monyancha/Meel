@@ -25,49 +25,55 @@ node --version
 ```bash
 # This comes with all of the Ionic components 
 # and Angular specific services and features.
-# Good Luck
 npm install -g ionic 
 npm install -g @angular/cli
 npm install @ionic/angular@latest --save
 ```
 
-#### 3, Cordova & Ionic Native
+#### 3, Cordova(iOS Native Support)
 
 ```bash
 # First, download and `cd` to this project
 # then run the following command
 npm i -g cordova
-ionic cordova plugin add cordova-plugin-advanced-http
-npm install @ionic-native/http --save
-```
-
-## Emulation
-
-#### 1, Run on iOS (mac ONLY)
-
-```bash
-# Make sure you have Cordava and Xcode installed.
 npm install -g ios-sim
 npm install -g ios-deploy
+npm install @ionic-native/http --save
+ionic cordova plugin add cordova-plugin-advanced-http
+ionic cordova prepare ios
+```
 
+## Build & Run
+
+#### 1, iOS Emulation
+
+```bash
 # Build & Run on simulator
 ionic cordova emulate ios 
 ```
 
 ```bash
-# Try this to fix if 'XCode not found'
+# ERROR: 'XCode not found'
 xcode-select --install
 sudo xcode-select --switch /Library/Developer/CommandLineTools
-# Try this to fix if 'build failed'
+# ERROR 'Build failed'
 ionic cordova emulate ios --buildFlag="-UseModernBuildSystem=0"
 ```
 
-#### 2, Run on Web
+#### 2, Web Emulation
 
 Make sure to add `-l` when runing with `ionic serve`
 
 ```bash
 # app should load automatically on your default web browser. 
 ionic serve -l
+```
+
+#### 3, Real iPhone
+
+```bash
+1, open Xcode. Use File » Open and locate the app. Open the app's platforms/ios directory
+2, Plug in your iphone into your PC
+3, Select Buikd » and select your device to run the app!	
 ```
 

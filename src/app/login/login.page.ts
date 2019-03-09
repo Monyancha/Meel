@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
 import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-login',
@@ -45,6 +46,9 @@ export class LoginPage implements OnInit {
       } else {
         this.authService.register(username, password);
       }
+
+      // this.router.navigate(['tabs']);
+
     }
   }
 
@@ -66,7 +70,7 @@ export class LoginPage implements OnInit {
 
   async presentToast(msg : string) {
     const toast = await this.toastController.create({
-      color: 'medium',
+      color: 'dark',
       message: msg,
       duration: 5000,
       showCloseButton: false,

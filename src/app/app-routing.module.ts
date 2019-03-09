@@ -11,15 +11,10 @@ const routes: Routes = [
     path: 'login', 
     loadChildren: './login/login.module#LoginPageModule',
   },
-  
-  { 
-    path: 'register', 
-    loadChildren: './register/register.module#RegisterPageModule' 
-  },
 
   {
     path: 'tabs', 
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: './tabs/tabs.module#TabsPageModule'
     // loadChildren: './tabs/tabs.router.module#TabsPageRoutingModule'  
   },

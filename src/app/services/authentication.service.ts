@@ -42,10 +42,12 @@ export class AuthenticationService {
   }
 
   register(username : string, password : string) {
+    console.log("Registeration Sent: ", username, ":", password);
     this.http.post(this.apiUrl + '/register', 
     {}, { params: {'username': username, 'password': password }})
     .subscribe(response => {
-      console.log(response);
+      console.log("Registeration Resonse:", response);
+      
     })
   }
  
@@ -61,6 +63,7 @@ export class AuthenticationService {
     this.http.get(this.apiUrl + '/login/' + usrname, httpOptions)
     .subscribe(response => {
       console.log(response);
+      
     })
 
     // console.log(answer)
