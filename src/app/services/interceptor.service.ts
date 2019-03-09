@@ -12,12 +12,15 @@ import { map, catchError } from 'rxjs/operators';
 import {
   Router
 } from '@angular/router';
+
 import { ToastController } from '@ionic/angular';
+import { AuthenticationService } from '../services/authentication.service'
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   constructor(
     private router: Router,
+    private authService: AuthenticationService,
     public toastController: ToastController) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): 
@@ -57,6 +60,7 @@ export class TokenInterceptor implements HttpInterceptor {
           if (error.error.success === false) {
             this.presentToast('Login failed');
           } else {
+            this.authService.logout();
             this.router.navigate(['login']);
           }
         }
@@ -74,3 +78,4 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
 }
+

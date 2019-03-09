@@ -1,12 +1,3 @@
-// import { Injectable } from '@angular/core';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class AuthenticationService {
-
-//   constructor() { }
-// }
 
 import { Platform } from '@ionic/angular';
 import { Injectable } from '@angular/core';
@@ -16,6 +7,9 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { HttpHeaders } from '@angular/common/http';
+
+import { User } from '../model/users'
 
 const TOKEN_KEY = 'auth-token';
 
@@ -27,12 +21,12 @@ localStorage.setItem('token', TOKEN_KEY);
 export class AuthenticationService {
  
   authenticationState = new BehaviorSubject(false);
-  apiUrl = '/api';
+  static readonly apiUrl = 'http://localhost:8080';
  
   constructor(
     private storage: Storage, 
     private plt: Platform,
-    private http: HttpClient) { 
+    private http: HttpClient) {
     this.plt.ready().then(() => {
       this.checkToken();
     });
@@ -47,10 +41,18 @@ export class AuthenticationService {
     // })
   }
  
-  login() {
-    this.http.get(this.apiUrl + '/admin/profile').subscribe((response) => {
+  login(usrname : string, password : string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa(usrname + ":" + password)
+      })
+    };
+
+    this.http.get(this.apiUrl + '/login/' + usrname, httpOptions).subscribe((response) => {
       console.log(response);
     })
+
     // console.log(answer)
 
       // .pipe(
@@ -61,6 +63,7 @@ export class AuthenticationService {
     // return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
     //   this.authenticationState.next(true);
     // });
+
   }
 
   logout() {
@@ -92,5 +95,5 @@ export class AuthenticationService {
   private log(message: string) {
     console.log(message);
   }
- 
 }
+

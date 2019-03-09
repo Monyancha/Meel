@@ -26,15 +26,30 @@
   $settings-text-color-description-links: #687DFC;
   $settings-text-label-color: #FF0000;
 
-.logintoast {
-    > div {
-        --width: 50%;
-        text-align: center;
+
+ion-toast.cus-toast {
+
+    .toast-wrapper {
+        margin-left: 10%;
+    margin-right: 10%;
+        text-align: center !important;
     }
-    
+
+    margin-left: 10%;
+    margin-right: 10%;
+
+    toast-container {
+        margin-left: 10%;
+        margin-right: 10%;
+        text-align: center !important;
+    }
+
+    toast-message{
+        text-align: center !important;
+    }
+
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
 }
-
-
 
 ion-content {
     font-family: 'Montserrat', sans-serif;

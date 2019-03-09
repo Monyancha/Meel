@@ -33,6 +33,7 @@
     "ajv": "^6.9.2",
     "angular-in-memory-web-api": "^0.8.0",
     "angular2-jwt": "^0.2.3",
+    "cordova-browser": "5.0.4",
     "cordova-ios": "4.5.5",
     "cordova-plugin-advanced-http": "2.0.4",
     "cordova-plugin-device": "^2.0.2",
@@ -87,7 +88,8 @@
       "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
-      "ios"
+      "ios",
+      "browser"
     ]
   }
 }

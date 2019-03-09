@@ -64,13 +64,10 @@ ionic cordova emulate ios --buildFlag="-UseModernBuildSystem=0"
 
 #### 2, Run on Web
 
-```bash
-# Run this if you are running the app for the first time to 
-# install additional packages, could take a while(~400MB)...
-npm install	
+Make sure to add `-l` when runing with `ionic serve`
 
-# Serve the app
+```bash
 # app should load automatically on your default web browser. 
-ionic serve
+ionic serve -l
 ```
 

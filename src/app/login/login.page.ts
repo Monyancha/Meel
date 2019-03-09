@@ -27,8 +27,12 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  login() {
-    this.authService.login();
+  login(username : string, password : string) {
+    if( username.length == 0 || password.length == 0){
+      this.presentToast("LOGIN: Please fill in the username and password. \n");
+    } else {
+      this.authService.login(username, password);
+    }
   }
 
   register() {
@@ -36,20 +40,19 @@ export class LoginPage implements OnInit {
   }
 
   pswReset() {
-    this.presentToast("Function Not Implemented!")
+    this.presentToast("Function not implemented")
   }
 
   async presentToast(msg : string) {
     const toast = await this.toastController.create({
-      color: 'light',
+      color: 'dark',
       message: msg,
       duration: 5000,
       showCloseButton: false,
       cssClass: "logintoast",
-      position: 'top',
+      position: 'bottom',
     });
     toast.present();
     console.log("login.component: toast posting: [" + msg + "]")
   }
-
 }

@@ -16,10 +16,10 @@
           <ion-col col-12>
             <div input-field>
               <ion-item no-padding>
-                  <ion-input text-center type="email" placeholder="  Email"></ion-input>
+                  <ion-input text-center #usr type="email" placeholder="  Email"></ion-input>
               </ion-item>
               <ion-item no-padding>
-                  <ion-input text-center type="password" placeholder="  Password"></ion-input>
+                  <ion-input text-center #pswd type="password" placeholder="  Password"></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -27,7 +27,7 @@
 
         <!-- Buttons -->
         <ion-col col-12 no-padding>
-          <ion-button full (click)="login()">LOGIN</ion-button>
+          <ion-button full (click)="login(usr.value, pswd.value)">LOGIN</ion-button>
         </ion-col>
 
         <ion-row align-items-center align-items-stretch>
@@ -47,16 +47,17 @@
 
 <ion-footer>
   <ion-row class="foot-row">
-    <ion-col size="5.3">
+    <!-- <ion-col size="6">
       <div text-center>
           <img logo float-right src="../../assets/img/yale-logo3.png" width="12%" />
       </div>
-    </ion-col>
-    <ion-col size="6.7">
-      <div text-center float-left>
-          <div class="footnote-header">Meal Date</div>
-          <div class="footnote-subheader">v1.3.0 dev beta</div>
+    </ion-col> -->
+    <ion-col>
+      <div text-center>
+          <!-- <div class="footnote-header">MealDate</div> -->
+          <div class="footnote-subheader">v1.4.0 beta</div>
       </div>
     </ion-col>
   </ion-row>
 </ion-footer>
+
