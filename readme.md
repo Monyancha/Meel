@@ -1,4 +1,4 @@
-# MealDate - FE
+# MealDate
 
 this should be the latest stable version. still working….
 
@@ -76,4 +76,10 @@ ionic serve -l
 2, Plug in your iphone into your PC
 3, Select Buikd » and select your device to run the app!	
 ```
+
+## Examples
+
+|                            Login                             |                             Main                             |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/login.png) | ![](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/main.png) |
 
