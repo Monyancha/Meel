@@ -16,6 +16,9 @@ export class LoginPage implements OnInit {
   public isUsernameValid: boolean;
   public isPasswordValid: boolean;
 
+  private mainButtonText = "LOGIN";
+  private createAccountText = "Don't have an account?";
+
   constructor(
     public toastController: ToastController,
     private authService: AuthenticationService,
@@ -29,14 +32,26 @@ export class LoginPage implements OnInit {
 
   login(username : string, password : string) {
     if( username.length == 0 || password.length == 0){
-      this.presentToast("LOGIN: Please fill in the username and password. \n");
+      this.presentToast("Please fill in the username and password. \n");
     } else {
-      this.authService.login(username, password);
+      if(this.mainButtonText == "LOGIN"){
+        this.authService.login(username, password);
+      } else {
+        this.authService.login(username, password);
+      }
     }
   }
 
   register() {
-    this.router.navigate(['register']);
+    if(this.mainButtonText == "LOGIN") {
+      this.mainButtonText = "REGISTER";
+      this.createAccountText = "Have an account?";
+      // this.presentToast("Please fill in username and password to create an account.")
+    } else {
+      this.mainButtonText = "LOGIN";
+      this.createAccountText = "Don't have an account?";
+      // this.presentToast("Please fill in username and password to create an account.")
+    }
   }
 
   pswReset() {
@@ -45,12 +60,12 @@ export class LoginPage implements OnInit {
 
   async presentToast(msg : string) {
     const toast = await this.toastController.create({
-      color: 'dark',
+      color: 'medium',
       message: msg,
       duration: 5000,
       showCloseButton: false,
       cssClass: "logintoast",
-      position: 'bottom',
+      position: 'top',
     });
     toast.present();
     console.log("login.component: toast posting: [" + msg + "]")

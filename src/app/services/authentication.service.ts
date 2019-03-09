@@ -21,7 +21,7 @@ localStorage.setItem('token', TOKEN_KEY);
 export class AuthenticationService {
  
   authenticationState = new BehaviorSubject(false);
-  static readonly apiUrl = 'http://localhost:8080';
+  readonly apiUrl = 'http://localhost:8080';
  
   constructor(
     private storage: Storage, 
@@ -40,8 +40,16 @@ export class AuthenticationService {
     //   }
     // })
   }
+
+  register(username : string, password : string) {
+    this.http.post(this.apiUrl + '/register', {username, password})
+    .subscribe(response => {
+      console.log(response);
+    })
+  }
  
   login(usrname : string, password : string) {
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -49,7 +57,8 @@ export class AuthenticationService {
       })
     };
 
-    this.http.get(this.apiUrl + '/login/' + usrname, httpOptions).subscribe((response) => {
+    this.http.get(this.apiUrl + '/login/' + usrname, httpOptions)
+    .subscribe(response => {
       console.log(response);
     })
 
