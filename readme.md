@@ -50,19 +50,23 @@ ionic cordova prepare ios
 
 ## Build & Run
 
-#### 1, iOS Emulation(simplified)
+#### 1, iOS Emulation
 
 ```bash
-# build and test params are already writen in local script.
+# mac only, xcode required
+# no need to add build&test params, I already include these in
+# local script 'package.json.scripts'
 npm run emulate-live
 ```
 
 #### 2, Web Emulation
 
-**WARNING:** this will not be supported in future due to the incorporation of native calls.
+**WARNING:** this will not be supported in future due to the presence of native calls. 
 
 ```bash
-ionic serve -l
+# -l stands for live reload
+# -c stands for console output
+ionic serve -lc
 ```
 
 #### 3, iOS Device
@@ -77,5 +81,3 @@ ionic cordova prepare ios
 ```
 
 #### 4, ~~Android Device~~
-
-Not implemented yet.
