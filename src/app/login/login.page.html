@@ -26,6 +26,7 @@
 
         <!-- Buttons -->
         <!-- <div> -->
+        <div class="termdiv" [innerHTML]="termTexts"></div>
         <ion-col col-12 no-padding>
           <ion-button full (click)="login(usr.value, pswd.value)" >{{mainButtonText}}</ion-button>
         </ion-col>
@@ -44,7 +45,7 @@
     </ion-col>
   </ion-grid>
 
-  <div class="sub-texts">Other sign-in options</div>
+  <div class="sub-texts">OR</div>
   <button class="loginBtn loginBtn--facebook" (click)="loginWithFacebook()">Login with Facebook</button>
   <!-- <button class="loginBtn loginBtn--google">Login with Google</button> -->
 

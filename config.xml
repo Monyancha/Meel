@@ -91,4 +91,5 @@
     </plugin>
     <engine name="ios" spec="^5.0.0" />
     <engine name="browser" spec="6.0.0" />
+    <plugin name="cordova-sqlite-storage" spec="3.1.0" />
 </widget>

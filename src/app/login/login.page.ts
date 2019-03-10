@@ -19,6 +19,7 @@ export class LoginPage implements OnInit {
 
   private mainButtonText = "LOGIN";
   private createAccountText = "Don't have an account?";
+  private termTexts = "";
 
   constructor(
     public toastController: ToastController,
@@ -59,10 +60,12 @@ export class LoginPage implements OnInit {
     if(this.mainButtonText == "LOGIN") {
       this.mainButtonText = "REGISTER";
       this.createAccountText = "Already have an account?";
+      this.termTexts = "By tapping Register,you agree with our <b><u>Terms of Services</u></b> and <b><u>Privacy Ploicy</u></b>."
       // this.presentToast("Please fill in username and password to create an account.")
     } else {
       this.mainButtonText = "LOGIN";
       this.createAccountText = "Don't have an account?";
+      this.termTexts = "";
       // this.presentToast("Please fill in username and password to create an account.")
     }
   }

@@ -91,6 +91,16 @@ ion-content {
                 overflow: visible !important;
                 }
             }
+            
+            .termdiv {
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                width: 90%;
+                font-family: 'Montserrat', sans-serif;
+                color: #86888f;
+                font-size: 10px;
+            }
 
             [full] {
                 min-height: 57px;

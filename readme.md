@@ -44,6 +44,7 @@ npm install -g ios-deploy
 npm install @ionic-native/http --save
 ionic cordova plugin add cordova-plugin-advanced-http
 ionic cordova plugin add cordova-plugin-facebook4
+ionic cordova plugin add cordova-sqlite-storage
 ionic cordova prepare ios
 ```
 
