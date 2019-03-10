@@ -50,26 +50,32 @@ ionic cordova prepare ios
 
 ## Build & Run
 
-#### 1, iOS Emulation(with liveload)
+#### 1, iOS Emulation(simplified)
 
 ```bash
-# Build & Run on simulator
+# build and test params are already writen in local script.
 npm run emulate-live
 ```
 
-#### 2, ~~Web Emulation~~
+#### 2, Web Emulation
 
-This is no longer supported since we need a mobile OS for native calls.
-
-#### 3, Real iPhone
+**WARNING:** this will not be supported in future due to the incorporation of native calls.
 
 ```bash
-# Run this to compile
-ionic cordova prepare ios
-
-# Open and run in xcode
-1, open Xcode. Use File » Open and locate the app. Open the app's platforms/ios directory
-2, Plug in your iphone into your PC
-3, Select Buikd » and select your device to run the app!	
+ionic serve -l
 ```
 
+#### 3, iOS Device
+
+```bash
+# Firt Run this to compile
+ionic cordova prepare ios
+
+# Then, open Xcode. Use File » Open and locate the app. Open the app platforms/ios directory
+# 2, Plug in your iphone into your PC
+# 3, Select Buikd » and select your device to run the app!	
+```
+
+#### 4, ~~Android Device~~
+
+Not implemented yet.
