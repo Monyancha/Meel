@@ -2,7 +2,6 @@
 
 <ion-content padding no-bounce>
   <ion-grid no-padding>
-
     <ion-col align-items-center align-items-stretch>
       <form padding>
 
@@ -40,26 +39,26 @@
             <ion-button class="sub-buttons" (click)="register()" float-right>{{createAccountText}}</ion-button>
           </ion-col>
         </ion-row>
-
+        
       </form>
     </ion-col>
-
   </ion-grid>
+
+  <div class="sub-texts">Other sign-in options</div>
+  <button class="loginBtn loginBtn--facebook" (click)="loginWithFacebook()">Login with Facebook</button>
+  <!-- <button class="loginBtn loginBtn--google">Login with Google</button> -->
+
+
 </ion-content>
 
 <ion-footer>
+
   <ion-row class="foot-row">
-    <!-- <ion-col size="6">
-      <div text-center>
-          <img logo float-right src="../../assets/img/yale-logo3.png" width="12%" />
-      </div>
-    </ion-col> -->
     <ion-col>
       <div text-center>
           <!-- <div class="footnote-header">MealDate</div> -->
-          <div class="footnote-subheader">v1.4.0 beta</div>
+          <div class="footnote-subheader">v1.5.0 beta</div>
       </div>
     </ion-col>
   </ion-row>
 </ion-footer>
-

@@ -38,8 +38,8 @@ export class AppComponent {
         if (state) {
           this.router.navigate(['tabs']);
         } else {
-          // this.router.navigate(['login']);
-          this.router.navigate(['tabs']);
+          this.router.navigate(['login']);
+          // this.router.navigate(['tabs']);
         }
       });
 

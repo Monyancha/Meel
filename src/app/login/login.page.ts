@@ -3,17 +3,11 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
-import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  animations: [
-    fadeInOnEnterAnimation(),
-    fadeOutOnLeaveAnimation()
-  ],
 })
 export class LoginPage implements OnInit {
   @Input() events: any;
@@ -50,6 +44,15 @@ export class LoginPage implements OnInit {
       // this.router.navigate(['tabs']);
 
     }
+  }
+
+  loginWithFacebook() {
+    this.presentToast("Function temporarily disabled due to test purpose")
+    // this.authService.loginWithFacebook();
+      // .then(
+      //   () => this.router.navigate(['tabs']),
+      //   error => console.log(error.message)
+      // );
   }
 
   register() {

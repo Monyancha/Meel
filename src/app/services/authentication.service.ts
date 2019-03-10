@@ -9,6 +9,10 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 
+// --- 3rd Auth Service ---
+// import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+// --- 3rd Auth Service ---
+
 import { User } from '../model/users'
 
 const TOKEN_KEY = 'auth-token';
@@ -22,15 +26,17 @@ export class AuthenticationService {
  
   authenticationState = new BehaviorSubject(false);
   readonly apiUrl = 'http://localhost:8080';
- 
+
   constructor(
     private storage: Storage, 
     private plt: Platform,
-    private http: HttpClient) {
-    this.plt.ready().then(() => {
-      this.checkToken();
-    });
-  }
+    // public fb: Facebook,
+    private http: HttpClient) 
+    {
+      this.plt.ready().then(() => {
+        this.checkToken();
+      });
+    }
  
   checkToken() {
     this.authenticationState.next(false);
@@ -78,6 +84,48 @@ export class AuthenticationService {
     // });
 
   }
+
+// Native FB Calls
+  loginWithFacebook(){
+    // // Login with permissions
+    // this.fb.login(['public_profile', 'user_photos', 'email', 'user_birthday'])
+    // .then( (res: FacebookLoginResponse) => {
+
+    //     // The connection was successful
+    //     if(res.status == "connected") {
+
+    //         // Get user ID and Token
+    //         var fb_id = res.authResponse.userID;
+    //         var fb_token = res.authResponse.accessToken;
+
+    //         // Get user infos from the API
+    //         this.fb.api("/me?fields=name,gender,birthday,email", []).then((user) => {
+
+    //             // Get the connected user details
+    //             var gender    = user.gender;
+    //             var birthday  = user.birthday;
+    //             var name      = user.name;
+    //             var email     = user.email;
+
+    //             console.log("=== USER INFOS ===");
+    //             console.log("Gender : " + gender);
+    //             console.log("Birthday : " + birthday);
+    //             console.log("Name : " + name);
+    //             console.log("Email : " + email);
+
+    //             // => Open user session and redirect to the next page
+    //         });
+    //     } 
+    //     // An error occurred while loging-in
+    //     else {
+    //         console.log("An error occurred...");
+    //     }
+    // })
+    // .catch((e) => {
+    //     console.log('Error logging into Facebook', e);
+    // });
+}
+
 
   logout() {
     this.authenticationState.next(false);

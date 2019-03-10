@@ -1,12 +1,15 @@
 # MealDate
 
-this should be the latest stable version. still working….
+this is the latest front-end of our app 'MealDate' for Yale CPSC 539 Software Engineering.
 
 #### Update Log
 
 ```
-2019-02-25 13:54:00: network and authentication component for login
-2019-02-24 00:32:00: add a static login page
+2019-03-09 23:48:00: FB login temporarily disabled
+2019-03-09 22:53:00: allow facebook login
+2019-03-09 17:28:00: bugs fix
+2019-02-25 13:54:00: add login authentication
+2019-02-24 00:32:00: add static login page
 2019-02-23 01:00:00: app created
 ```
 
@@ -40,38 +43,30 @@ npm install -g ios-sim
 npm install -g ios-deploy
 npm install @ionic-native/http --save
 ionic cordova plugin add cordova-plugin-advanced-http
+ionic cordova plugin add cordova-plugin-facebook4
 ionic cordova prepare ios
 ```
 
 ## Build & Run
 
-#### 1, iOS Emulation
+#### 1, iOS Emulation(with liveload)
 
 ```bash
 # Build & Run on simulator
-ionic cordova emulate ios 
+npm run emulate-live
 ```
 
-```bash
-# ERROR: 'XCode not found'
-xcode-select --install
-sudo xcode-select --switch /Library/Developer/CommandLineTools
-# ERROR 'Build failed'
-ionic cordova emulate ios --buildFlag="-UseModernBuildSystem=0"
-```
+#### 2, ~~Web Emulation~~
 
-#### 2, Web Emulation
-
-Make sure to add `-l` when runing with `ionic serve`
-
-```bash
-# app should load automatically on your default web browser. 
-ionic serve -l
-```
+This is no longer supported since we need a mobile OS for native calls.
 
 #### 3, Real iPhone
 
 ```bash
+# Run this to compile
+ionic cordova prepare ios
+
+# Open and run in xcode
 1, open Xcode. Use File » Open and locate the app. Open the app's platforms/ios directory
 2, Plug in your iphone into your PC
 3, Select Buikd » and select your device to run the app!	

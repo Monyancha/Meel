@@ -25,13 +25,9 @@ import { TokenInterceptor } from './services/interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // --- March 9, 2019: Animations ---
 
-// --- March 9, 2019: Firbase Auth ---
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { firebaseConfig } from '../config';
-import {LoginPage} from './login/login.page'
-// --- March 9, 2019: Firbase Auth ---
-
+// --- March 9, 2019: 3rd Auth ---
+// import { Facebook } from '@ionic-native/facebook/ngx';
+// --- March 9, 2019: 3rd Auth ---
 
 @NgModule({
   declarations: [
@@ -52,7 +48,7 @@ import {LoginPage} from './login/login.page'
     ScrollingModule, 
     IonicStorageModule.forRoot(),
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(firebaseConfig.fire),
+    // SocialLoginModule,
   ],
   // --- Feb 22, 2019: New Import ---
 
@@ -65,7 +61,7 @@ import {LoginPage} from './login/login.page'
       useClass: TokenInterceptor,
       multi: true
     },
-    AngularFireAuth,
+    // Facebook,
   ],
   bootstrap: [AppComponent]
 })
