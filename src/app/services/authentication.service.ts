@@ -1,13 +1,11 @@
 
-import { Platform } from '@ionic/angular';
+import { Platform, Config } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
 
 // --- 3rd Auth Service ---
 // import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
@@ -15,7 +13,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 import { User } from '../model/users'
 
-const TOKEN_KEY = 'auth-token';
+const TOKEN_KEY = 'user_id';
 
 localStorage.setItem('token', TOKEN_KEY);
 
@@ -28,11 +26,10 @@ export class AuthenticationService {
   readonly apiUrl = 'http://localhost:8080';
 
   constructor(
-    private storage: Storage, 
+    public ionicDb: Storage, 
     private plt: Platform,
     // public fb: Facebook,
-    private http: HttpClient) 
-    {
+    private http: HttpClient) {
       this.plt.ready().then(() => {
         this.checkToken();
       });
@@ -40,52 +37,14 @@ export class AuthenticationService {
  
   checkToken() {
     this.authenticationState.next(false);
-    // this.storage.get(TOKEN_KEY).then(res => {
-    //   if (res) {
-    //     this.authenticationState.next(true);
-    //   }
-    // })
-  }
-
-  register(username : string, password : string) {
-    console.log("Registeration Sent: ", username, ":", password);
-    this.http.post(this.apiUrl + '/register', 
-    {}, { params: {'username': username, 'password': password }})
-    .subscribe(response => {
-      console.log("Registeration Resonse:", response);
-      
+    this.ionicDb.get(TOKEN_KEY).then(res => {
+      if (res) {
+        this.authenticationState.next(true);
+      }
     })
   }
- 
-  login(usrname : string, password : string) {
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'Basic ' + btoa(usrname + ":" + password)
-      })
-    };
-
-    this.http.get(this.apiUrl + '/login/' + usrname, httpOptions)
-    .subscribe(response => {
-      console.log(response);
-      
-    })
-
-    // console.log(answer)
-
-      // .pipe(
-        // tap(_ => this.log('login')),
-        // catchError(this.handleError('login', []))
-      // );
-    // return this.authenticationState.next(true);
-    // return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
-    //   this.authenticationState.next(true);
-    // });
-
-  }
-
-// Native FB Calls
+// Uncomment to use facebook login service
   loginWithFacebook(){
     // // Login with permissions
     // this.fb.login(['public_profile', 'user_photos', 'email', 'user_birthday'])
@@ -126,12 +85,10 @@ export class AuthenticationService {
     // });
 }
 
-
   logout() {
-    this.authenticationState.next(false);
-    // return this.storage.remove(TOKEN_KEY).then(() => {
-    //   this.authenticationState.next(false);
-    // });
+    return this.ionicDb.remove(TOKEN_KEY).then(() => {
+      this.authenticationState.next(false);
+    });
   }
  
   isAuthenticated() {

@@ -2,7 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -16,15 +18,19 @@ export class LoginPage implements OnInit {
   public password: string;
   public isUsernameValid: boolean;
   public isPasswordValid: boolean;
-
+  
+  private inputPlaceholder = " Username";
   private mainButtonText = "LOGIN";
   private createAccountText = "Don't have an account?";
   private termTexts = "";
 
   constructor(
+    public ionicDb: Storage, 
     public toastController: ToastController,
     private authService: AuthenticationService,
-    private router : Router) { 
+    private router : Router,
+    private http: HttpClient,
+    ) { 
     this.isUsernameValid = true;
     this.isPasswordValid = true
   }
@@ -33,17 +39,59 @@ export class LoginPage implements OnInit {
   }
 
   login(username : string, password : string) {
+    console.log("Login Sent: ", username, ":", password);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa(username + ":" + password)
+      }),
+    };
+
+    this.http.get<string>(this.authService.apiUrl + '/login/' + username, httpOptions)
+    .subscribe(response => {
+      console.log("Login response: ", response);
+      if(response){
+        this.ionicDb.set("user_id", response);
+        this.router.navigate(['tabs']);
+      } else {
+        console.log("login Unknown error");
+        this.presentToast("Unknown error occured");
+      }
+    }, error => {
+      console.log("login.login() error: ", error.error)
+        this.presentToast(error.error)
+    });
+  }
+
+  register(email : string, password : string) {
+    console.log("Registeration Sent: ", email, ":", password);
+    this.http.post<string>(this.authService.apiUrl + '/register', {},
+      { params: {'username': email, 'email': email, 'password': password }})
+      .subscribe(response => {
+        console.log("Registeration response: ", response);
+        if(response){
+          this.ionicDb.set("user_id", response);
+          this.presentToast("User created!");
+          this.router.navigate(['tabs']);
+        } else {
+          console.log("login.register Unknown error");
+          this.presentToast("Unknown error occured");
+        }
+      }, error => {
+        console.log("login.register error: ", error.error)
+        this.presentToast(error.error)
+      });
+  }
+
+  mainButton(username : string, password : string) {
     if( username.length == 0 || password.length == 0){
-      this.presentToast("Please fill in the username and password. \n");
+      this.presentToast("Please fill in the username/email and password. \n");
     } else {
       if(this.mainButtonText == "LOGIN"){
-        this.authService.login(username, password);
+        this.login(username, password)
       } else {
-        this.authService.register(username, password);
+        this.register(username, password);
       }
-
-      // this.router.navigate(['tabs']);
-
     }
   }
 
@@ -56,17 +104,17 @@ export class LoginPage implements OnInit {
       // );
   }
 
-  register() {
+  switchLoginRegister() {
     if(this.mainButtonText == "LOGIN") {
       this.mainButtonText = "REGISTER";
+      this.inputPlaceholder = " Email";
       this.createAccountText = "Already have an account?";
       this.termTexts = "By tapping Register,you agree with our <b><u>Terms of Services</u></b> and <b><u>Privacy Ploicy</u></b>."
-      // this.presentToast("Please fill in username and password to create an account.")
     } else {
       this.mainButtonText = "LOGIN";
+      this.inputPlaceholder = " Username";
       this.createAccountText = "Don't have an account?";
       this.termTexts = "";
-      // this.presentToast("Please fill in username and password to create an account.")
     }
   }
 

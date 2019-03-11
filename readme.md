@@ -5,6 +5,7 @@ this is the latest front-end of our app 'MealDate' for Yale CPSC 539 Software En
 #### Update Log
 
 ```
+2019-03-10 21:56:00: add settings page, login/register bugs fix
 2019-03-09 23:48:00: FB login temporarily disabled
 2019-03-09 22:53:00: allow facebook login
 2019-03-09 17:28:00: bugs fix
@@ -81,3 +82,4 @@ ionic cordova prepare ios
 ```
 
 #### 4, ~~Android Device~~
+

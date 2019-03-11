@@ -1,1 +1,98 @@
 
+.userphoto{
+    margin: auto;
+}
+
+.username {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.sub-texts {
+    font-family: 'Montserrat', sans-serif;
+    text-align: left;
+    border-color: transparent;
+    --background: transparent;
+    --background-activated: #CCCCCC; 
+    box-shadow: none;
+    display: block;
+    
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    width: 85%;
+
+    color: #86888f;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.sub-card {
+    margin-top: 4px;
+
+}
+
+.profile-header {
+    padding-bottom: 0;
+}
+
+.customSelect {
+    max-width: 100% !important;
+}
+
+.sub-content {
+    padding-top: 0;
+    padding-bottom: 10px;
+    font-size: 12px;
+}
+
+.sub-label {
+    text-align: left;
+    margin-left: 10px;
+}
+
+.sub-input {
+    text-align: right;
+}
+
+.logout-button {
+    width: 90%;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+
+    text-align: center;
+    border-color: transparent;
+    --background: transparent;
+    --background-activated: #CCCCCC; 
+    box-shadow: none;
+    
+    display: block;
+    margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
+
+    color: #d33939;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.save-button {
+    font-family: 'Montserrat', sans-serif;
+    min-height: 57px;
+    border-radius: 8px;
+    width: 90%;
+
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+    letter-spacing: 8px;
+    color: #383a3e;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16) !important;
+}
+

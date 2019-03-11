@@ -18,6 +18,7 @@ const routes: Routes = [
     loadChildren: './tabs/tabs.module#TabsPageModule'
     // loadChildren: './tabs/tabs.router.module#TabsPageRoutingModule'  
   },
+  { path: 'chatroom', loadChildren: './chatroom/chatroom.module#ChatroomPageModule' },
 ];
 
 @NgModule({

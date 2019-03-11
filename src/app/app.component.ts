@@ -38,7 +38,7 @@ export class AppComponent {
           this.router.navigate(['tabs']);
         } else {
           // this.router.navigate(['login']);
-          this.router.navigate(['tabs']);
+          this.router.navigate(['tabs/tabs/tab3']);
         }
       });
     });

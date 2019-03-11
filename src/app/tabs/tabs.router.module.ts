@@ -26,6 +26,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'chatroom',
+        children: [
+          {
+            path: '',
+            loadChildren: '../chatroom/chatroom.module#ChatroomPageModule'
+          }
+        ]
+      },
+      {
         path: 'tab3',
         children: [
           {
