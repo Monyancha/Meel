@@ -18,12 +18,12 @@ export class LoginPage implements OnInit {
   public password: string;
   public isUsernameValid: boolean;
   public isPasswordValid: boolean;
-  
+
   private inputPlaceholder = " Username";
   private mainButtonText = "LOGIN";
   private createAccountText = "Don't have an account?";
   private termTexts = "";
-
+  
   constructor(
     public ionicDb: Storage, 
     public toastController: ToastController,
@@ -58,8 +58,8 @@ export class LoginPage implements OnInit {
         this.presentToast("Unknown error occured");
       }
     }, error => {
-      console.log("login.login() error: ", error.error)
-        this.presentToast(error.error)
+      console.log("login.login() error: ", error, error.error);
+      this.presentToast("Error: " + error + error.error);
     });
   }
 
@@ -74,12 +74,12 @@ export class LoginPage implements OnInit {
           this.presentToast("User created!");
           this.router.navigate(['tabs']);
         } else {
-          console.log("login.register Unknown error");
+          console.log("login.register() Unknown error");
           this.presentToast("Unknown error occured");
         }
       }, error => {
-        console.log("login.register error: ", error.error)
-        this.presentToast(error.error)
+        console.log("login.register() error: ", error, error.error);
+        this.presentToast("Error: " + error + error.error);
       });
   }
 
@@ -87,6 +87,9 @@ export class LoginPage implements OnInit {
     if( username.length == 0 || password.length == 0){
       this.presentToast("Please fill in the username/email and password. \n");
     } else {
+      // todo Hash Password 
+
+      // Sending Requests
       if(this.mainButtonText == "LOGIN"){
         this.login(username, password)
       } else {

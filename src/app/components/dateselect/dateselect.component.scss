@@ -1,0 +1,20 @@
+
+.confirm-button {
+    width: 40%;
+    letter-spacing: 0px;
+
+    text-align: center;
+    border-color: transparent;
+    --background: transparent;
+    --background-activated: #CCCCCC; 
+    box-shadow: none;
+    
+    display: block;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+    color: #7e57ff;
+    font-size: 16px;
+    font-weight: 400;
+}

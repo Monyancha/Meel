@@ -29,11 +29,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { Facebook } from '@ionic-native/facebook/ngx';
 // --- March 9, 2019: 3rd Auth ---
 
+// --- March 21, 2019: Pop-overs ---
+import { DateselectComponent } from './components/dateselect/dateselect.component';
+import { UserprofileComponent } from './components/userprofile/userprofile.component';
+// --- March 21, 2019: Pop-overs ---
+
 @NgModule({
   declarations: [
     AppComponent, 
+    DateselectComponent,
+    UserprofileComponent,
   ],
-  entryComponents: [],
+  
+  entryComponents: [
+    DateselectComponent,
+    UserprofileComponent,
+  ],
 
   // --- Feb 22, 2019: New Import ---
   imports: [

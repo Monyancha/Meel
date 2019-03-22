@@ -13,17 +13,15 @@ import { Observable, of } from 'rxjs';
 
 import { User } from '../model/users'
 
-const TOKEN_KEY = 'user_id';
-
-localStorage.setItem('token', TOKEN_KEY);
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
  
   authenticationState = new BehaviorSubject(false);
-  readonly apiUrl = 'http://localhost:8080';
+  // readonly apiUrl = 'http://localhost:8080';
+  readonly apiUrl = '142.93.121.23:8080';
+  readonly TOKEN_KEY = 'user_id';
 
   constructor(
     public ionicDb: Storage, 
@@ -37,7 +35,7 @@ export class AuthenticationService {
  
   checkToken() {
     this.authenticationState.next(false);
-    this.ionicDb.get(TOKEN_KEY).then(res => {
+    this.ionicDb.get(this.TOKEN_KEY).then(res => {
       if (res) {
         this.authenticationState.next(true);
       }
@@ -86,11 +84,11 @@ export class AuthenticationService {
 }
 
   logout() {
-    return this.ionicDb.remove(TOKEN_KEY).then(() => {
+    return this.ionicDb.remove(this.TOKEN_KEY).then(() => {
       this.authenticationState.next(false);
     });
   }
- 
+
   isAuthenticated() {
     return this.authenticationState.value;
   }

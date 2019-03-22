@@ -13,6 +13,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../tab1/tab1.module#Tab1PageModule'
+          },
+          {
+            path: 'recommendation',
+            loadChildren: '../subpages/recommendation/recommendation.module#RecommendationPageModule'
           }
         ]
       },

@@ -5,7 +5,8 @@ this is the latest front-end of our app 'MealDate' for Yale CPSC 539 Software En
 #### Update Log
 
 ```
-2019-03-10 21:56:00: add settings page, login/register bugs fix
+2019-03-21 20:20:00: add recommendation page
+2019-03-10 21:56:00: finish settings page
 2019-03-09 23:48:00: FB login temporarily disabled
 2019-03-09 22:53:00: allow facebook login
 2019-03-09 17:28:00: bugs fix
@@ -65,9 +66,17 @@ npm run emulate-live
 **WARNING:** this will not be supported in future due to the presence of native calls. 
 
 ```bash
+# run cordova first for iOS support
+cordova serve
+
 # -l stands for live reload
-# -c stands for console output
-ionic serve -lc
+# -w=c means run with chrome
+ionic serve -l -w=c
+
+# open in ionic lab
+http://localhost:8200
+# open original
+http://localhost:8100
 ```
 
 #### 3, iOS Device
@@ -80,6 +89,4 @@ ionic cordova prepare ios
 # 2, Plug in your iphone into your PC
 # 3, Select Buikd » and select your device to run the app!	
 ```
-
-#### 4, ~~Android Device~~
 

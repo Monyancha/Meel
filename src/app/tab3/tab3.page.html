@@ -7,23 +7,19 @@
 <ion-content>
 
   <ion-card>  
-    <!-- <ion-card-content> -->
       <ion-grid>
         <ion-row>
-
           <ion-col size="4" align-items-center>
             <ion-avatar class="userphoto">
               <img src="../../assets/img/avatar.png">
             </ion-avatar>
           </ion-col>
-
           <ion-col size="8">
             <ion-input class="username" value="Gandalf the Grey"></ion-input>
           </ion-col>
-
         </ion-row>
+        <ion-textarea row="3" class="description" value="shortly describe yourself..."></ion-textarea>
     </ion-grid>
-    <!-- </ion-card-content> -->
   </ion-card>
 
   <ion-card>
@@ -45,7 +41,7 @@
     </ion-item>
 
     <ion-card-content class="sub-content">
-        Your exact location will(as distance to others) will be shown if this toggle is on.
+        Your exact location (as distance to others) will be shown if this toggle is on.
     </ion-card-content>
   </ion-card>
 
@@ -57,19 +53,25 @@
     <ion-item lines="none">
       <ion-label class="sub-label">Gender</ion-label>
       <ion-select class="customSelect" slot="end" interface="popover">
-          <ion-select-option value="male">Male</ion-select-option>
-          <ion-select-option value="female">Female</ion-select-option>
-          <ion-select-option value="others">Others</ion-select-option>
-        </ion-select>
+        <ion-select-option value="male">Male</ion-select-option>
+        <ion-select-option value="female">Female</ion-select-option>
+        <ion-select-option value="others">Others</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label class="sub-label">College</ion-label>
+      <ion-input class="sub-input" slot="end" placeholder="e.g. Berkely"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label class="sub-label">Major</ion-label>
+      <ion-input class="sub-input" slot="end" placeholder="e.g. Computer Science"></ion-input>
     </ion-item>
 
     <ion-item lines="none">
       <ion-label class="sub-label">Email</ion-label>
       <ion-input class="sub-input" slot="end" placeholder="example@yale.edu"></ion-input>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label class="sub-label">College</ion-label>
-      <ion-input class="sub-input" slot="end" placeholder="e.g. Berkely"></ion-input>
     </ion-item>
 
   </ion-card>
