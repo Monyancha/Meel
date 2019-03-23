@@ -6,5 +6,8 @@ export class Invitation {
     end:                String;
     latitude:       number;
     longitude:      number;
-    
+
+    constructor(
+        
+    ) {};
 }
