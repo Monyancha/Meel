@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 
 import {AuthenticationService} from './authentication.service';
 import {User} from '../model/users';
@@ -20,6 +21,7 @@ export class UserinfoService {
     private authService: AuthenticationService,
     private http: HttpClient,
     private ionicDb: Storage,
+    private geolocation: Geolocation,
   ) {}
   
   /*
@@ -45,33 +47,44 @@ export class UserinfoService {
     })
   }
 
-  getUsername() : Promise<any> {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(this.ionicDb.get(this.authService.TOKEN_KEY).then)
-      })
+  getUser() : Promise<any> {
+    return this.ionicDb.get(this.authService.TOKEN_KEY)
+  }
+
+  getCurrentPosition() : Promise<Geoposition> {
+    return this.geolocation.getCurrentPosition();
+    // this.geolocation.getCurrentPosition().then((resp) => {
+    //   console.log("Location: ", resp);
+    //   console.log(resp.coords.latitude);
+    //   console.log(resp.coords.longitude);
+    //  }).catch((error) => {
+    //    console.log('Error getting location', error);
+    //  });
+  }
+
+  updateUserPosition() {
+    this.geolocation.getCurrentPosition().then(resp => {
+      this.user.longitude = resp.coords.latitude;
+      this.user.latitude = resp.coords.longitude;
+      this.updateUserProfile();
+      console.log("User geolocation updated.");
+    }).catch( err => {
+      console.log("Error: User geolocation update failed: ", err);
     })
   }
 
-
-  getUserId() {
-    this.ionicDb.get(this.authService.TOKEN_KEY).then(res => {
-      if(res){
-        return res.id;
-      } else {
-        // todo: pull user information
-        console.log("Userinfo.service.getUserId(): failed to get ID.");
-        return -1;
-      }
-    }).catch(error => {
-      console.log(error);
-      return -1;
-    })
+  updateUsername(username : string) {
+    this.user.username = username;
+    this.updateUserProfile();
   }
 
   updateUserProfile() {
     this.ionicDb.set(this.authService.TOKEN_KEY, this.user);
   }
   
+  test() : Promise<Geoposition> {
+    return this.geolocation.getCurrentPosition();
+  }
+
 
 }

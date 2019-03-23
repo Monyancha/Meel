@@ -34,6 +34,12 @@ import { DateselectComponent } from './components/dateselect/dateselect.componen
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 // --- March 21, 2019: Pop-overs ---
 
+// --- March 23, 2019: GPS && Maps ---
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { GoogleMaps } from '@ionic-native/google-maps';
+
+// --- March 23, 2019: GPS && Maps ---
+
 @NgModule({
   declarations: [
     AppComponent, 
@@ -72,6 +78,8 @@ import { UserprofileComponent } from './components/userprofile/userprofile.compo
       useClass: TokenInterceptor,
       multi: true
     },
+    Geolocation,
+    GoogleMaps,
     // Facebook,
   ],
   bootstrap: [AppComponent]

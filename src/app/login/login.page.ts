@@ -194,13 +194,12 @@ export class LoginPage implements OnInit {
   test() {
     // this.userinfoService.setupLocalUser('7');
     // this.loginWithUserId('7');
-    let temp = new User;
-    temp.randomize();
-    this.ionicDb.set('example', temp).then(res => {
-      console.log('Set res: ', res);
-      this.ionicDb.get('example').then(res => {
-        console.log('Get res: ', res);
-      })
+    this.userinfoService.test().then(resp => {
+      this.presentToast("Location is " + resp.coords.latitude + ":" + resp.coords.longitude);
+    }).catch(err => {
+      this.presentToast(err);
     });
+
   }
+
 }

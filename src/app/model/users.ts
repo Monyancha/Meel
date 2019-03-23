@@ -15,8 +15,10 @@ export class User {
     age:            number;
 
     // Privacy
-    availability:   string;
-    shareGPS:       string;
+    availability:   string; // or boolean
+    shareGPS:       string; // or boolean
+    latitude:       number;
+    longitude:      number;
 
     // Todos
     description:    string;
