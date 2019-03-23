@@ -45,12 +45,12 @@ export class LoginPage implements OnInit {
   private loginWithUserId(user_id) {
     console.log('Loging with id:' + user_id);
     this.userinfoService.setupLocalUser(user_id);
-
-    // var currentUser = new User;
-    // currentUser.id = user_id;
-    // this.ionicDb.set(this.authService.TOKEN_KEY, currentUser);
     
     // todo 03221351
+
+    this.ionicDb.get(this.authService.TOKEN_KEY).then(res => {
+      console.log("Get id:", res);
+    })
     
     this.authService.checkToken();
     this.router.navigate(['tabs']);
@@ -184,7 +184,6 @@ export class LoginPage implements OnInit {
       message: msg,
       duration: timeToShow,
       showCloseButton: false,
-      // cssClass: "logintoast",
       cssClass: "basic-toast-style",
       position: 'top',
     });
@@ -192,10 +191,16 @@ export class LoginPage implements OnInit {
     console.log("login.component: toast posting: " + msg)
   }
 
-
   test() {
-    console.log("Test Clicked");
-
-
+    // this.userinfoService.setupLocalUser('7');
+    // this.loginWithUserId('7');
+    let temp = new User;
+    temp.randomize();
+    this.ionicDb.set('example', temp).then(res => {
+      console.log('Set res: ', res);
+      this.ionicDb.get('example').then(res => {
+        console.log('Get res: ', res);
+      })
+    });
   }
 }

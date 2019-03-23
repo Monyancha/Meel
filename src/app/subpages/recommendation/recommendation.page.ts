@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
-import { MockProvider } from './provider';
-import { User } from '../../model/users';
-
-import { UserprofileComponent } from '../../components/userprofile/userprofile.component';
 import { PopoverController } from '@ionic/angular';
+
+
+
+import { MockProviderService } from '../../services/mockprovider.service';
+import { User } from '../../model/users';
+import { UserprofileComponent } from '../../components/userprofile/userprofile.component';
+
 
 @Component({
   selector: 'app-recommendation',
@@ -18,23 +21,27 @@ export class RecommendationPage implements OnInit {
 
   constructor(
     private popoverController: PopoverController,
-    private mockProvider: MockProvider,
+    private mockProvider: MockProviderService,
   ) { 
-    this.recommendedUsers = mockProvider.getData();
+    this.recommendedUsers = mockProvider.getRandomUsers(8);
   }
 
   ngOnInit() {
   }
 
-  loadData(event) {
-    setTimeout(() => {
-      console.log('loading more data...');
-      this.doInfinite();
-    }, 500);
+  loadData(event : Event) {
+    if(this.recommendedUsers.length < 50) {
+      setTimeout(() => {
+        console.log('loading more data...');
+        this.doInfinite();
+      }, 500);
+    } else {
+      this.infiniteScroll.complete();
+    }
   }
 
   doInfinite() {
-    this.mockProvider.getAsyncData().then((newData) => {
+    this.mockProvider.getRandomUsersAsync(8).then((newData) => {
       for (var i = 0; i < newData.length; i++) {
         this.recommendedUsers.push( newData[i] );
       }

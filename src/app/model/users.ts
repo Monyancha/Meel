@@ -1,15 +1,24 @@
 
 
 export class User {
+    // Core Info
     id:             string;
     username:       string;
     password:       string;
 
+    // Basic Info
     email:          string;
     college:        string;
     major:          string;
+    gender:         any;
+    yearOfEntry:    string;
+    age:            number;
 
-    // todos
+    // Privacy
+    availability:   string;
+    shareGPS:       string;
+
+    // Todos
     description:    string;
     image:          any;
     location:       any;

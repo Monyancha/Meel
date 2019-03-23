@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 import { RecommendationPage } from './recommendation.page';
-import { MockProvider } from './provider';
 
 const routes: Routes = [
   {
@@ -23,9 +22,6 @@ const routes: Routes = [
   ],
   declarations: [
     RecommendationPage
-  ],
-  providers: [
-    MockProvider
   ],
 })
 export class RecommendationPageModule {}
