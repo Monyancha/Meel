@@ -42,13 +42,13 @@ export class RecommendationPage implements OnInit {
     });
   }
 
-  async cardSelected(userId : string, event : Event){
-    console.log("user_id " + userId + " clicked");
+  async cardSelected(user : User, event : Event){
+    console.log("user_id " + user.id + " clicked");
     const popver = await this.popoverController.create({
       component: UserprofileComponent,
       event: null,
-      cssClass: 'cardsel-popover',
-      componentProps: { user_id : userId }
+      cssClass: 'userprofile-popover',
+      componentProps: { user : user }
     })
     popver.present();
   }

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar style="--opacity: 0.9;">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -7,11 +7,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
   <ion-list>
     <ion-item lines="none" *ngFor="let ruser of recommendedUsers">
       
-      <ion-card class="listCards" (click)="cardSelected(ruser.id, $event)">  
+      <ion-card class="listCards ion-activatable" (click)="cardSelected(ruser, $event)">  
+        <ion-ripple-effect></ion-ripple-effect>
         <ion-row class="mainrow">
 
           <ion-col size="4" align-items-center>
@@ -43,7 +44,7 @@
         </ion-row>
       
       <ion-row>
-        <ion-label text-wrap class="description">{{ruser.discription}}</ion-label>
+        <ion-label text-wrap class="description">{{ruser.description}}</ion-label>
       </ion-row>
 
       </ion-card>

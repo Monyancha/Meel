@@ -36,7 +36,9 @@ export class UserinfoService {
     })
   }
 
-
+  updateUserProfile() {
+    
+  }
   
 
 }

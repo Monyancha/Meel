@@ -30,7 +30,7 @@ ion-toast.cus-toast {
 
     .toast-wrapper {
         margin-left: 10%;
-    margin-right: 10%;
+        margin-right: 10%;
         text-align: center !important;
     }
 
@@ -135,6 +135,23 @@ ion-content {
     color: #687DFC;
     font-size: $settings-font-size-description;
     font-weight: $settings-font-weight-description;
+}
+
+.test-button {
+  text-align: center;
+  border-color: transparent;
+  --background: transparent;
+  --background-activated: #CCCCCC; 
+  box-shadow: none;
+  
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+
+  color: #687DFC;
+  font-size: $settings-font-size-description;
+  font-weight: $settings-font-weight-description;
 }
 
 .sub-texts {

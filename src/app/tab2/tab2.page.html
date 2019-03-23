@@ -4,4 +4,24 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+
+
+  <!-- Default Segment -->
+  <ion-row class="segment-row">
+    <ion-segment (ionChange)="segmentChanged($event)" value="sent" [(ngModel)]="selectedValue">
+      <ion-segment-button style="width: 20%;" value="sent">
+        <ion-label>Sent</ion-label>
+      </ion-segment-button>
+      <ion-segment-button style="width: 20%;" value="received">
+        <ion-label>Received</ion-label>
+      </ion-segment-button>
+      <ion-segment-button style="width: 20%;" value="accepted">
+        <ion-label>Accepted</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-row>
+
+
+
+</ion-content>

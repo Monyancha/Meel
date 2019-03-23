@@ -1,0 +1,28 @@
+
+
+.info {
+    margin-top: 10px;
+    margin-left: 16px;
+    font-size: 16;
+    font-weight: 300;
+    color: #383a3e;
+
+}
+
+.trans-button {
+    text-align: center;
+    border-color: transparent;
+    --background: transparent;
+    --background-activated: #CCCCCC; 
+    box-shadow: none;
+    
+    width: 40%;
+    display: block;
+    margin-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 16px;
+    font-weight: 500;
+}
+

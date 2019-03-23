@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
 
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 // --- 3rd Auth Service ---
@@ -19,14 +19,18 @@ import { User } from '../model/users'
 export class AuthenticationService {
  
   authenticationState = new BehaviorSubject(false);
-  // readonly apiUrl = 'http://localhost:8080';
-  readonly apiUrl = '142.93.121.23:8080';
-  readonly TOKEN_KEY = 'user_id';
+
+  readonly apiUrl = 'http://142.93.121.23:8080';
+  // readonly apiUrl = '/api';
+
+  readonly TOKEN_KEY = 'current_user';
 
   constructor(
     public ionicDb: Storage, 
     private plt: Platform,
+    
     // public fb: Facebook,
+    
     private http: HttpClient) {
       this.plt.ready().then(() => {
         this.checkToken();
@@ -111,5 +115,6 @@ export class AuthenticationService {
   private log(message: string) {
     console.log(message);
   }
+
 }
 

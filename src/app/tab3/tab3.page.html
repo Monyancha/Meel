@@ -15,10 +15,10 @@
             </ion-avatar>
           </ion-col>
           <ion-col size="8">
-            <ion-input class="username" value="Gandalf the Grey"></ion-input>
+            <ion-input [(ngModel)]="ipt_usrname" class="username" value="Gandalf the Grey"></ion-input>
           </ion-col>
         </ion-row>
-        <ion-textarea row="3" class="description" value="shortly describe yourself..."></ion-textarea>
+        <ion-textarea [(ngModel)]="ipt_description" row="3" class="description" value="shortly describe yourself..."></ion-textarea>
     </ion-grid>
   </ion-card>
 
@@ -52,32 +52,32 @@
     
     <ion-item lines="none">
       <ion-label class="sub-label">Gender</ion-label>
-      <ion-select class="customSelect" slot="end" interface="popover">
+      <ion-select [(ngModel)]="ipt_gender" class="customSelect" slot="end" interface="popover" value="other">
         <ion-select-option value="male">Male</ion-select-option>
         <ion-select-option value="female">Female</ion-select-option>
-        <ion-select-option value="others">Others</ion-select-option>
+        <ion-select-option value="other">Other</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item lines="none">
       <ion-label class="sub-label">College</ion-label>
-      <ion-input class="sub-input" slot="end" placeholder="e.g. Berkely"></ion-input>
+      <ion-input [(ngModel)]="ipt_college" class="sub-input" slot="end" placeholder="e.g. Berkely"></ion-input>
     </ion-item>
 
     <ion-item lines="none">
       <ion-label class="sub-label">Major</ion-label>
-      <ion-input class="sub-input" slot="end" placeholder="e.g. Computer Science"></ion-input>
+      <ion-input [(ngModel)]="ipt_major" class="sub-input" slot="end" placeholder="e.g. Computer Science"></ion-input>
     </ion-item>
 
     <ion-item lines="none">
       <ion-label class="sub-label">Email</ion-label>
-      <ion-input class="sub-input" slot="end" placeholder="example@yale.edu"></ion-input>
+      <ion-input [(ngModel)]="ipt_email" class="sub-input" slot="end" placeholder="example@yale.edu"></ion-input>
     </ion-item>
 
   </ion-card>
 
-  <ion-button class="save-button" color="light">SAVE</ion-button>
-  <ion-button class="logout-button" (onclick)="logout()">Logout my account</ion-button>
+  <ion-button class="save-button" color="light" (click)="updateUserInfo()">SAVE</ion-button>
+  <ion-button class="logout-button" (click)="logout()">Logout my account</ion-button>
 
 
 </ion-content>

@@ -7,10 +7,25 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
+  selectedValue = 'sent';
 
+  constructor() {}
 
+  // sentClicked() {
+  //   console.log('sentClicked');
+  // }
 
+  // receivedClicked() {
+  //   console.log('receivedClicked');
+  // }
 
+  // acceptedClicked() {
+  //   console.log('acceptedClicked');
+  // }
+
+  segmentChanged(ev: Event) {
+    console.log('Segment changed to: ', this.selectedValue);
+  }
   
 
 }
