@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 
-
-
 import { MockProviderService } from '../../services/mockprovider.service';
 import { User } from '../../model/users';
 import { UserprofileComponent } from '../../components/userprofile/userprofile.component';

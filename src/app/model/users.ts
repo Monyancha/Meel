@@ -1,5 +1,4 @@
 
-
 export class User {
     // Core Info
     id:             string;
@@ -38,12 +37,12 @@ export class User {
     }
 
     public randomize() {
-        this.id = 'test_id_' + this.randomStr(6);
-        this.username = 'test_user_' + this.randomStr(4);
-        this.email = 'test_email' + '@yale.edu';
-        this.college = 'test_college';
-        this.major = 'test_major';
-        this.description = 'test_description_' + this.randomStr(32);
+        this.id             = 'test_id_' + this.randomStr(6);
+        this.username       = 'test_user_' + this.randomStr(4);
+        this.email          = 'test_email' + '@yale.edu';
+        this.college        = 'test_college';
+        this.major          = 'test_major';
+        this.description    = 'test_description_' + this.randomStr(32);
     }
 }
 

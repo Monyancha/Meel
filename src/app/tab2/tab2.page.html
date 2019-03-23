@@ -22,6 +22,58 @@
     </ion-segment>
   </ion-row>
 
+  <ion-list>
+      <ion-item lines="none" *ngFor="let ivt of invitations">
+        
+        <ion-card class="listCards ion-activatable" (click)="cardSelected(ivt, $event)">  
+          <ion-ripple-effect></ion-ripple-effect>
+          <ion-row class="mainrow">
+  
+            <ion-col size="4" align-items-center>
+              <ion-avatar class="userphoto">
+                <img src="../../assets/img/avatar.png">
+              </ion-avatar>
+            </ion-col>
+  
+            <ion-col size="6">
+              <ion-row>
+                <ion-label class="username">{{ivt.senderId}}</ion-label>
+              </ion-row>
+              <ion-row>
+                  <ion-label class="subtext">{{ivt.start}}</ion-label>
+              </ion-row>
+              <!-- <ion-row>
+                <ion-label class="subtext">{{ivt.end}}</ion-label>
+              </ion-row> -->
+            </ion-col>
+  
+            <ion-col size="2" align-items-center>
+              <!-- <ion-row style="margin-top:10px;">
+                <ion-icon name="pin" class="distanceIcon"></ion-icon>
+              </ion-row> -->
+              <!-- <ion-row>
+                <ion-label class="distanceText">Status</ion-label>
+              </ion-row> -->
+            </ion-col>
+
+          </ion-row>
+        
+        <!-- <ion-row>
+          <ion-label text-wrap class="description">{{ruser.description}}</ion-label>
+        </ion-row> -->
+  
+        </ion-card>
+  
+      </ion-item>
+    </ion-list>
+  
+    <ion-infinite-scroll (ionInfinite)="loadData($event)" threshold="100px">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
 
 
 </ion-content>

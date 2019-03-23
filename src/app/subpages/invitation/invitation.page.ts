@@ -10,6 +10,7 @@ export class InvitationPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

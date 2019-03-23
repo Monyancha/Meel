@@ -5,12 +5,51 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-// .segment-value {
-//     width: 25%;
-//     display: block;
-//     margin-left: auto;
-//     margin-right: auto;
 
-// }
+.mainrow {
+    margin-top: 10px;
+}
+.userphoto{
+    margin: auto;
+}
+
+.username {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1e2023;
+    text-align: left;
+}
+
+.subtext {
+    font-size: 12px;
+    font-weight: 400;
+    color: #86888f;
+    text-align: left;
+}
+
+.distanceIcon {
+    margin: auto;
+    display: block;
+}
+
+.distanceText {
+    font-size: 11px;
+    font-weight: 300;
+    color: #86888f;
+    text-align: left;
+    margin: auto;
+    display: block;
+}
+
+.listCards {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+
+}
