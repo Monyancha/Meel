@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from '../model/users';
-import { EmailValidator } from '@angular/forms';
+import { AuthenticationService } from '../services/authentication.service';
+import { UserinfoService } from '../services/userinfo.service';
+
 
 @Component({
   selector: 'app-login',
@@ -29,6 +30,7 @@ export class LoginPage implements OnInit {
   constructor(
     public ionicDb: Storage, 
     public toastController: ToastController,
+    private userinfoService : UserinfoService,
     private authService: AuthenticationService,
     private router : Router,
     private http: HttpClient,
@@ -41,14 +43,31 @@ export class LoginPage implements OnInit {
   }
 
   private loginWithUserId(user_id) {
-    var currentUser = new User;
-    currentUser.id = user_id;
-    this.ionicDb.set(this.authService.TOKEN_KEY, currentUser);
+    console.log('Loging with id:' + user_id);
+    this.userinfoService.setupLocalUser(user_id);
+
+    // var currentUser = new User;
+    // currentUser.id = user_id;
+    // this.ionicDb.set(this.authService.TOKEN_KEY, currentUser);
     
     // todo 03221351
     
     this.authService.checkToken();
     this.router.navigate(['tabs']);
+  }
+
+  private reportError(error : any) {
+    let msg = 'Unknown Error ' + error;
+    if(typeof error === 'string') {
+      msg = error;
+    } else if (typeof error.error === 'string') {
+      msg = error.error;
+    } else if (typeof error.message === 'string') {
+      msg = error.message;
+    }
+    msg = 'Error: ' + msg;
+    console.log(msg);
+    this.presentToast(msg, 'danger');
   }
 
   private checkEmail(email : string) : boolean {
@@ -91,13 +110,11 @@ export class LoginPage implements OnInit {
       if(response){
         this.loginWithUserId(response);
       } else {
-        console.log("login Unknown error");
-        this.presentToast("Unknown error occured, please try again", 'danger');
+        this.reportError("Unknown error occured, please try again");
       }
     }, error => {
-        console.log("login.login() error: ", error);
-        this.presentToast("Error: " + error, 'danger');
-    });
+        this.reportError(error);
+    }); 
   }
 
   register(email : string, password : string) {
@@ -110,12 +127,10 @@ export class LoginPage implements OnInit {
           this.presentToast("User created!");
           this.loginWithUserId(response);
         } else {
-          console.log("login.register() Unknown error");
-          this.presentToast("Unknown error occured, please try again", 'danger');
+          this.reportError("Unknown error occured, please try again");
         }
       }, error => {
-        console.log("login.register() error: ", error);
-        this.presentToast("Error: " + error, 'danger');
+        this.reportError(error);
       });
   }
 
@@ -162,17 +177,19 @@ export class LoginPage implements OnInit {
   }
 
   async presentToast(msg : string, color = 'light') {
+    let timeToShow = 2048;
+    if(color == 'danger') timeToShow *= 2;
     const toast = await this.toastController.create({
       color: color,
       message: msg,
-      duration: 2048,
+      duration: timeToShow,
       showCloseButton: false,
       // cssClass: "logintoast",
       cssClass: "basic-toast-style",
       position: 'top',
     });
     toast.present();
-    console.log("login.component: toast posting: [" + msg + "]")
+    console.log("login.component: toast posting: " + msg)
   }
 
 

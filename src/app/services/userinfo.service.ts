@@ -22,6 +22,16 @@ export class UserinfoService {
     private ionicDb: Storage,
   ) {}
   
+  /*
+   *  Set up the owner of current app,
+   *  
+   */
+  setupLocalUser(user_id : string) {
+    this.user = new User;
+    this.user.id = user_id;
+
+  }
+
   getUserId() {
     this.ionicDb.get(this.authService.TOKEN_KEY).then(res => {
       if(res){
@@ -37,7 +47,7 @@ export class UserinfoService {
   }
 
   updateUserProfile() {
-    
+
   }
   
 
