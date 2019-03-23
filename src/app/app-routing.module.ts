@@ -23,6 +23,7 @@ const routes: Routes = [
     path: 'chatroom', 
     loadChildren: './chatroom/chatroom.module#ChatroomPageModule' 
   },
+  { path: 'invitation', loadChildren: './subpages/invitation/invitation.module#InvitationPageModule' },
 
   // { 
   //   path: 'recommendation', 
