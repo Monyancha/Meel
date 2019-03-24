@@ -40,6 +40,7 @@ export class AppComponent {
           // this.router.navigate(['tabs/tabs/tab2']);
         }
       });
+      
     });
   }
 }

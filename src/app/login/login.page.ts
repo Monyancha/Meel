@@ -19,8 +19,6 @@ export class LoginPage implements OnInit {
 
   public username: string;
   public password: string;
-  public isUsernameValid: boolean;
-  public isPasswordValid: boolean;
 
   private inputPlaceholder = " Email";
   private mainButtonText = "LOGIN";
@@ -35,8 +33,6 @@ export class LoginPage implements OnInit {
     private router : Router,
     private http: HttpClient,
     ) { 
-    this.isUsernameValid = true;
-    this.isPasswordValid = true
   }
 
   ngOnInit() {
@@ -44,16 +40,18 @@ export class LoginPage implements OnInit {
 
   private loginWithUserId(user_id) {
     console.log('Loging with id:' + user_id);
-    this.userinfoService.setupLocalUser(user_id);
-    
-    // todo 03221351
-
-    this.ionicDb.get(this.authService.TOKEN_KEY).then(res => {
-      console.log("Get id:", res);
+    this.userinfoService.user.id = user_id;
+    this.userinfoService.getLatestUserProfile().then((res) => {
+      this.userinfoService.storeUserProfile().then((res) => {
+        if(res) {
+          this.authService.checkToken();
+        } else {
+          this.reportError('Failed to store user info into local databse, please try again later');
+        }
+      })
+      .catch(err => this.reportError(err));
     })
-    
-    this.authService.checkToken();
-    this.router.navigate(['tabs']);
+    .catch(err => this.reportError(err));
   }
 
   private reportError(error : any) {

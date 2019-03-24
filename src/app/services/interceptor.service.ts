@@ -9,9 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import {
-  Router
-} from '@angular/router';
+import { Router } from '@angular/router';
 
 import { ToastController } from '@ionic/angular';
 import { AuthenticationService } from '../services/authentication.service'
@@ -26,15 +24,15 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): 
   Observable<HttpEvent<any>> 
   {
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
   
-    if (token) {
-      request = request.clone({
-        setHeaders: {
-          'Authorization': token
-        }
-      });
-    }
+    // if (token) {
+    //   request = request.clone({
+    //     setHeaders: {
+    //       'Authorization': token
+    //     }
+    //   });
+    // }
   
     if (!request.headers.has('Content-Type')) {
       request = request.clone({

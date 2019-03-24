@@ -44,7 +44,6 @@ export class Tab3Page {
 
   logout() {
     this.autheService.logout();
-    this.router.navigate(['login']);
   }
 
   

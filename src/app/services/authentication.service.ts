@@ -28,10 +28,9 @@ export class AuthenticationService {
   constructor(
     public ionicDb: Storage, 
     private plt: Platform,
-    
     // public fb: Facebook,
-    
-    private http: HttpClient) {
+    private http: HttpClient) 
+    {
       this.plt.ready().then(() => {
         this.checkToken();
       });

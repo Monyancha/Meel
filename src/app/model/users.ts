@@ -43,5 +43,6 @@ export class User {
         this.major          = 'test_major';
         this.description    = 'test_description_' + this.randomStr(32);
     }
+    
 }
 

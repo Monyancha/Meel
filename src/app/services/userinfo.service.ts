@@ -15,7 +15,7 @@ import {User} from '../model/users';
 })
 export class UserinfoService {
 
-  private user : User;
+  public user = new User;
 
   constructor(
     private authService: AuthenticationService,
@@ -23,29 +23,6 @@ export class UserinfoService {
     private ionicDb: Storage,
     private geolocation: Geolocation,
   ) {}
-  
-  /*
-   *  Set up the owner of current app,
-   */
-  setupLocalUser(user_id : string) {
-    this.user = new User;
-    this.user.id = user_id;
-    this.http.get<any>(this.authService.apiUrl + '/userProfile/' + user_id)
-    .subscribe(response => {
-
-      // add more info to database
-      this.user.major   = response.major;
-      this.user.gender  = response.gender;
-      this.user.age     = response.age;
-
-      this.ionicDb.set(this.authService.TOKEN_KEY, this.user).then(res => {
-        console.log('User profile stored:', res);
-      });
-
-    }, error => {
-      console.log("User profile storing error: ", error);
-    })
-  }
 
   getUser() : Promise<any> {
     return this.ionicDb.get(this.authService.TOKEN_KEY)
@@ -66,7 +43,7 @@ export class UserinfoService {
     this.geolocation.getCurrentPosition().then(resp => {
       this.user.longitude = resp.coords.latitude;
       this.user.latitude = resp.coords.longitude;
-      this.updateUserProfile();
+      this.storeUserProfile();
       console.log("User geolocation updated.");
     }).catch( err => {
       console.log("Error: User geolocation update failed: ", err);
@@ -75,13 +52,35 @@ export class UserinfoService {
 
   updateUsername(username : string) {
     this.user.username = username;
-    this.updateUserProfile();
+    this.storeUserProfile();
   }
 
-  updateUserProfile() {
-    this.ionicDb.set(this.authService.TOKEN_KEY, this.user);
+  // Grab latest user profile from server side
+  getLatestUserProfile() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        this.http.get<any>(this.authService.apiUrl + '/userProfile/' + this.user.id)
+        .subscribe(response => {
+    
+          // todo: add and use more info
+          this.user.major   = response.major;
+          this.user.gender  = response.gender;
+          this.user.age     = response.age;
+
+          resolve(true);
+        }, error => {
+          console.log("User profile storing error: ", error);
+          reject(error);
+        });
+      }, 1000);
+    })
   }
-  
+
+  // Store data in memory to ionic db
+  storeUserProfile() {
+    return this.ionicDb.set(this.authService.TOKEN_KEY, this.user);
+  }
+
   test() : Promise<Geoposition> {
     return this.geolocation.getCurrentPosition();
   }
