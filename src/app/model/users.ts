@@ -1,30 +1,29 @@
 
 export class User {
     // Core Info
-    id:             string;
-    username:       string;
-    password:       string;
+    id              = "19";
+    username        = 'null';
+    password        = 'null';
 
     // Basic Info
-    email:          string;
-    college:        string;
-    major:          string;
-    gender:         any;
-    yearOfEntry:    string;
-    age:            number;
+    email           = "null";
+    college         = "null";
+    major           = "null";
+    gender          = "other";
+    yearOfEntry     = "-1";
+    age             = "-1";
 
     // Privacy
-    availability:   string; // or boolean
-    shareGPS:       string; // or boolean
-    latitude:       number;
-    longitude:      number;
+    availability    = true;
+    shareGPS        = false;
+    latitude        = 0;
+    longitude       = 0;
 
     // Todos
-    description:    string;
+    description     = "Shortly describe yourself";
     image:          any;
 
     constructor() {};
-    // constructor(id : string) {this.id = id};
 
     private randomStr(lengthOfCode: number) {
         let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -43,6 +42,25 @@ export class User {
         this.major          = 'test_major';
         this.description    = 'test_description_' + this.randomStr(32);
     }
-    
+
+    private availabilityString() {
+        if(this.availability){
+            return 'T'
+        } else {
+            return 'F'
+        }
+    }
+
+    toJSON() {
+        return {
+                "uid":              this.id,
+                "gender":           "1",
+                "major":            this.major,
+                "age":              this.age,
+                "availability" :    this.availabilityString(),
+                "year":             this.yearOfEntry,
+        }
+    }
+
 }
 

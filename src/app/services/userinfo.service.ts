@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Platform, Config } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { BehaviorSubject } from 'rxjs';
 
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 
 import {AuthenticationService} from './authentication.service';
@@ -23,64 +20,81 @@ export class UserinfoService {
     private ionicDb: Storage,
     private geolocation: Geolocation,
   ) {}
-
-  getUser() : Promise<any> {
-    return this.ionicDb.get(this.authService.TOKEN_KEY)
-  }
-
+  
+  /*
+   * Return a promise of latest geoposition
+   * Position data in res.coords.latitude and res.coords.longitude
+   */
   getCurrentPosition() : Promise<Geoposition> {
     return this.geolocation.getCurrentPosition();
-    // this.geolocation.getCurrentPosition().then((resp) => {
-    //   console.log("Location: ", resp);
-    //   console.log(resp.coords.latitude);
-    //   console.log(resp.coords.longitude);
-    //  }).catch((error) => {
-    //    console.log('Error getting location', error);
-    //  });
   }
 
+  /*
+   * Update user's GPS location
+   */
   updateUserPosition() {
-    this.geolocation.getCurrentPosition().then(resp => {
+    this.geolocation.getCurrentPosition().then((resp) => {
       this.user.longitude = resp.coords.latitude;
       this.user.latitude = resp.coords.longitude;
-      this.storeUserProfile();
+      this.setToken();
       console.log("User geolocation updated.");
-    }).catch( err => {
+    }).catch((err) => {
       console.log("Error: User geolocation update failed: ", err);
     })
   }
 
-  updateUsername(username : string) {
-    this.user.username = username;
-    this.storeUserProfile();
-  }
-
-  // Grab latest user profile from server side
+  /*
+   * Get latest user profile data from server side
+   * Timeout at 3000ms
+   */
   getLatestUserProfile() {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        this.http.get<any>(this.authService.apiUrl + '/userProfile/' + this.user.id)
-        .subscribe(response => {
-    
-          // todo: add and use more info
-          this.user.major   = response.major;
-          this.user.gender  = response.gender;
-          this.user.age     = response.age;
+      this.http.get<any>(this.authService.apiUrl + '/userProfile/' + this.user.id)
+      .subscribe(response => {
+  
+        // todo: add and use more info
+        this.user.major   = response.major;
+        this.user.gender  = response.gender;
+        this.user.age     = response.age;
 
-          resolve(true);
-        }, error => {
-          console.log("User profile storing error: ", error);
-          reject(error);
-        });
-      }, 1000);
-    })
+        resolve(true);
+      }, error => {
+        console.log("User profile storing error: ", error);
+        reject(error);
+      });
+      setTimeout(() => reject("Request timeout, please try again") , 3000);
+    });
+  }
+  
+  /*
+   * Store TOEN_KEY(currently is user id) into ionic db
+   * TOKEN_KEY is required for authentication service
+   */
+  setToken() {
+    return this.ionicDb.set(this.authService.TOKEN_KEY, this.user.id);
   }
 
-  // Store data in memory to ionic db
-  storeUserProfile() {
-    return this.ionicDb.set(this.authService.TOKEN_KEY, this.user);
+  /*
+   * Post current user profile to server side
+   */
+  uploadUserProfile() {
+    return new Promise((resolve, reject) => {
+      console.log("Uploding request sent: ", this.user.toJSON());
+      this.http.post<any>(this.authService.apiUrl + '/updateProfile', {}, {params: this.user.toJSON()})
+      .subscribe((response) => {
+        console.log(response);
+        resolve(true);
+      }, (error) => {
+        console.log("Update profile error: ", error);
+        reject(error);
+      });
+      setTimeout(() => reject("Request timeout, please try again") , 3000);
+    });
   }
 
+  /*
+   * Test function..
+   */
   test() : Promise<Geoposition> {
     return this.geolocation.getCurrentPosition();
   }

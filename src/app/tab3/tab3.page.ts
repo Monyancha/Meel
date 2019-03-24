@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 
 import { User } from '../model/users';
+import { AuthenticationService } from '../services/authentication.service';
+import { UserinfoService } from '../services/userinfo.service';
+import { ToastMessagingService } from '../services/toastmessaging.service';
 
 @Component({
   selector: 'app-tab3',
@@ -14,32 +15,50 @@ import { User } from '../model/users';
 })
 export class Tab3Page {
 
-  private currentUser = new User;
-  private ipt_college = "null";
-  private ipt_email = 'null@yale.edu'
-  private ipt_major = 'null';
-  private ipt_gender = 'other';
-  private ipt_usrname = "Gandalf the Grey";
-  private ipt_description = "shortly describe yourself...";
+  ipt_usrname           = "Gandalf the Grey";
+  ipt_description       = "shortly describe yourself...";
+  
+  availability_toggle   = false;
+  share_gps_toggle      = false;
+
+  ipt_gender            = 'other';
+  ipt_college           = "null";
+  ipt_major             = 'null';
+  ipt_email             = 'null@yale.edu'
 
   constructor(
     public ionicDb: Storage, 
-    private toastControl: ToastController,
+    private toastMessager: ToastMessagingService,
     private autheService: AuthenticationService,
     private router: Router,
     private http: HttpClient,
+    private userinfoService: UserinfoService,
   ) {
+  }
+
+  getUserProfile() {
 
   }
 
-  updateUserInfo() {
-    console.log('\n Update:')
-    console.log('New user name:', this.ipt_usrname);
-    console.log('New user email:', this.ipt_email);
-    console.log('New user college:', this.ipt_college);
-    console.log('New user major:', this.ipt_major);
-    console.log('New user description:', this.ipt_description);
-    console.log('New user gender:', this.ipt_gender);
+  postUserProfile() {
+    // 1, Update local data
+    this.userinfoService.user.username      = this.ipt_usrname;
+    this.userinfoService.user.description   = this.ipt_description;
+
+    this.userinfoService.user.availability  = this.availability_toggle;
+    this.userinfoService.user.shareGPS      = this.share_gps_toggle;
+
+    this.userinfoService.user.gender        = this.ipt_gender;
+    this.userinfoService.user.college       = this.ipt_college;
+    this.userinfoService.user.major         = this.ipt_major;
+
+    // 2, Update server data
+    this.userinfoService.uploadUserProfile()
+    .then(res => {
+      this.toastMessager.presentToast("User profile updated!");
+    })
+    .catch(err => this.toastMessager.presentError(err));
+
   }
 
   logout() {

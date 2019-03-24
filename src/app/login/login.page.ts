@@ -1,13 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from '../model/users';
 import { AuthenticationService } from '../services/authentication.service';
 import { UserinfoService } from '../services/userinfo.service';
-
+import { ToastMessagingService } from '../services/toastmessaging.service';
 
 @Component({
   selector: 'app-login',
@@ -26,11 +24,10 @@ export class LoginPage implements OnInit {
   private termTexts = "";
   
   constructor(
-    public ionicDb: Storage, 
-    public toastController: ToastController,
+    private ionicDb: Storage, 
+    private toastMessager: ToastMessagingService,
     private userinfoService : UserinfoService,
     private authService: AuthenticationService,
-    private router : Router,
     private http: HttpClient,
     ) { 
   }
@@ -38,107 +35,84 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  /*
+   * Setup current user after we have user id from server side.
+   * this including fetch user profile and set TOKEN_KEY
+   */
   private loginWithUserId(user_id) {
     console.log('Loging with id:' + user_id);
     this.userinfoService.user.id = user_id;
     this.userinfoService.getLatestUserProfile().then((res) => {
-      this.userinfoService.storeUserProfile().then((res) => {
+      this.userinfoService.setToken().then((res) => {
         if(res) {
           this.authService.checkToken();
         } else {
-          this.reportError('Failed to store user info into local databse, please try again later');
+          this.toastMessager.presentError('Failed to set TOKEN, please try again later');
         }
       })
-      .catch(err => this.reportError(err));
+      .catch(err => this.toastMessager.presentError(err));
     })
-    .catch(err => this.reportError(err));
+    .catch(err => this.toastMessager.presentError(err));
   }
 
-  private reportError(error : any) {
-    let msg = 'Unknown Error ' + error;
-    if(typeof error === 'string') {
-      msg = error;
-    } else if (typeof error.error === 'string') {
-      msg = error.error;
-    } else if (typeof error.message === 'string') {
-      msg = error.message;
-    }
-    msg = 'Error: ' + msg;
-    console.log(msg);
-    this.presentToast(msg, 'danger');
-  }
-
+  /*
+   * check validity of email address
+   */
   private checkEmail(email : string) : boolean {
     if(email.length == 0) {
-      this.presentToast("Please fill-in you email", 'danger');
+      this.toastMessager.presentToast("Please fill-in you email");
       return false;
     }
     if(email.length < 4 || email.search('@') == -1){
-      this.presentToast("Please provide a valid email address", 'danger');
+      this.toastMessager.presentToast("Please provide a valid email address");
       return false;
     }
     return true;
   }
 
+  /*
+   * Check validity of password.
+   */
   private checkPassword(pswd : string) : boolean {
     if(pswd.length == 0) {
-      this.presentToast("Please fill-in you password", 'danger');
+      this.toastMessager.presentToast("Please fill-in you password");
       return false;
     }
-    if(pswd.length < 8){
-      this.presentToast("Password must have minimum length of 8", 'danger');
+    if(pswd.length < 6){
+      this.toastMessager.presentToast("Password must have minimum length of 6");
       return false;
     }
     return true;
   }
 
-  login(email : string, password : string) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'Basic ' + btoa(email + ":" + password)
-      }),
-    };
-
-    let url = this.authService.apiUrl + '/login';
-    console.log("Sending login request {", email, ":", password + "} to ", url);
-    this.http.get<string>(url, httpOptions)
-    .subscribe(response => {
-      console.log("Login response received: ", response);
-      if(response){
-        this.loginWithUserId(response);
-      } else {
-        this.reportError("Unknown error occured, please try again");
-      }
-    }, error => {
-        this.reportError(error);
-    }); 
+  /*
+   * login
+   */
+  private login(email : string, password : string) {
+    this.authService.login(email, password).subscribe(
+      (res) => this.loginWithUserId(res),
+      (err) => this.toastMessager.presentError(err)
+    );
   }
 
-  register(email : string, password : string) {
-    console.log("Registeration Sent: ", email, ":", password);
-    this.http.post<string>(this.authService.apiUrl + '/register', {},
-      { params: {'username': email, 'email': email, 'password': password }})
-      .subscribe(response => {
-        console.log("Registeration response: ", response);
-        if(response){
-          this.presentToast("User created!");
-          this.loginWithUserId(response);
-        } else {
-          this.reportError("Unknown error occured, please try again");
-        }
-      }, error => {
-        this.reportError(error);
-      });
+  /*
+   * register
+   */
+  private register(email : string, password : string) {
+    this.authService.register(email, password).subscribe(
+      (res) => this.loginWithUserId(res), 
+      (err) => this.toastMessager.presentError(err)
+    );
   }
 
+  /*
+   * Main button in login page, used to login or register
+   */
   mainButton(email : string, password : string) {
     if(email == "adamzjk" && password == "adamzjk") {
       this.loginWithUserId('admin_user_adamzjk');
     } else if ( this.checkEmail(email) && this.checkPassword(password)){
-      
       // todo 03221355 password entryption
-
       // Sending Requests
       if(this.mainButtonText == "LOGIN"){
         this.login(email, password)
@@ -148,8 +122,11 @@ export class LoginPage implements OnInit {
     }
   }
 
+  /*
+   * login with fb, 
+   */
   loginWithFacebook() {
-    this.presentToast("Function temporarily disabled")
+    this.toastMessager.presentToast("Function temporarily disabled")
     // this.authService.loginWithFacebook();
       // .then(
       //   () => this.router.navigate(['tabs']),
@@ -157,6 +134,9 @@ export class LoginPage implements OnInit {
       // );
   }
 
+  /*
+   * change some texts and button behavior
+   */
   switchLoginRegister() {
     if(this.mainButtonText == "LOGIN") {
       this.mainButtonText = "REGISTER";
@@ -169,34 +149,14 @@ export class LoginPage implements OnInit {
     }
   }
 
+  /*
+   * not implemented
+   */
   pswReset() {
-    this.presentToast("Function not implemented")
-  }
-
-  async presentToast(msg : string, color = 'light') {
-    let timeToShow = 2048;
-    if(color == 'danger') timeToShow *= 2;
-    const toast = await this.toastController.create({
-      color: color,
-      message: msg,
-      duration: timeToShow,
-      showCloseButton: false,
-      cssClass: "basic-toast-style",
-      position: 'top',
-    });
-    toast.present();
-    console.log("login.component: toast posting: " + msg)
+    this.toastMessager.presentToast("Function not implemented")
   }
 
   test() {
-    // this.userinfoService.setupLocalUser('7');
-    // this.loginWithUserId('7');
-    this.userinfoService.test().then(resp => {
-      this.presentToast("Location is " + resp.coords.latitude + ":" + resp.coords.longitude);
-    }).catch(err => {
-      this.presentToast(err);
-    });
-
   }
 
 }

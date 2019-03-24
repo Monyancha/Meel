@@ -26,7 +26,7 @@
       <ion-item lines="none">
         <ion-icon name="checkmark" slot="start"></ion-icon>
         <ion-label>I'm available</ion-label>
-        <ion-toggle color="light" checked></ion-toggle>
+        <ion-toggle [(ngModel)]="availability_toggle" color="light" checked></ion-toggle>
       </ion-item>
       <ion-card-content class="sub-content">
           By selecting this, you agree to show your infomation to others and you can receive invitations.
@@ -37,7 +37,7 @@
     <ion-item lines="none">
       <ion-icon name="pin" slot="start"></ion-icon>
       <ion-label>Share my location</ion-label>
-      <ion-toggle color="light" checked></ion-toggle>
+      <ion-toggle [(ngModel)]="share_gps_toggle" color="light" checked></ion-toggle>
     </ion-item>
 
     <ion-card-content class="sub-content">
@@ -76,9 +76,8 @@
 
   </ion-card>
 
-  <ion-button class="save-button" color="light" (click)="updateUserInfo()">SAVE</ion-button>
+  <ion-button class="save-button" color="light" (click)="postUserProfile()">SAVE</ion-button>
   <ion-button class="logout-button" (click)="logout()">Logout my account</ion-button>
-
 
 </ion-content>
 
