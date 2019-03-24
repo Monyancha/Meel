@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 import { MockProviderService } from '../services/mockprovider.service';
 import { Invitation } from '../model/invitation';
@@ -17,6 +18,7 @@ export class Tab2Page {
 
   constructor(
     private mockProvider: MockProviderService,
+    private router: Router,
   ) {
     this.invitations = this.mockProvider.getRandomInvitations(Math.floor( Math.random() * 10));
   }
@@ -58,6 +60,8 @@ export class Tab2Page {
 
   cardSelected(ivt : Invitation, event : Event) {
     console.log("Inviation " + ivt.invitationId + " selected");
+    this.router.navigate(['invitation']);
+
   }
   
 

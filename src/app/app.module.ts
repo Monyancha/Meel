@@ -37,7 +37,7 @@ import { UserprofileComponent } from './components/userprofile/userprofile.compo
 // --- March 23, 2019: GPS && Maps ---
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { GoogleMaps } from '@ionic-native/google-maps';
-
+import { AgmCoreModule } from '@agm/core';
 // --- March 23, 2019: GPS && Maps ---
 
 @NgModule({
@@ -66,6 +66,9 @@ import { GoogleMaps } from '@ionic-native/google-maps';
     IonicStorageModule.forRoot(),
     BrowserAnimationsModule,
     // SocialLoginModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCYq0XB4TWCDdKS9gWGaeb2B4q0HeVTS5M'
+    })
   ],
   // --- Feb 22, 2019: New Import ---
 

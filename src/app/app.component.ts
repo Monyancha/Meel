@@ -27,6 +27,7 @@ export class AppComponent {
   
   initializeApp() {
     this.platform.ready().then(() => {
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       
@@ -40,7 +41,7 @@ export class AppComponent {
           // this.router.navigate(['tabs/tabs/tab2']);
         }
       });
-      
+
     });
   }
 }
