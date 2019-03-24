@@ -22,7 +22,6 @@ export class User {
     // Todos
     description:    string;
     image:          any;
-    location:       any;
 
     constructor() {};
     // constructor(id : string) {this.id = id};

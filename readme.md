@@ -5,6 +5,7 @@ this is the latest front-end of our app 'MealDate' for Yale CPSC 539 Software En
 #### Update Log
 
 ```
+2019-03-23 23:15:00: add invitation list page
 2019-03-21 20:20:00: add recommendation page
 2019-03-10 21:56:00: finish settings page
 2019-03-09 23:48:00: FB login temporarily disabled

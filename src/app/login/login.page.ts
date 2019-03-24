@@ -147,7 +147,6 @@ export class LoginPage implements OnInit {
       } else {
         this.register(email, password);
       }
-      
     }
   }
 
