@@ -5,6 +5,7 @@ this is the latest front-end of our app 'MealDate' for Yale CPSC 539 Software En
 #### Update Log
 
 ```
+2019-03-24 20:08:00: add GoogleMaps!
 2019-03-23 23:15:00: add invitation list page
 2019-03-21 20:20:00: add recommendation page
 2019-03-10 21:56:00: finish settings page
@@ -63,15 +64,10 @@ npm run emulate-live
 **WARNING:** this will not be supported in future due to the presence of native calls. 
 
 ```bash
-# run cordova first for iOS support
-cordova serve
-
 # -l stands for live reload
 # -w=c means run with chrome
 ionic serve -l -w=c
 
-# open in ionic lab
-http://localhost:8200
 # open original
 http://localhost:8100
 ```
@@ -86,14 +82,3 @@ ionic cordova prepare ios
 # 2, Plug in your iphone into your PC
 # 3, Select Buikd » and select your device to run the app!	
 ```
-
-cordova plugin remove cordova-plugin-advanced-http --save
-
-cordova plugin remove cordova-plugin-googleplus --save
-
-"Http failure during parsing for http://142.93.121.23:8080/updateProfile?uid=5&gender=0&college=null&major=null&age=-1&availability=F&year=-1"
-
-
-
-"http://142.93.121.23:8080/updateProfile?uid=5&gender=0&college=null&major=null&age=-1&availability=F&year=-1"
-
