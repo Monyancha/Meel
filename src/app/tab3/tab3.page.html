@@ -1,37 +1,38 @@
 <ion-header>
   <ion-toolbar>
     <ion-title style="font-weight: 400">Settings</ion-title>
+    <ion-progress-bar *ngIf="showProgressBar" type="indeterminate"></ion-progress-bar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <ion-card>  
-      <ion-grid>
-        <ion-row>
-          <ion-col size="4" align-items-center>
-            <ion-avatar class="userphoto">
-              <img src="../../assets/img/avatar.png">
-            </ion-avatar>
-          </ion-col>
-          <ion-col size="8">
-            <ion-input [(ngModel)]="ipt_usrname" class="username" value="Gandalf the Grey"></ion-input>
-          </ion-col>
-        </ion-row>
-        <ion-textarea [(ngModel)]="ipt_description" row="3" class="description" value="shortly describe yourself..."></ion-textarea>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4" align-items-center>
+          <ion-avatar class="userphoto">
+            <img src="../../assets/img/avatar.png">
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="8">
+          <ion-input [(ngModel)]="ipt_usrname" class="username" value="Gandalf the Grey"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-textarea [(ngModel)]="ipt_description" row="3" class="description" value="shortly describe yourself..."></ion-textarea>
     </ion-grid>
   </ion-card>
 
   <ion-card>
-      <ion-item lines="none">
-        <ion-icon name="checkmark" slot="start"></ion-icon>
-        <ion-label>I'm available</ion-label>
-        <ion-toggle [(ngModel)]="availability_toggle" color="light" checked></ion-toggle>
-      </ion-item>
-      <ion-card-content class="sub-content">
-          By selecting this, you agree to show your infomation to others and you can receive invitations.
-      </ion-card-content>
-    </ion-card>
+    <ion-item lines="none">
+      <ion-icon name="checkmark" slot="start"></ion-icon>
+      <ion-label>I'm available</ion-label>
+      <ion-toggle [(ngModel)]="availability_toggle" color="light" checked></ion-toggle>
+    </ion-item>
+    <ion-card-content class="sub-content">
+        By selecting this, you agree to show your infomation to others and you can receive invitations.
+    </ion-card-content>
+  </ion-card>
 
   <ion-card>
     <ion-item lines="none">

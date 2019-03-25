@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { PopoverController } from '@ionic/angular';
 
 import { MockProviderService } from '../services/mockprovider.service';
 import { Invitation } from '../model/invitation';
+import { RendeavourComponent } from '../components/rendeavour/rendeavour.component';
 
 @Component({
   selector: 'app-tab2',
@@ -16,11 +18,19 @@ export class Tab2Page {
   selectedValue = 'sent';
   private invitations: Invitation[];
 
+  private sentInvitations: Invitation[];
+  private receivedInvitations: Invitation[];
+  private acceptedInvitations: Invitation[];
+
   constructor(
     private mockProvider: MockProviderService,
     private router: Router,
+    private popoverController: PopoverController,
   ) {
-    this.invitations = this.mockProvider.getRandomInvitations(Math.floor( Math.random() * 10));
+    this.sentInvitations     = this.mockProvider.getRandomInvitations(4 + Math.floor( Math.random() * 4));
+    this.receivedInvitations = this.mockProvider.getRandomInvitations(2 + Math.floor( Math.random() * 4));
+    this.acceptedInvitations = this.mockProvider.getRandomInvitations(1 + Math.floor( Math.random() * 4));
+    this.invitations         = Object.assign([], this.sentInvitations);
   }
 
   segmentChanged(ev: Event) {
@@ -42,15 +52,15 @@ export class Tab2Page {
   }
 
   loadSentInvitations() {
-    this.invitations = this.mockProvider.getRandomInvitations(Math.floor( Math.random() * 10));
+    this.invitations = Object.assign([], this.sentInvitations);
   }
 
   loadReceivedInvitations() {
-    this.invitations = this.mockProvider.getRandomInvitations(Math.floor( Math.random() * 10));
+    this.invitations = Object.assign([], this.receivedInvitations);
   }
 
   loadAcceptedInvitations() {
-    this.invitations = this.mockProvider.getRandomInvitations(Math.floor( Math.random() * 10));
+    this.invitations = Object.assign([], this.acceptedInvitations);
   }
 
   loadData(event : Event) {
@@ -58,11 +68,16 @@ export class Tab2Page {
     this.infiniteScroll.complete();
   }
 
-  cardSelected(ivt : Invitation, event : Event) {
+  async cardSelected(ivt : Invitation, event : Event) {
     console.log("Inviation " + ivt.invitationId + " selected");
-    this.router.navigate(['invitation']);
-
+    // this.router.navigate(['tabs/tabs/tab2/invitation']);
+    const popver = await this.popoverController.create({
+      component: RendeavourComponent,
+      event: null,
+      cssClass: 'rendeavour-popover',
+      componentProps: { invitation : ivt, pageStatus : this.selectedValue }
+    })
+    popver.present();
   }
   
-
 }

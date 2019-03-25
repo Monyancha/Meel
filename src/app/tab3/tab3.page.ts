@@ -26,6 +26,8 @@ export class Tab3Page {
   ipt_major             = 'null';
   ipt_email             = 'null@yale.edu'
 
+  showProgressBar = false;
+
   constructor(
     public ionicDb: Storage, 
     private toastMessager: ToastMessagingService,
@@ -41,6 +43,7 @@ export class Tab3Page {
   }
 
   postUserProfile() {
+    this.showProgressBar = true;
     // 1, Update local data
     this.userinfoService.user.username      = this.ipt_usrname;
     this.userinfoService.user.description   = this.ipt_description;
@@ -56,9 +59,12 @@ export class Tab3Page {
     this.userinfoService.uploadUserProfile()
     .then(res => {
       this.toastMessager.presentToast("User profile updated!");
+      this.showProgressBar = false;
     })
-    .catch(err => this.toastMessager.presentError(err));
-
+    .catch(err => {
+      this.toastMessager.presentError(err);
+      this.showProgressBar = false;
+    });
   }
 
   logout() {

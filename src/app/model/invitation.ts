@@ -2,13 +2,13 @@
 
 export class Invitation {
     
-    invitationId:       String;
+    invitationId:       string;
 
-    senderId:           String;
-    receiverId:         String;
+    senderId:           string;
+    receiverId:         string;
 
-    start:              String;
-    end:                String;
+    start:              string;
+    end:                string;
 
     latitude:           number;
     longitude:          number;
@@ -35,6 +35,10 @@ export class Invitation {
 
         this.longitude      = -1;
         this.latitude       = -1;
+    }
+
+    toJSON() {
+
     }
 
 }

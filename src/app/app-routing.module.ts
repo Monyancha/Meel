@@ -14,23 +14,16 @@ const routes: Routes = [
 
   {
     path: 'tabs', 
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: './tabs/tabs.module#TabsPageModule'
     // loadChildren: './tabs/tabs.router.module#TabsPageRoutingModule'  
   },
 
   { 
     path: 'chatroom', 
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: './chatroom/chatroom.module#ChatroomPageModule' 
   },
-
-  { 
-    path: 'invitation', 
-    canActivate: [AuthGuard],
-    loadChildren: './subpages/invitation/invitation.module#InvitationPageModule' 
-  },
-
 
 ];
 

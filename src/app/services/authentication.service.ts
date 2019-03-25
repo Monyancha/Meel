@@ -18,7 +18,7 @@ import { ToastMessagingService } from '../services/toastmessaging.service';
   providedIn: 'root'
 })
 export class AuthenticationService {
- 
+  
   /*
    * A behavior object representing a boolean state
    * of whether the current user is authenticated.
@@ -34,11 +34,11 @@ export class AuthenticationService {
     private toastMessager: ToastMessagingService,
     // public fb: Facebook,
     private http: HttpClient)
-  {
+    {
       this.plt.ready().then(() => {
         this.checkToken();
       });
-  }
+    }
   
   /*
    * Update authenticatiin state by checking if TOKEN_KEY exists
@@ -53,34 +53,42 @@ export class AuthenticationService {
   }
 
   /*
+   * 
+   */
+  getTokenKey() {
+    return this.ionicDb.get(this.TOKEN_KEY);
+  }
+
+
+  /*
    * Return an observable that returns user id upon successfull login
    * or a error message if failed, timeout at 5000ms.
    */
   login(email : string, password : string) {
     return new Observable((observer) => {
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Authorization': 'Basic ' + btoa(email + ":" + password)
-        }),
-      };
+      // const httpOptions = {
+      //   headers: new HttpHeaders({
+      //     'Content-Type':  'application/json',
+      //     'Authorization': 'Basic ' + btoa(email + ":" + password)
+      //   }),
+      // };
       let url = this.apiUrl + '/login';
       console.log("Sending login request {", email, ":", password + "} to ", url);
-      this.http.get<string>(url, httpOptions)
+      this.http.post<string>(url, {}, {params: {'email': email, 'password': password}})
       .subscribe((res) => {
         console.log("Login response received: ", res);
         observer.next(res);
         observer.complete();
       }, (err) => observer.error(err));
 
-      setTimeout(() => {
-        observer.error("Still waiting for response...");
-      }, 2000);
+      // setTimeout(() => {
+      //   observer.error("Still waiting for response...");
+      // }, 2000);
 
       setTimeout(() => {
         observer.error("Request timeout, please try again");
         observer.complete();
-      }, 5000);
+      }, 16000);
     });
   }
 
@@ -100,14 +108,14 @@ export class AuthenticationService {
         observer.complete();
       }, (err) => observer.error(err));
 
-      setTimeout(() => {
-        observer.error("Still waiting for response...");
-      }, 2000);
+      // setTimeout(() => {
+      //   observer.error("Still waiting for response...");
+      // }, 2000);
 
       setTimeout(() => {
         observer.error("Request timeout, please try again");
         observer.complete();
-      }, 5000);
+      }, 16000);
 
     });
   }

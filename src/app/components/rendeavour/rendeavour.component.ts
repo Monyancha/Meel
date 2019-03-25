@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { MouseEvent } from '@agm/core';
+import { NavParams, PopoverController } from '@ionic/angular';
 
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
-  Marker,
-  Environment
-} from '@ionic-native/google-maps/ngx';
+import { Invitation } from '../../model/invitation';
+import { ToastMessagingService } from '../../services/toastmessaging.service';
 
+
+interface marker {
+	lat: number;
+	lng: number;
+	label?: string;
+	draggable: boolean;
+}
 
 @Component({
   selector: 'app-rendeavour',
@@ -20,54 +21,66 @@ import {
 })
 export class RendeavourComponent implements OnInit {
 
-  map : GoogleMap;
+  // Invitation Params
+  invitation : Invitation;
+  pageStatus : string;
+
+  // Map Params
+  zoom: number  = 15;
+  lat: number   = 41.3128;
+  lng: number   = -72.9251;
+  pin: marker = 
+  {
+    lat: 41.3128,
+    lng: -72.9251,
+    label: '',
+    draggable: false
+  }
+
+  // UI Params
+  showAcceptButton = true;
+  showCancelButton = true;
 
   constructor(
+    private toastMessager: ToastMessagingService,
     private plantform : Platform,
+    private navParams : NavParams,
+    private popoverControler : PopoverController,
   ) { }
-
   
   async ngOnInit() {
-    await this.plantform.ready();
-    await this.loadMap();
-  }
-
-  loadMap() {
-
-    // This code is necessary for browser
-    Environment.setEnv({
-      'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyCYq0XB4TWCDdKS9gWGaeb2B4q0HeVTS5M',
-      'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyCYq0XB4TWCDdKS9gWGaeb2B4q0HeVTS5M'
-    });
-
-    let mapOptions: GoogleMapOptions = {
-      camera: {
-         target: {
-           lat: 43.0741904,
-           lng: -89.3809802
-         },
-         zoom: 18,
-         tilt: 30
-       }
-    };
-
-    this.map = GoogleMaps.create('map_canvas', mapOptions);
-
-    let marker: Marker = this.map.addMarkerSync({
-      title: 'Ionic',
-      icon: 'blue',
-      animation: 'DROP',
-      position: {
-        lat: 43.0741904,
-        lng: -89.3809802
+    this.plantform.ready().then(() => {
+      this.invitation = this.navParams.get('invitation');
+      this.pageStatus = this.navParams.get('pageStatus');
+      if(this.pageStatus == 'sent') {
+        this.showAcceptButton = false;
+        this.showCancelButton = false;
+      } else if(this.pageStatus == 'received') {
+        this.showCancelButton = false;
+      } else {
+        this.showAcceptButton = false;
       }
     });
-    marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-      alert('clicked');
-    });
   }
 
-  onButtonClick(event) {
+  mapClicked($event: MouseEvent) {
+    this.pin.lat = $event.coords.lat;
+    this.pin.lng = $event.coords.lng;
+    console.log(this.pin.lat, this.pin.lng);
+  }
+
+  closePopover() {
+    this.popoverControler.dismiss();
+  }
+
+  acceptInvitation() {
+    this.toastMessager.presentToast('Accepted!');
+    this.closePopover();
+  }
+
+  cancelInvitation() {
+    this.toastMessager.presentToast('Canceled!');
+    this.closePopover();
   }
 
 }

@@ -26,7 +26,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../tab2/tab2.module#Tab2PageModule'
-          }
+          },
         ]
       },
       {

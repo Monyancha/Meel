@@ -1,14 +1,14 @@
 
 export class User {
     // Core Info
-    id              = "19";
-    username        = 'null';
-    password        = 'null';
+    id              = "-1";
+    username        = 'cs';
+    password        = 'cs';
 
     // Basic Info
-    email           = "null";
-    college         = "null";
-    major           = "null";
+    email           = "cs";
+    college         = "cs";
+    major           = "cs";
     gender          = "other";
     yearOfEntry     = "-1";
     age             = "-1";
@@ -54,13 +54,22 @@ export class User {
     toJSON() {
         return {
                 "uid":              this.id,
-                "gender":           "1",
+                "gender":           "0",
+                "college":          this.college,
                 "major":            this.major,
                 "age":              this.age,
                 "availability" :    this.availabilityString(),
                 "year":             this.yearOfEntry,
         }
+    //     return {
+    //         "uid":              5,
+    //         "gender":           0,
+    //         "college":          "csd",
+    //         "major":            "cs",
+    //         "age":              "20",
+    //         "availability" :    "T",
+    //         "year":             "2018",
+    // }
     }
-
 }
 

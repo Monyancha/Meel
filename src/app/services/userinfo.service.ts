@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 
@@ -18,8 +18,26 @@ export class UserinfoService {
     private authService: AuthenticationService,
     private http: HttpClient,
     private ionicDb: Storage,
+    private plt: Platform,
     private geolocation: Geolocation,
-  ) {}
+  ) {
+    this.plt.ready().then(() => {
+      this.authService.getTokenKey().then((res) => {
+        if(res) {
+          this.user.id = res;
+          this.getLatestUserProfile();
+        }
+      });
+    });
+  }
+
+  /*
+   * Store TOEN_KEY(currently is user id) into ionic db
+   * TOKEN_KEY is required for authentication service
+   */
+  setToken() {
+    return this.ionicDb.set(this.authService.TOKEN_KEY, this.user.id);
+  }
   
   /*
    * Return a promise of latest geoposition
@@ -55,7 +73,7 @@ export class UserinfoService {
         // todo: add and use more info
         this.user.major   = response.major;
         this.user.gender  = response.gender;
-        this.user.age     = response.age;
+        this.user.age     = response.age.toString();
 
         resolve(true);
       }, error => {
@@ -65,14 +83,6 @@ export class UserinfoService {
       setTimeout(() => reject("Request timeout, please try again") , 3000);
     });
   }
-  
-  /*
-   * Store TOEN_KEY(currently is user id) into ionic db
-   * TOKEN_KEY is required for authentication service
-   */
-  setToken() {
-    return this.ionicDb.set(this.authService.TOKEN_KEY, this.user.id);
-  }
 
   /*
    * Post current user profile to server side
@@ -80,7 +90,8 @@ export class UserinfoService {
   uploadUserProfile() {
     return new Promise((resolve, reject) => {
       console.log("Uploding request sent: ", this.user.toJSON());
-      this.http.post<any>(this.authService.apiUrl + '/updateProfile', {}, {params: this.user.toJSON()})
+      this.http.post(this.authService.apiUrl + '/updateProfile', {}, 
+      {params: this.user.toJSON(), responseType: 'text'})
       .subscribe((response) => {
         console.log(response);
         resolve(true);
@@ -98,6 +109,5 @@ export class UserinfoService {
   test() : Promise<Geoposition> {
     return this.geolocation.getCurrentPosition();
   }
-
 
 }

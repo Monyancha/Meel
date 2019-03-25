@@ -2,7 +2,27 @@
 
 <ion-content>
 
-  <ion-list-header>Sent Invitation</ion-list-header>
+  <ion-list-header>Select a meet-up location</ion-list-header>
+
+  <agm-map 
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  [zoomControl]="false"
+  (mapClick)="mapClicked($event)">
+
+  <agm-marker 
+      [latitude]="pin.lat"
+      [longitude]="pin.lng"
+      [label]="pin.label"
+      [markerDraggable]="pin.draggable">
+    <agm-info-window>
+      <strong>InfoWindow content</strong>
+    </agm-info-window>
+  </agm-marker>
+
+  </agm-map>
 
   <ion-row>
     <ion-label class="info">Invite {{passedUser.username}} to join your meal?</ion-label>

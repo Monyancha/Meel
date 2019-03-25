@@ -6,7 +6,6 @@ import { MockProviderService } from '../../services/mockprovider.service';
 import { User } from '../../model/users';
 import { UserprofileComponent } from '../../components/userprofile/userprofile.component';
 
-
 @Component({
   selector: 'app-recommendation',
   templateUrl: './recommendation.page.html',

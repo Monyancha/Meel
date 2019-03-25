@@ -21,12 +21,11 @@ export class ToastMessagingService {
     } else if (typeof error.message === 'string') {
       msg = error.message;
     }
-    msg = 'Error: ' + msg;
-    console.log(msg);
+    console.log("presentError: ", msg);
     this.presentToast(msg, 'danger');
   }
 
-  async presentToast(msg : string, color = 'light') {
+  async presentToast(msg : string, color = 'dark') {
     let timeToShow = 2048;
     if(color == 'danger') timeToShow *= 2;
     const toast = await this.toastController.create({

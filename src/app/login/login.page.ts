@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoadingController } from '@ionic/angular';
 
 import { User } from '../model/users';
 import { AuthenticationService } from '../services/authentication.service';
@@ -22,12 +23,15 @@ export class LoginPage implements OnInit {
   private mainButtonText = "LOGIN";
   private createAccountText = "Don't have an account?";
   private termTexts = "";
-  
+
+  private currentLoadingCtrl: any;
+
   constructor(
     private ionicDb: Storage, 
     private toastMessager: ToastMessagingService,
     private userinfoService : UserinfoService,
     private authService: AuthenticationService,
+    private loadingController: LoadingController,
     private http: HttpClient,
     ) { 
   }
@@ -41,7 +45,8 @@ export class LoginPage implements OnInit {
    */
   private loginWithUserId(user_id) {
     console.log('Loging with id:' + user_id);
-    this.userinfoService.user.id = user_id;
+    this.userinfoService.user.id = user_id.toString();
+    console.log('this.userinfoService.user.id = ', this.userinfoService.user.id);
     this.userinfoService.getLatestUserProfile().then((res) => {
       this.userinfoService.setToken().then((res) => {
         if(res) {
@@ -89,9 +94,16 @@ export class LoginPage implements OnInit {
    * login
    */
   private login(email : string, password : string) {
+    this.presentLoadingPopover();
     this.authService.login(email, password).subscribe(
-      (res) => this.loginWithUserId(res),
-      (err) => this.toastMessager.presentError(err)
+      (res) => {
+        this.loginWithUserId(res);
+        this.dismissLoadingPopover();
+      },
+      (err) => {
+        this.toastMessager.presentError(err);
+        this.dismissLoadingPopover();
+      },
     );
   }
 
@@ -154,6 +166,21 @@ export class LoginPage implements OnInit {
    */
   pswReset() {
     this.toastMessager.presentToast("Function not implemented")
+  }
+
+  dismissLoadingPopover() {
+    this.currentLoadingCtrl.dismiss();
+  }
+
+  async presentLoadingPopover() {
+    this.currentLoadingCtrl = await this.loadingController.create({
+      spinner: 'crescent',
+      duration: 16000,
+      message: 'Please wait...',
+      translucent: false,
+      cssClass: 'login-loading'
+    });
+    return await this.currentLoadingCtrl.present();
   }
 
   test() {

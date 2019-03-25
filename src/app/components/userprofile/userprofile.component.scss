@@ -3,10 +3,10 @@
 .info {
     margin-top: 10px;
     margin-left: 16px;
+    margin-right: 16px;
     font-size: 16;
     font-weight: 300;
     color: #383a3e;
-
 }
 
 .trans-button {
@@ -26,3 +26,7 @@
     font-weight: 500;
 }
 
+agm-map {
+    height: 300px;
+    // width: 100px;
+}

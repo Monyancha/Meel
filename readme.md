@@ -87,3 +87,13 @@ ionic cordova prepare ios
 # 3, Select Buikd » and select your device to run the app!	
 ```
 
+cordova plugin remove cordova-plugin-advanced-http --save
+
+cordova plugin remove cordova-plugin-googleplus --save
+
+"Http failure during parsing for http://142.93.121.23:8080/updateProfile?uid=5&gender=0&college=null&major=null&age=-1&availability=F&year=-1"
+
+
+
+"http://142.93.121.23:8080/updateProfile?uid=5&gender=0&college=null&major=null&age=-1&availability=F&year=-1"
+

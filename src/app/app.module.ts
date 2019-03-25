@@ -32,11 +32,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // --- March 21, 2019: Pop-overs ---
 import { DateselectComponent } from './components/dateselect/dateselect.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
+import { RendeavourComponent } from './components/rendeavour/rendeavour.component';
 // --- March 21, 2019: Pop-overs ---
 
 // --- March 23, 2019: GPS && Maps ---
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { GoogleMaps } from '@ionic-native/google-maps';
 import { AgmCoreModule } from '@agm/core';
 // --- March 23, 2019: GPS && Maps ---
 
@@ -45,11 +45,13 @@ import { AgmCoreModule } from '@agm/core';
     AppComponent, 
     DateselectComponent,
     UserprofileComponent,
+    RendeavourComponent,
   ],
   
   entryComponents: [
     DateselectComponent,
     UserprofileComponent,
+    RendeavourComponent,
   ],
 
   // --- Feb 22, 2019: New Import ---
@@ -82,7 +84,6 @@ import { AgmCoreModule } from '@agm/core';
       multi: true
     },
     Geolocation,
-    GoogleMaps,
     // Facebook,
   ],
   bootstrap: [AppComponent]

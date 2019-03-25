@@ -12,7 +12,7 @@ export class MockProviderService {
   private _mock_invitations: Invitation[] = [];
 
   constructor() { 
-    for(var i = 0; i < 16; i++) {
+    for(var i = 0; i < 32; i++) {
       let newuser = new User;
       newuser.randomize();
       this._mock_users.push(newuser);

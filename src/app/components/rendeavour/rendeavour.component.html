@@ -1,10 +1,67 @@
 
 
-<ion-content padding>
+<ion-content>
 
-<div id="map_canvas">
-  <button ion-button (click)="onButtonClick($event)">Start demo</button>
-</div>
+  <!-- <ion-list-header>Rendeavour</ion-list-header> -->
+
+  <ion-row>
+    <ion-label class="title">Rendeavour</ion-label>
+  </ion-row>
+
+  <ion-list-header>Meetup Location</ion-list-header>
+
+  <agm-map 
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  [zoomControl]="false"
+  (mapClick)="mapClicked($event)">
+
+  <agm-marker 
+      [latitude]="pin.lat"
+      [longitude]="pin.lng"
+      [label]="pin.label"
+      [markerDraggable]="pin.draggable">
+    <agm-info-window>
+      <strong>InfoWindow content</strong>
+    </agm-info-window>
+  </agm-marker>
+
+  </agm-map>
+
+  <ion-list-header>Contact Info</ion-list-header>
+
+  <ion-row>
+      <ion-label class="username-text">John Wick</ion-label>
+  </ion-row>
+
+  <ion-row>
+      <ion-label class="meet-time">Today 12:30 PM ~ 13:00 PM</ion-label>
+  </ion-row>
+
+  <ion-row>
+    <ion-button 
+    *ngIf="showAcceptButton" 
+    class="trans-button" 
+    style="color: #633ce0;" 
+    (click)="acceptInvitation()">
+    Accept invitation
+  </ion-button>
+  </ion-row>
+
+  <ion-row>
+    <ion-button 
+    *ngIf="showCancelButton" 
+    class="trans-button" 
+    style="color: #d33939;" 
+    (click)="cancelInvitation()">
+    Cancel Invitation
+  </ion-button>
+  </ion-row>
+
+
+
 
 </ion-content>
 
