@@ -5,6 +5,7 @@ this is the latest front-end of our app 'MealDate' for Yale CPSC 539 Software En
 #### Update Log
 
 ```
+2019-04-05 20:25:00: UI improvements
 2019-03-24 20:08:00: add GoogleMaps!
 2019-03-23 23:15:00: add invitation list page
 2019-03-21 20:20:00: add recommendation page
