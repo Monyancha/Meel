@@ -6,13 +6,15 @@ import { ToastController } from '@ionic/angular';
 })
 export class ToastMessagingService {
 
-  toastInScreen = null;
-
+  private currentToast = null;
   constructor(public toastController: ToastController,) { }
 
   presentError(error : any) {
+    console.log('Toast: Error Received - ', error);
     let msg = 'Unknown Error ' + error;
-    if(typeof error === 'string') {
+    if(error.status == 0) {
+      msg = "ERROR: Connection Refused\nPlease try again later or check server status.";
+    } else if(typeof error === 'string') {
       msg = error;
     } else if (typeof error.error === 'string') {
       msg = error.error;
@@ -26,9 +28,12 @@ export class ToastMessagingService {
   }
 
   async presentToast(msg : string, color = 'dark') {
+    if (this.currentToast) {
+      await this.currentToast.dismiss();
+    }
     let timeToShow = 2048;
     if(color == 'danger') timeToShow *= 2;
-    const toast = await this.toastController.create({
+    this.currentToast = await this.toastController.create({
       color: color,
       message: msg,
       duration: timeToShow,
@@ -36,10 +41,9 @@ export class ToastMessagingService {
       cssClass: "basic-toast-style",
       position: 'top',
     });
-    toast.present();
-    console.log("ToastmessagingService: " + msg)
+    this.currentToast.present();
+    console.log("ToastmessagingService: " + msg);
   }
-
 
 }
 

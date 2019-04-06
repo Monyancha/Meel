@@ -3,7 +3,7 @@
     <name>MyApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://172.27.238.36:8101" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -91,7 +91,6 @@
     </plugin>
     <plugin name="cordova-sqlite-storage" spec="3.1.0" />
     <plugin name="cordova-plugin-geolocation" spec="4.0.1" />
-    <allow-navigation href="http://172.27.238.36:8101" sessionid="f3524117" />
     <engine name="ios" spec="^5.0.0" />
     <engine name="browser" spec="6.0.0" />
 </widget>

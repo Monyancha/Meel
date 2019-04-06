@@ -16,10 +16,10 @@
           </ion-avatar>
         </ion-col>
         <ion-col size="8">
-          <ion-input [(ngModel)]="ipt_usrname" class="username" value="Gandalf the Grey"></ion-input>
+          <ion-input [(ngModel)]="userinfoService.user.username" class="username" value="Gandalf the Grey"></ion-input>
         </ion-col>
       </ion-row>
-      <ion-textarea [(ngModel)]="ipt_description" row="3" class="description" value="shortly describe yourself..."></ion-textarea>
+      <ion-textarea [(ngModel)]="userinfoService.user.description" row="3" class="description" value="shortly describe yourself..."></ion-textarea>
     </ion-grid>
   </ion-card>
 
@@ -27,7 +27,7 @@
     <ion-item lines="none">
       <ion-icon name="checkmark" slot="start"></ion-icon>
       <ion-label>I'm available</ion-label>
-      <ion-toggle [(ngModel)]="availability_toggle" color="light" checked></ion-toggle>
+      <ion-toggle [(ngModel)]="userinfoService.user.availability" color="light" checked></ion-toggle>
     </ion-item>
     <ion-card-content class="sub-content">
         By selecting this, you agree to show your infomation to others and you can receive invitations.
@@ -38,7 +38,7 @@
     <ion-item lines="none">
       <ion-icon name="pin" slot="start"></ion-icon>
       <ion-label>Share my location</ion-label>
-      <ion-toggle [(ngModel)]="share_gps_toggle" color="light" checked></ion-toggle>
+      <ion-toggle [(ngModel)]="userinfoService.user.shareGPS" color="light" checked></ion-toggle>
     </ion-item>
 
     <ion-card-content class="sub-content">
@@ -62,17 +62,17 @@
 
     <ion-item lines="none">
       <ion-label class="sub-label">College</ion-label>
-      <ion-input [(ngModel)]="ipt_college" class="sub-input" slot="end" placeholder="e.g. Berkely"></ion-input>
+      <ion-input [(ngModel)]="userinfoService.user.college" class="sub-input" slot="end" placeholder="e.g. Berkely"></ion-input>
     </ion-item>
 
     <ion-item lines="none">
       <ion-label class="sub-label">Major</ion-label>
-      <ion-input [(ngModel)]="ipt_major" class="sub-input" slot="end" placeholder="e.g. Computer Science"></ion-input>
+      <ion-input [(ngModel)]="userinfoService.user.major" class="sub-input" slot="end" placeholder="e.g. Computer Science"></ion-input>
     </ion-item>
 
     <ion-item lines="none">
       <ion-label class="sub-label">Email</ion-label>
-      <ion-input [(ngModel)]="ipt_email" class="sub-input" slot="end" placeholder="example@yale.edu"></ion-input>
+      <ion-input [(ngModel)]="userinfoService.user.email" class="sub-input" slot="end" placeholder="example@yale.edu"></ion-input>
     </ion-item>
 
   </ion-card>

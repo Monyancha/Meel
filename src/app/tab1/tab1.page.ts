@@ -10,10 +10,13 @@ import { Router } from '@angular/router';
 })
 export class Tab1Page {
 
+  curPopover : HTMLIonPopoverElement = undefined;
+
   constructor(
     private popoverController: PopoverController,
     private router: Router,
     ) {}
+
 
   // schedule(){
   //   this.presentDateselelectPopover();
@@ -25,12 +28,20 @@ export class Tab1Page {
   }
 
   async presentDateselelectPopover(ev: any) {
-    const popover = await this.popoverController.create({
+    if(this.curPopover) {
+      await this.curPopover.dismiss()
+    }
+    this.curPopover = await this.popoverController.create({
       component: DateselectComponent,
       event: ev,
       cssClass: 'datesel-popover',
+      // componentProps: { popoverController : this.popoverController }
     });
-    return await popover.present();
+    await this.curPopover.present();
+  }
+
+  async dismissDateselectPopover() {
+    this.curPopover.dismiss().then(() => this.curPopover = undefined);
   }
 
 }

@@ -4,8 +4,9 @@ import { Storage } from '@ionic/storage';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 
-import {AuthenticationService} from './authentication.service';
 import {User} from '../model/users';
+import {AuthenticationService} from './authentication.service';
+import { ToastMessagingService } from '../services/toastmessaging.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class UserinfoService {
     private ionicDb: Storage,
     private plt: Platform,
     private geolocation: Geolocation,
+    private toastMessager: ToastMessagingService,
   ) {
     this.plt.ready().then(() => {
       this.authService.getTokenKey().then((res) => {
@@ -38,7 +40,7 @@ export class UserinfoService {
   setToken() {
     return this.ionicDb.set(this.authService.TOKEN_KEY, this.user.id);
   }
-  
+
   /*
    * Return a promise of latest geoposition
    * Position data in res.coords.latitude and res.coords.longitude
@@ -51,14 +53,22 @@ export class UserinfoService {
    * Update user's GPS location
    */
   updateUserPosition() {
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.user.longitude = resp.coords.latitude;
-      this.user.latitude = resp.coords.longitude;
-      this.setToken();
-      console.log("User geolocation updated.");
-    }).catch((err) => {
-      console.log("Error: User geolocation update failed: ", err);
-    })
+    return new Promise((resolve, reject) => {
+      this.geolocation.getCurrentPosition()
+      .then((resp) => {
+        this.user.longitude = resp.coords.latitude;
+        this.user.latitude = resp.coords.longitude;
+        this.setToken();
+        console.log("User geolocation updated.");
+        resolve(true);
+      })
+      .catch((err) => {
+        this.toastMessager.presentError("Failed to fetch location");
+        console.log("Error: User geolocation update failed: ", err);
+        reject(err);
+      });
+      setTimeout(() => reject("Request timeout, please try again") , 3000);
+    });
   }
 
   /*
@@ -77,7 +87,7 @@ export class UserinfoService {
 
         resolve(true);
       }, error => {
-        console.log("User profile storing error: ", error);
+        this.toastMessager.presentError(error);
         reject(error);
       });
       setTimeout(() => reject("Request timeout, please try again") , 3000);
@@ -101,6 +111,13 @@ export class UserinfoService {
       });
       setTimeout(() => reject("Request timeout, please try again") , 3000);
     });
+  }
+
+  /*
+   * Clean current user when logout
+   */
+  cleanUserProfile() {
+    this.user = new User;
   }
 
   /*

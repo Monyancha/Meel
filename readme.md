@@ -78,7 +78,9 @@ http://localhost:8100
 # Firt Run this to compile
 ionic cordova prepare ios
 
-# Then, open Xcode. Use File » Open and locate the app. Open the app platforms/ios directory
+# 1, Open Xcode. Use File » Open and locate the app. Open the app platforms/ios directory
 # 2, Plug in your iphone into your PC
-# 3, Select Buikd » and select your device to run the app!	
+# 3, Select Build » and select your device to run the app!	
 ```
+
+yalemealdate5

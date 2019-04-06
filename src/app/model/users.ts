@@ -2,13 +2,13 @@
 export class User {
     // Core Info
     id              = "-1";
-    username        = 'cs';
-    password        = 'cs';
+    username        = 'pending';
+    password        = 'pending';
 
     // Basic Info
-    email           = "cs";
-    college         = "cs";
-    major           = "cs";
+    email           = "pending";
+    college         = "pending";
+    major           = "pending";
     gender          = "other";
     yearOfEntry     = "-1";
     age             = "-1";
@@ -20,20 +20,26 @@ export class User {
     longitude       = 0;
 
     // Todos
-    description     = "Shortly describe yourself";
+    description     = "pending";
     image:          any;
 
     constructor() {};
 
-    private randomStr(lengthOfCode: number) {
+    /*
+     * return a random string of arg:length
+     */
+    private randomStr(length: number) {
         let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         let text = "";
-        for (let i = 0; i < lengthOfCode; i++) {
+        for (let i = 0; i < length; i++) {
           text += possible.charAt(Math.floor(Math.random() * possible.length));
         }
         return text;
     }
 
+    /*
+     * randomize this user(for test purpose)
+     */
     public randomize() {
         this.id             = 'test_id_' + this.randomStr(6);
         this.username       = 'test_user_' + this.randomStr(4);
@@ -51,7 +57,8 @@ export class User {
         }
     }
 
-    toJSON() {
+    
+    public toJSON() {
         return {
                 "uid":              this.id,
                 "gender":           "0",

@@ -6,7 +6,6 @@ import { NavParams, PopoverController } from '@ionic/angular';
 import { Invitation } from '../../model/invitation';
 import { ToastMessagingService } from '../../services/toastmessaging.service';
 
-
 interface marker {
 	lat: number;
 	lng: number;

@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 
-import { MockProviderService } from '../../services/mockprovider.service';
+
 import { User } from '../../model/users';
+import { MockProviderService } from '../../providers/mockprovider.service';
 import { UserprofileComponent } from '../../components/userprofile/userprofile.component';
 
 @Component({
@@ -19,7 +20,7 @@ export class RecommendationPage implements OnInit {
   constructor(
     private popoverController: PopoverController,
     private mockProvider: MockProviderService,
-  ) { 
+  ) {
     this.recommendedUsers = mockProvider.getRandomUsers(8);
   }
 

@@ -3,7 +3,7 @@ import { IonInfiniteScroll } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 
-import { MockProviderService } from '../services/mockprovider.service';
+import { MockProviderService } from '../providers/mockprovider.service';
 import { Invitation } from '../model/invitation';
 import { RendeavourComponent } from '../components/rendeavour/rendeavour.component';
 

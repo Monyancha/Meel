@@ -3,9 +3,8 @@ import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoadingController } from '@ionic/angular';
 
-import { User } from '../model/users';
-import { AuthenticationService } from '../services/authentication.service';
 import { UserinfoService } from '../services/userinfo.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { ToastMessagingService } from '../services/toastmessaging.service';
 
 @Component({
@@ -46,11 +45,13 @@ export class LoginPage implements OnInit {
   private loginWithUserId(user_id) {
     console.log('Loging with id:' + user_id);
     this.userinfoService.user.id = user_id.toString();
+
     console.log('this.userinfoService.user.id = ', this.userinfoService.user.id);
-    this.userinfoService.getLatestUserProfile().then((res) => {
+    this.userinfoService.getLatestUserProfile().then(() => {
       this.userinfoService.setToken().then((res) => {
         if(res) {
           this.authService.checkToken();
+          this.toastMessager.presentToast("Welcome back!");
         } else {
           this.toastMessager.presentError('Failed to set TOKEN, please try again later');
         }
@@ -93,28 +94,31 @@ export class LoginPage implements OnInit {
   /*
    * login
    */
-  private login(email : string, password : string) {
-    this.presentLoadingPopover();
+  private async login(email : string, password : string) {
+    await this.presentLoadingPopover();
     this.authService.login(email, password).subscribe(
       (res) => {
         this.loginWithUserId(res);
-        this.dismissLoadingPopover();
       },
       (err) => {
         this.toastMessager.presentError(err);
-        this.dismissLoadingPopover();
       },
-    );
+    ).add(() => this.dismissLoadingPopover());
   }
 
   /*
    * register
    */
-  private register(email : string, password : string) {
+  private async register(email : string, password : string) {
+    await this.presentLoadingPopover();
     this.authService.register(email, password).subscribe(
-      (res) => this.loginWithUserId(res), 
-      (err) => this.toastMessager.presentError(err)
-    );
+      (res) => {
+        this.loginWithUserId(res);
+      }, 
+      (err) => {
+        this.toastMessager.presentError(err);
+      }
+    ).add(() => this.dismissLoadingPopover());
   }
 
   /*
@@ -169,7 +173,8 @@ export class LoginPage implements OnInit {
   }
 
   dismissLoadingPopover() {
-    this.currentLoadingCtrl.dismiss();
+    console.log("Dismissing Popover..");
+    return this.currentLoadingCtrl.dismiss();
   }
 
   async presentLoadingPopover() {
@@ -180,7 +185,7 @@ export class LoginPage implements OnInit {
       translucent: false,
       cssClass: 'login-loading'
     });
-    return await this.currentLoadingCtrl.present();
+    return this.currentLoadingCtrl.present();
   }
 
   test() {

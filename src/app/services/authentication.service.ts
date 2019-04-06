@@ -11,14 +11,13 @@ import { Observable, of } from 'rxjs';
 // import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 // --- 3rd Auth Service ---
 
-import { User } from '../model/users'
 import { ToastMessagingService } from '../services/toastmessaging.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  
+
   /*
    * A behavior object representing a boolean state
    * of whether the current user is authenticated.
@@ -59,7 +58,6 @@ export class AuthenticationService {
     return this.ionicDb.get(this.TOKEN_KEY);
   }
 
-
   /*
    * Return an observable that returns user id upon successfull login
    * or a error message if failed, timeout at 5000ms.
@@ -75,20 +73,19 @@ export class AuthenticationService {
       let url = this.apiUrl + '/login';
       console.log("Sending login request {", email, ":", password + "} to ", url);
       this.http.post<string>(url, {}, {params: {'email': email, 'password': password}})
-      .subscribe((res) => {
+      .subscribe(
+        (res) => {
         console.log("Login response received: ", res);
         observer.next(res);
-        observer.complete();
-      }, (err) => observer.error(err));
-
-      // setTimeout(() => {
-      //   observer.error("Still waiting for response...");
-      // }, 2000);
+        observer.complete()
+      }, (err) => {
+        observer.error(err);
+        observer.complete()
+      });
 
       setTimeout(() => {
         observer.error("Request timeout, please try again");
-        observer.complete();
-      }, 16000);
+      }, 8000);
     });
   }
 
@@ -105,18 +102,15 @@ export class AuthenticationService {
         console.log("Registeration response: ", res);
         this.toastMessager.presentToast("User created!");
         observer.next(res);
-        observer.complete();
-      }, (err) => observer.error(err));
-
-      // setTimeout(() => {
-      //   observer.error("Still waiting for response...");
-      // }, 2000);
+        observer.complete()
+      }, (err) => {
+        observer.error(err);
+        observer.complete()
+      });
 
       setTimeout(() => {
         observer.error("Request timeout, please try again");
-        observer.complete();
-      }, 16000);
-
+      }, 8000);
     });
   }
 
@@ -136,7 +130,6 @@ export class AuthenticationService {
   isAuthenticated() {
     return this.authenticationState.value;
   }
-
 
   /*
    * todo
@@ -179,20 +172,6 @@ export class AuthenticationService {
     // .catch((e) => {
     //     console.log('Error logging into Facebook', e);
     // });
-}
-
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
   }
 
   /** Log a HeroService message with the MessageService */
