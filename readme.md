@@ -1,13 +1,17 @@
 # MealDate
 
-this is the latest front-end of our app 'MealDate' for Yale CPSC 539 Software Engineering.
+This is the front-end of our app 'MealDate' for Yale CPSC 439/539 Software Engineering project.
 
-#### Update Log
+## Demo
+
+![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/demo2.jpg "Demo")
+
+### Update
 
 ```
 2019-04-08 03:55:00: add animations
 2019-04-05 20:25:00: UI improvements
-2019-03-24 20:08:00: add GoogleMaps!
+2019-03-24 20:08:00: add GoogleMaps
 2019-03-23 23:15:00: add invitation list page
 2019-03-21 20:20:00: add recommendation page
 2019-03-10 21:56:00: finish settings page
@@ -19,11 +23,7 @@ this is the latest front-end of our app 'MealDate' for Yale CPSC 539 Software En
 2019-02-23 01:00:00: app created
 ```
 
-## Demo
-
-![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/demo2.jpg "Demo")
-
-## Quick Setup
+## Setup
 
 #### 1, Node.js
 
