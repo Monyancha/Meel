@@ -107,17 +107,18 @@ export class UserinfoService {
         console.log("UserinfoService: user response received, ", response);
 
         // todo: add and use more info
-        this.user.username = response.username;
+        this.user.username      = response.username;
         this.user.description   = response.description;
         this.user.email         = response.email;
 
-        this.user.availability  = response.availability == "F";
-        this.user.shareGPS      = response.shared_gps == "F";
+        this.user.availability  = response.availability == "T";
+        this.user.shareGPS      = response.shared_gps == "T";
 
         this.user.yearOfEntry   = response.year.toString();
         this.user.major         = response.major;
         this.user.gender        = response.gender;
         this.user.age           = response.age.toString();
+        this.user.college       = response.college;
         
         resolve(true);
       }, error => {

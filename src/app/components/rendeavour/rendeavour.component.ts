@@ -57,6 +57,7 @@ export class RendeavourComponent implements OnInit {
         this.showCancelButton = true;
       } else if(this.pageStatus == 'received') {
         this.showDeclineButton = true;
+        this.showAcceptButton  = true;
       } 
     });
   }

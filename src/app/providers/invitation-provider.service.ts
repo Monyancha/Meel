@@ -77,7 +77,7 @@ export class InvitationProviderService {
     let date = new Date();
     let slot = dateStr.split('-');
     date.setFullYear(Number(slot[0]));
-    date.setMonth(Number(slot[1]), Number(slot[2]));
+    date.setMonth(Number(slot[1]) - 1, Number(slot[2]));
     date.setHours(Number(slot[3]), Number(slot[4]));
     let now = new Date();
     var front : string;
@@ -107,13 +107,13 @@ export class InvitationProviderService {
   readableHour(startStr : string, endStr : string) : string {
     let start = new Date(), end = new Date();
     var slot = startStr.split('-');
-    start.setMonth(Number(slot[1]), Number(slot[2]));
+    start.setMonth(Number(slot[1]) - 1, Number(slot[2]));
     start.setHours(Number(slot[3]), Number(slot[4]));
     var slot = endStr.split('-');
-    end.setMonth(Number(slot[1]), Number(slot[2]));
+    end.setMonth(Number(slot[1]) - 1, Number(slot[2]));
     end.setHours(Number(slot[3]), Number(slot[4]));
-    var tail = "From " + formatDate(start, "HH:mm", 'en-US');
-    tail += " to " + formatDate(end, "HH:mm", 'en-US');
+    var tail = formatDate(start, "h:m aa", 'en-US');
+    tail += " to " + formatDate(end, "h:m aa", 'en-US');
     if(start.getDay() != end.getDay())
     {
       tail += "(tmw)";

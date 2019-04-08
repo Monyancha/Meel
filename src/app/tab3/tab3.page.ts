@@ -15,7 +15,7 @@ import { ToastMessagingService } from '../services/toastmessaging.service';
   animations: [
     trigger('cardEnter', [
       transition('* => *', [
-        
+
       ])
     ])
   ]
@@ -40,6 +40,7 @@ export class Tab3Page {
    */
   postUserProfile() {
     this.showProgressBar = true;
+    this.userinfoService.user.gender = this.ipt_gender;
     this.userinfoService.uploadUserProfile()
     .then(() => {
       this.toastMessager.presentToast("User profile updated!");

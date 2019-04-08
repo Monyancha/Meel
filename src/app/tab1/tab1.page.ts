@@ -50,7 +50,7 @@ export class Tab1Page {
       component: DateselectComponent,
       event: ev,
       animated: true,
-      cssClass: 'datesel-popover animated slideInDown',
+      cssClass: 'datesel-popover',
       // componentProps: { popoverController : this.popoverController }
     });
     await this.curPopover.present();
