@@ -21,7 +21,7 @@ this is the latest front-end of our app 'MealDate' for Yale CPSC 539 Software En
 
 ## Demo
 
-![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/demo.jpg "Demo")
+![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/demo2.jpg "Demo")
 
 ## Quick Setup
 
