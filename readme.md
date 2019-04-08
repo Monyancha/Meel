@@ -1,6 +1,8 @@
 # MealDate
 
-This is the front-end of our app 'MealDate' for Yale CPSC 439/539 Software Engineering project.
+This is the front-end of our app 'MealDate' for Yale CPSC 439/539 Software Engineering project. 
+
+This project alone with our [**backend service**](https://github.com/xiaoxiao33/recommendation) is expected to be done on **April 27, 2019**.
 
 ## Demo
 
