@@ -22,7 +22,7 @@ This project alone with our [**backend service**](https://github.com/xiaoxiao33/
 2019-03-09 17:28:00: bugs fix
 2019-02-25 13:54:00: add login authentication
 2019-02-24 00:32:00: add static login page
-2019-02-23 01:00:00: app created
+2019-02-23 01:00:00: app created!
 ```
 
 ## Setup
