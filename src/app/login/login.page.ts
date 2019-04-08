@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { LoadingController } from '@ionic/angular';
 
 import { UserinfoService } from '../services/userinfo.service';
@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
   private loginWithUserId(user_id) {
     console.log('Loging with id:' + user_id);
     this.userinfoService.user.id = user_id.toString();
-
+    // Fetch user profile
     console.log('this.userinfoService.user.id = ', this.userinfoService.user.id);
     this.userinfoService.getLatestUserProfile().then(() => {
       this.userinfoService.setToken().then((res) => {
@@ -58,7 +58,8 @@ export class LoginPage implements OnInit {
       })
       .catch(err => this.toastMessager.presentError(err));
     })
-    .catch(err => this.toastMessager.presentError(err));
+    .catch(err => this.toastMessager.presentError(err))
+    .finally(() => this.userinfoService.uploadLocation())
   }
 
   /*

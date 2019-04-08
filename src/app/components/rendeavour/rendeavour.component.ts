@@ -5,6 +5,8 @@ import { NavParams, PopoverController } from '@ionic/angular';
 
 import { Invitation } from '../../model/invitation';
 import { ToastMessagingService } from '../../services/toastmessaging.service';
+import { InvitationProviderService} from '../../providers/invitation-provider.service';
+import { UserinfoService } from '../../services/userinfo.service';
 
 interface marker {
 	lat: number;
@@ -28,58 +30,71 @@ export class RendeavourComponent implements OnInit {
   zoom: number  = 15;
   lat: number   = 41.3128;
   lng: number   = -72.9251;
-  pin: marker = 
-  {
-    lat: 41.3128,
-    lng: -72.9251,
-    label: '',
-    draggable: false
-  }
 
   // UI Params
-  showAcceptButton = true;
-  showCancelButton = true;
+  showAcceptButton  = false;
+  showDeclineButton = false;
+  showCancelButton  = false;
 
   constructor(
     private toastMessager: ToastMessagingService,
     private plantform : Platform,
     private navParams : NavParams,
     private popoverControler : PopoverController,
+    private ivtProvider : InvitationProviderService,
+    private userinfoService: UserinfoService,
   ) { }
-  
+
   async ngOnInit() {
     this.plantform.ready().then(() => {
       this.invitation = this.navParams.get('invitation');
       this.pageStatus = this.navParams.get('pageStatus');
-      if(this.pageStatus == 'sent') {
-        this.showAcceptButton = false;
-        this.showCancelButton = false;
+      
+      this.lat = this.invitation.latitude;
+      this.lng = this.invitation.longitude;
+
+      if(this.pageStatus == 'accepted') {
+        this.showCancelButton = true;
       } else if(this.pageStatus == 'received') {
-        this.showCancelButton = false;
-      } else {
-        this.showAcceptButton = false;
-      }
+        this.showDeclineButton = true;
+      } 
     });
   }
 
-  mapClicked($event: MouseEvent) {
-    this.pin.lat = $event.coords.lat;
-    this.pin.lng = $event.coords.lng;
-    console.log(this.pin.lat, this.pin.lng);
+  displayName(ivt : Invitation) : string {
+    if(ivt.senderId == this.userinfoService.user.id) {
+      return ivt.rName;
+    } else {
+      return ivt.sName;
+    }
   }
 
   closePopover() {
     this.popoverControler.dismiss();
   }
 
-  acceptInvitation() {
-    this.toastMessager.presentToast('Accepted!');
-    this.closePopover();
+  acceptInvitation(ivt_id : string) {
+    this.ivtProvider.acceptInvitation(ivt_id)
+    .then((res) => {
+      this.toastMessager.presentToast('Accepted!');
+      this.navParams.get('refresh')();
+    })
+    .catch((err) => {
+      this.toastMessager.presentToast('Failed to accept invitation');
+    })
+    .finally(() => {
+      this.closePopover();
+    });
   }
 
-  cancelInvitation() {
-    this.toastMessager.presentToast('Canceled!');
-    this.closePopover();
+  declineInvitation(ivt_id : string) {
+    this.toastMessager.presentToast('Sorry, the decline function is not implemented yet..');
+  }
+
+  cancelInvitation(ivt_id : string) {
+    this.toastMessager.presentToast('Sorry, the cancelelation function is not implemented yet..');
+    // this.closePopover();
   }
 
 }
+

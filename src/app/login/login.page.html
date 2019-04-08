@@ -5,14 +5,16 @@
       <form padding>
 
         <!-- Message -->
-        <ion-col col-12>
-            <h1> <strong>Welcome back</strong> please login to your account</h1>
+        <div class="animated fadeInDown">
+        <ion-col col-12 >
+            <h1 style="margin-bottom:0;"> <strong>Welcome back</strong> please login to your account</h1>
         </ion-col>
+      </div>
 
         <!-- Input Field -->
         <ion-row>
           <ion-col col-12>
-            <div input-field>
+            <div input-field class="animated fadeInDown input-box">
               <ion-item no-padding>
                   <ion-input text-center #usr type="text" [placeholder]="inputPlaceholder"></ion-input>
               </ion-item>
@@ -26,7 +28,8 @@
         <!-- Buttons -->
         <!-- <div> -->
         <div class="termdiv" [innerHTML]="termTexts"></div>
-        <ion-col col-12 no-padding>
+        <div class="animated fadeInUp ani-buttons">
+        <ion-col col-12 no-padding >
           <ion-button full (click)="mainButton(usr.value, pswd.value)" >{{mainButtonText}}</ion-button>
         </ion-col>
         <!-- </div> -->
@@ -39,13 +42,16 @@
             <ion-button class="sub-buttons" (click)="switchLoginRegister()" float-right>{{createAccountText}}</ion-button>
           </ion-col>
         </ion-row>
-        
+        </div>
+
       </form>
     </ion-col>
   </ion-grid>
 
+  <div class="animated fadeInUp ani-fb-buttons">
   <div class="sub-texts">OR</div>
   <button class="loginBtn loginBtn--facebook" (click)="loginWithFacebook()">Login with Facebook</button>
+  </div>
 
   <!-- <button class="loginBtn loginBtn--google">Login with Google</button> -->
 

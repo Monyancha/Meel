@@ -40,6 +40,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AgmCoreModule } from '@agm/core';
 // --- March 23, 2019: GPS && Maps ---
 
+
+
 @NgModule({
   declarations: [
     AppComponent, 
@@ -66,7 +68,6 @@ import { AgmCoreModule } from '@agm/core';
     DragDropModule,
     ScrollingModule, 
     IonicStorageModule.forRoot(),
-    BrowserAnimationsModule,
     // SocialLoginModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCYq0XB4TWCDdKS9gWGaeb2B4q0HeVTS5M'

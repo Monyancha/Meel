@@ -14,6 +14,14 @@ agm-map {
     margin-top: 16px;
 }
 
+.meet-date {
+    margin-left: 16px;
+    margin-bottom: 0px;
+    font-size: 13px;
+    color: #383a3e;
+    font-weight: 100;
+}
+
 .meet-time {
     margin-left: 16px;
     margin-bottom: 10px;
@@ -22,7 +30,12 @@ agm-map {
     font-weight: 100;
 }
 
+.contact-info-header {
+    min-height: 35px;
+}
+
 .username-text {
+    margin-bottom: 2px;
     margin-left: 16px;
     font-size: 19px;
     font-weight: 300;

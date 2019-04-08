@@ -38,7 +38,7 @@ export class AuthenticationService {
         this.checkToken();
       });
     }
-  
+
   /*
    * Update authenticatiin state by checking if TOKEN_KEY exists
    */
@@ -63,26 +63,23 @@ export class AuthenticationService {
    * or a error message if failed, timeout at 5000ms.
    */
   login(email : string, password : string) {
+    var timer = setTimeout(() => {
+      this.toastMessager.presentToast("Still trying to connect...");
+    }, 4000);
     return new Observable((observer) => {
-      // const httpOptions = {
-      //   headers: new HttpHeaders({
-      //     'Content-Type':  'application/json',
-      //     'Authorization': 'Basic ' + btoa(email + ":" + password)
-      //   }),
-      // };
       let url = this.apiUrl + '/login';
       console.log("Sending login request {", email, ":", password + "} to ", url);
       this.http.post<string>(url, {}, {params: {'email': email, 'password': password}})
-      .subscribe(
-        (res) => {
+      .toPromise()
+      .then((res) => {
         console.log("Login response received: ", res);
         observer.next(res);
-        observer.complete()
-      }, (err) => {
-        observer.error(err);
-        observer.complete()
+      })
+      .catch((err) => observer.error(err))
+      .finally(() => {
+        observer.complete();
+        clearTimeout(timer);
       });
-
       setTimeout(() => {
         observer.error("Request timeout, please try again");
       }, 8000);
@@ -94,20 +91,26 @@ export class AuthenticationService {
    * or a error message if failed, timeout at 5000ms.
    */
   register(email : string, password : string) {
+    var timer = setTimeout(() => {
+      this.toastMessager.presentToast("Still trying to connect...");
+    }, 4000);
     return new Observable((observer) => {
       console.log("Registeration Sent: ", email, ":", password);
       this.http.post<string>(this.apiUrl + '/register', {},
       { params: {'username': email, 'email': email, 'password': password }})
-      .subscribe((res) => {
+      .toPromise()
+      .then((res) => {
         console.log("Registeration response: ", res);
         this.toastMessager.presentToast("User created!");
         observer.next(res);
-        observer.complete()
-      }, (err) => {
+      })
+      .catch((err) => {
         observer.error(err);
-        observer.complete()
+      })
+      .finally(() => {
+        observer.complete();
+        clearTimeout(timer);
       });
-
       setTimeout(() => {
         observer.error("Request timeout, please try again");
       }, 8000);

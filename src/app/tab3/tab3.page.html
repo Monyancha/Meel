@@ -70,9 +70,9 @@
       <ion-input [(ngModel)]="userinfoService.user.major" class="sub-input" slot="end" placeholder="e.g. Computer Science"></ion-input>
     </ion-item>
 
-    <ion-item lines="none">
+    <ion-item lines="none" (click)="emailClicked()">
       <ion-label class="sub-label">Email</ion-label>
-      <ion-input [(ngModel)]="userinfoService.user.email" class="sub-input" slot="end" placeholder="example@yale.edu"></ion-input>
+      <ion-input disabled="true" [(ngModel)]="userinfoService.user.email" class="sub-input" slot="end" placeholder="example@yale.edu"></ion-input>
     </ion-item>
 
   </ion-card>

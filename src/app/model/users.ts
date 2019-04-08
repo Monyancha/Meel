@@ -2,13 +2,13 @@
 export class User {
     // Core Info
     id              = "-1";
-    username        = 'pending';
-    password        = 'pending';
+    username        = 'no_value';
+    password        = 'no_value';
 
     // Basic Info
-    email           = "pending";
-    college         = "pending";
-    major           = "pending";
+    email           = "no_value";
+    college         = "no_value";
+    major           = "no_value";
     gender          = "other";
     yearOfEntry     = "-1";
     age             = "-1";
@@ -20,7 +20,7 @@ export class User {
     longitude       = 0;
 
     // Todos
-    description     = "pending";
+    description     = "no_value";
     image:          any;
 
     constructor() {};
@@ -49,34 +49,29 @@ export class User {
         this.description    = 'test_description_' + this.randomStr(32);
     }
 
-    private availabilityString() {
-        if(this.availability){
+    private boolToStr(value : boolean) {
+        if(value){
             return 'T'
         } else {
             return 'F'
         }
     }
 
-    
     public toJSON() {
         return {
                 "uid":              this.id,
-                "gender":           "0",
+                "username":         this.username,
+                "description":      this.description,
+                
+                "gender":           this.gender,
                 "college":          this.college,
                 "major":            this.major,
                 "age":              this.age,
-                "availability" :    this.availabilityString(),
                 "year":             this.yearOfEntry,
+
+                "availability" :    this.boolToStr(this.availability),
+                "share_gps":        this.boolToStr(this.shareGPS),
         }
-    //     return {
-    //         "uid":              5,
-    //         "gender":           0,
-    //         "college":          "csd",
-    //         "major":            "cs",
-    //         "age":              "20",
-    //         "availability" :    "T",
-    //         "year":             "2018",
-    // }
     }
 }
 

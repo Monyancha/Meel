@@ -49,27 +49,52 @@ export class UserinfoService {
     return this.geolocation.getCurrentPosition();
   }
 
+  uploadLocation() {
+    return new Promise((resolve, reject) => {
+      this.getCurrentPosition()
+      .then((res) => {
+        let body = {
+          "uid" : this.user.id,
+          "latitude" : res.coords.latitude,
+          "longitude" : res.coords.longitude,
+          "lastUpdateTime" : res.timestamp.toString()
+        }
+        this.user.latitude = res.coords.latitude;
+        this.user.longitude = res.coords.longitude;
+        console.log("Sending GPS location:", body);
+        this.http.post(this.authService.apiUrl + "/eatNow/uploadLocation", 
+          body, {responseType: 'text'})
+        .toPromise()
+        .then((res) => resolve(res))
+        .catch((err) => reject(err))
+      })
+      .catch((err) => {
+        reject(err);
+      });
+    });
+  }
+
   /*
    * Update user's GPS location
    */
-  updateUserPosition() {
-    return new Promise((resolve, reject) => {
-      this.geolocation.getCurrentPosition()
-      .then((resp) => {
-        this.user.longitude = resp.coords.latitude;
-        this.user.latitude = resp.coords.longitude;
-        this.setToken();
-        console.log("User geolocation updated.");
-        resolve(true);
-      })
-      .catch((err) => {
-        this.toastMessager.presentError("Failed to fetch location");
-        console.log("Error: User geolocation update failed: ", err);
-        reject(err);
-      });
-      setTimeout(() => reject("Request timeout, please try again") , 3000);
-    });
-  }
+  // updateUserPosition() {
+  //   return new Promise((resolve, reject) => {
+  //     this.geolocation.getCurrentPosition()
+  //     .then((resp) => {
+  //       this.user.longitude = resp.coords.latitude;
+  //       this.user.latitude = resp.coords.longitude;
+  //       this.setToken();
+  //       console.log("User geolocation updated.");
+  //       resolve(true);
+  //     })
+  //     .catch((err) => {
+  //       this.toastMessager.presentError("Failed to fetch location");
+  //       console.log("Error: User geolocation update failed: ", err);
+  //       reject(err);
+  //     });
+  //     setTimeout(() => reject("Request timeout, please try again") , 3000);
+  //   });
+  // }
 
   /*
    * Get latest user profile data from server side
@@ -79,12 +104,21 @@ export class UserinfoService {
     return new Promise((resolve, reject) => {
       this.http.get<any>(this.authService.apiUrl + '/userProfile/' + this.user.id)
       .subscribe(response => {
-  
-        // todo: add and use more info
-        this.user.major   = response.major;
-        this.user.gender  = response.gender;
-        this.user.age     = response.age.toString();
+        console.log("UserinfoService: user response received, ", response);
 
+        // todo: add and use more info
+        this.user.username = response.username;
+        this.user.description   = response.description;
+        this.user.email         = response.email;
+
+        this.user.availability  = response.availability == "F";
+        this.user.shareGPS      = response.shared_gps == "F";
+
+        this.user.yearOfEntry   = response.year.toString();
+        this.user.major         = response.major;
+        this.user.gender        = response.gender;
+        this.user.age           = response.age.toString();
+        
         resolve(true);
       }, error => {
         this.toastMessager.presentError(error);
@@ -98,8 +132,10 @@ export class UserinfoService {
    * Post current user profile to server side
    */
   uploadUserProfile() {
+    // Upload current location
+    this.uploadLocation().catch((err) => console.log(err));
     return new Promise((resolve, reject) => {
-      console.log("Uploding request sent: ", this.user.toJSON());
+      console.log("Sending user profile:", this.user.toJSON());
       this.http.post(this.authService.apiUrl + '/updateProfile', {}, 
       {params: this.user.toJSON(), responseType: 'text'})
       .subscribe((response) => {
@@ -111,6 +147,7 @@ export class UserinfoService {
       });
       setTimeout(() => reject("Request timeout, please try again") , 3000);
     });
+
   }
 
   /*

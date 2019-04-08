@@ -4,13 +4,16 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title style="font-weight: 400">Recommendations</ion-title>
+    <ion-progress-bar *ngIf="showProgressBar" type="indeterminate"></ion-progress-bar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
   <ion-list>
-    <ion-item lines="none" *ngFor="let ruser of recommendedUsers">
-      
+    <div [@cardAnimation]="this.rcmdProvider.rcmmd_usrs">
+    <div *ngFor="let ruser of rcmdList">
+    <ion-item lines="none" >
+
       <ion-card class="listCards ion-activatable" (click)="cardSelected(ruser, $event)">  
         <ion-ripple-effect></ion-ripple-effect>
         <ion-row class="mainrow">
@@ -38,7 +41,7 @@
               <ion-icon name="pin" class="distanceIcon"></ion-icon>
             </ion-row>
             <ion-row>
-              <ion-label class="distanceText">200 ft</ion-label>
+              <ion-label class="distanceText">{{convertDistance(ruser.distance)}}</ion-label>
             </ion-row>
           </ion-col>
         </ion-row>
@@ -48,8 +51,8 @@
       </ion-row>
 
       </ion-card>
-
     </ion-item>
+    </div></div>
   </ion-list>
 
   <ion-infinite-scroll (ionInfinite)="loadData($event)" threshold="100px">

@@ -3,6 +3,8 @@ import { DateselectComponent } from '../components/dateselect/dateselect.compone
 import { PopoverController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
+import { UserinfoService } from '../services/userinfo.service';
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -13,6 +15,7 @@ export class Tab1Page {
   curPopover : HTMLIonPopoverElement = undefined;
 
   constructor(
+    private userinfoService : UserinfoService,
     private popoverController: PopoverController,
     private router: Router,
     ) {}
@@ -21,6 +24,18 @@ export class Tab1Page {
   // schedule(){
   //   this.presentDateselelectPopover();
   // }
+
+  ngOnInit() {
+    // Upload Current Location
+    console.log("Tab1: Uploading user location...");
+    this.userinfoService.uploadLocation()
+    .then((res) => {
+      console.log("User location updated", res);
+    })
+    .catch((err) => {
+      console.log("Failed to upload location", err);
+    });
+  }
 
   eatNowClicked() {
     this.router.navigate(['tabs/tabs/tab1/recommendation']);
@@ -34,7 +49,8 @@ export class Tab1Page {
     this.curPopover = await this.popoverController.create({
       component: DateselectComponent,
       event: ev,
-      cssClass: 'datesel-popover',
+      animated: true,
+      cssClass: 'datesel-popover animated slideInDown',
       // componentProps: { popoverController : this.popoverController }
     });
     await this.curPopover.present();

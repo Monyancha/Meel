@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
+import {trigger, transition, style, animate, keyframes, query, stagger} from '@angular/animations';
 
 import { UserinfoService } from '../services/userinfo.service';
 import { AuthenticationService } from '../services/authentication.service';
@@ -10,7 +11,14 @@ import { ToastMessagingService } from '../services/toastmessaging.service';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  styleUrls: ['tab3.page.scss'],
+  animations: [
+    trigger('cardEnter', [
+      transition('* => *', [
+        
+      ])
+    ])
+  ]
 })
 export class Tab3Page {
 
@@ -28,13 +36,6 @@ export class Tab3Page {
   }
 
   /*
-   * Update 
-   */
-  getUserProfile() {
-    // todo: gender 
-  }
-
-  /*
    * Post/Update server data
    */
   postUserProfile() {
@@ -49,6 +50,10 @@ export class Tab3Page {
     .finally(() => {
       this.showProgressBar = false;
     });
+  }
+
+  emailClicked() {
+    this.toastMessager.presentToast("Changing email is not allowed here, please contact our developer.");
   }
 
   /*

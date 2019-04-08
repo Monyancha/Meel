@@ -13,6 +13,9 @@ export class Invitation {
     latitude:           number;
     longitude:          number;
 
+    rName:              string;
+    sName:              string;
+
     constructor() {};
 
     private randomStr(lengthOfCode: number) {

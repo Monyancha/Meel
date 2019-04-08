@@ -3,9 +3,13 @@ import { NavParams, PopoverController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MouseEvent } from '@agm/core';
+import { formatDate } from '@angular/common';
 
+import { rcmdUserProfile } from '../../model/rcmdUserProfile'
 import { ToastMessagingService } from '../../services/toastmessaging.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { UserinfoService } from '../../services/userinfo.service';
+import { InvitationProviderService } from '../../providers/invitation-provider.service';
 
 interface marker {
 	lat: number;
@@ -21,7 +25,7 @@ interface marker {
 })
 export class UserprofileComponent implements OnInit {
 
-  private passedUser = null;
+  private ivtee : rcmdUserProfile;
 
   // Map Params
   zoom: number  = 15;
@@ -35,18 +39,18 @@ export class UserprofileComponent implements OnInit {
     draggable: true
   }
 
-
   constructor(
-    public ionicDb: Storage, 
+    public storage: Storage, 
     private toastMessager: ToastMessagingService,
     public authenService: AuthenticationService,
     private navParams : NavParams,
-    private http: HttpClient,
+    private userinfoService : UserinfoService,
     private popoverControler : PopoverController,
+    private ivtProvider : InvitationProviderService,
   ) { }
 
   ngOnInit() {
-    this.passedUser = this.navParams.get('user');
+    this.ivtee = this.navParams.get('user');
   }
 
   closePopover() {
@@ -60,18 +64,38 @@ export class UserprofileComponent implements OnInit {
   }
 
   yesClicked() {
-
-    // let data = {
-    //   id : 1,
-    //   sender: 1,
-    //   receiver: 2,
-    //   start_time: "20190324-"
-    // }
-    // this.http.post(this.authenService.apiUrl + "/eatLater/sendInvitation", {})
-
-    this.toastMessager.presentToast('Invitation sent!');
-    this.closePopover();
-
+    this.storage.get("time_slot").then((res) => {
+      var start : string, end : string;
+      if(!res) {
+        let date = new Date();
+        date.setMinutes(date.getMinutes() + 30);
+        start = formatDate(date, "yyyy-MM-dd-HH-mm", 'en-US');
+        date.setHours(date.getHours() + 1);
+        end = formatDate(date, "yyyy-MM-dd-HH-mm", 'en-US');
+      } else {
+        start = res.start;
+        end = res.end;
+      }
+      let ivtBody = {
+        "senderId": this.userinfoService.user.id, 
+        "receiverId": this.ivtee.uid,
+        "start": start,
+        "end": end,
+        "longitude": this.pin.lng,
+        "latitude": this.pin.lat,
+        "status": "ACTIVE",
+      };
+      console.log("Sending invitation body:", ivtBody);
+      this.ivtProvider.sentInvitation(ivtBody)
+      .then((res) => {
+        this.toastMessager.presentToast('Invitation sent!');
+      })
+      .catch((err) => {
+        this.toastMessager.presentError(err);
+      });
+    })
+    .catch(err => this.toastMessager.presentError(err))
+    .finally(() => this.closePopover());
   }
 
   waitClicked() {
