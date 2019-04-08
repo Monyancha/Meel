@@ -6,7 +6,7 @@ This is the front-end of our app 'MealDate' for Yale CPSC 439/539 Software Engin
 
 ![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/demo2.jpg "Demo")
 
-### Update
+## Update
 
 ```
 2019-04-08 03:55:00: add animations
