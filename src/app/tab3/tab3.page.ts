@@ -22,7 +22,7 @@ import { ToastMessagingService } from '../services/toastmessaging.service';
 })
 export class Tab3Page {
 
-  ipt_gender = 'other';
+  // ipt_gender = 'other';
   showProgressBar = false;
 
   constructor(
@@ -40,7 +40,7 @@ export class Tab3Page {
    */
   postUserProfile() {
     this.showProgressBar = true;
-    this.userinfoService.user.gender = this.ipt_gender;
+    // this.userinfoService.user.gender = this.ipt_gender;
     this.userinfoService.uploadUserProfile()
     .then(() => {
       this.toastMessager.presentToast("User profile updated!");

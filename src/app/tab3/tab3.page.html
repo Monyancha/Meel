@@ -53,7 +53,7 @@
     
     <ion-item lines="none">
       <ion-label class="sub-label">Gender</ion-label>
-      <ion-select [(ngModel)]="ipt_gender" class="customSelect" slot="end" interface="popover" value="other">
+      <ion-select [(ngModel)]="userinfoService.user.gender" class="customSelect" slot="end" interface="popover" value="other">
         <ion-select-option value="male">Male</ion-select-option>
         <ion-select-option value="female">Female</ion-select-option>
         <ion-select-option value="other">Other</ion-select-option>

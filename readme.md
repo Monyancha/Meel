@@ -19,6 +19,12 @@ this is the latest front-end of our app 'MealDate' for Yale CPSC 539 Software En
 2019-02-23 01:00:00: app created
 ```
 
+# Demo
+
+```
+![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/demo.jpg "Demo")
+```
+
 ## Quick Setup
 
 #### 1, Node.js
