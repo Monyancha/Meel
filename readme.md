@@ -12,7 +12,7 @@ To invite somebody out, just select the time and location, also note if you sele
 
 You can also check out our [**Video Demo**](https://youtu.be/cu-iRv2WdRE) on youtube, for Chinese visitors you can [**Download**](https://github.com/adamzjk/MealDateFrontEnd/raw/master/screenshots/demo.mp4) the video(2.8MB and last less than 1 minute). There're lots more to be discovered! Join our internal test group by just [sending us a email](jingkuan.zhang@yale.edu) if you are interested!
 
-## Review 
+## Our App, You Decide
 
 We'll be really appreciated if you can help us improve this app by [**leaving us your valuable feedback**](https://docs.google.com/forms/d/e/1FAIpQLSewlLvO2ZD1CiCeyDEw006TvVNfwBP0HOwXAutI-XjXQj-BkQ/viewform?vc=0&c=0&w=1), (only have 10 short choice questions)😄☺️😊🙏🤣😙😚🤑
 
