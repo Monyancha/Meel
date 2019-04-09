@@ -10,9 +10,7 @@ This repo is still under development… this frontend project alone with our [**
 
 To invite somebody out, just select the time and location, also note if you select "eat now", we'll emphasize the distance for recommendation, if you select "eat later", we will use a plethora of other informations including your gender, college.. and some behavior records like the people you like to provider a better and more personlized recommendation.
 
-You can also check out our [**Video Demo**](https://youtu.be/cu-iRv2WdRE) on youtube, for Chinese visitors you can [**Download**](https://github.com/adamzjk/MealDateFrontEnd/raw/master/screenshots/demo.mp4) the video(2.8MB and last less than 1 minute).
-
-There's lot more to be discovered! Join our internal test group by just [sending us a email](jingkuan.zhang@yale.edu) if you are interested!
+You can also check out our [**Video Demo**](https://youtu.be/cu-iRv2WdRE) on youtube, for Chinese visitors you can [**Download**](https://github.com/adamzjk/MealDateFrontEnd/raw/master/screenshots/demo.mp4) the video(2.8MB and last less than 1 minute). There's lot more to be discovered! Join our internal test group by just [sending us a email](jingkuan.zhang@yale.edu) if you are interested!
 
 ## Review 
 
