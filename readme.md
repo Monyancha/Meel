@@ -2,9 +2,9 @@
 
 > MeelDate is a social app that helps students around campus(or potentially everybody) find a partner to have a meal together and expand their social network.
 
-> We'll use your location, gender, college.. and behavior records like the people you like and the food you like etc.. to provider personlized recommendations. 
-
-> It easy to invite a person out, just select the time and location. also note if you select "eat now", we emphasize the distance for recommendation.. there's lot more to be discovered, join our internal test group by [sending us a email](jingkuan.zhang@yale.edu) if you are interested!
+> It easy to invite a person out, just select the time and location. also note if you select "eat now", we emphasize the distance for recommendation, if you select "eat later", we will use a plethora of information including your location, gender, college.. and behavior records like the people you like and the food you like to provider better and personlized recommendation.
+>
+> There's lot more to be discovered, join our internal test group by just [sending us a email](jingkuan.zhang@yale.edu) if you are interested!
 
 ## Demo
 
@@ -20,9 +20,9 @@ We'll be really appreciated if you can help us improve this app by [**leaving us
 
 ## Quick Install
 
-![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/replease/install.png "Scan QR code using iPhone camera to install")
+(This QR code is **ONLY for Registered Developers/Testers**, for others please scroll down to build & run section to test this app).
 
-(**This QR code is ONLY for Registered Developers**, for others please scroll down to build & run section to test this app).
+![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/replease/install.png "Scan QR code using iPhone camera to install")
 
 ## Update
 
