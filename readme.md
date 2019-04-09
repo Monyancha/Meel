@@ -8,6 +8,10 @@ This project alone with our [**backend service**](https://github.com/xiaoxiao33/
 
 ![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/demo2.jpg "Demo")
 
+## Quick Install(iOS only)
+
+![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/replease/install.png "Scan QR code using iPhone camera to install")
+
 ## Update
 
 ```
