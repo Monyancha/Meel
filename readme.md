@@ -1,6 +1,8 @@
-# MealDate
+# MeelDate
 
 This is the front-end of our app 'MealDate' for Yale CPSC 439/539 Software Engineering project. 
+
+> MeelDate is a social app that helps students around campus(or potentially everybody) find a partner to have a meal together and expand their social network.
 
 This project alone with our [**backend service**](https://github.com/xiaoxiao33/recommendation) is expected to be done on **April 27, 2019**.
 
@@ -10,7 +12,11 @@ This project alone with our [**backend service**](https://github.com/xiaoxiao33/
 
 ## Quick Install(iOS only)
 
-![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/replease/install.png "Scan QR code using iPhone camera to install")
+Scan QR code using iPhone camera to install this app.
+
+![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/replease/install-qrcode.png "Scan QR code using iPhone camera to install")
+
+
 
 ## Update
 
