@@ -14,7 +14,7 @@ This project alone with our [**backend service**](https://github.com/xiaoxiao33/
 
 Scan QR code using iPhone camera to install this app.
 
-![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/replease/install-qrcode.png "Scan QR code using iPhone camera to install")
+![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/replease/install.png "Scan QR code using iPhone camera to install")
 
 
 
