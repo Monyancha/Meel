@@ -66,7 +66,7 @@ export class UserinfoService {
           body, {responseType: 'text'})
         .toPromise()
         .then((res) => resolve(res))
-        .catch((err) => reject(err))
+        .catch((err) => reject(err));
       })
       .catch((err) => {
         reject(err);

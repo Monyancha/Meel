@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.yalemealdate" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
+<widget id="io.ionic.yalemealdate" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>MeelDate</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://172.27.238.36:8101" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -76,22 +76,22 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
-    <plugin name="cordova-plugin-advanced-http" spec="2.0.5" />
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
-    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
-    <plugin name="cordova-plugin-device" spec="^2.0.2" />
-    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
-    <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
-    <plugin name="cordova-plugin-ionic-keyboard" spec="^2.1.3" />
-    <plugin name="cordova-plugin-facebook4" spec="4.2.1">
+    <plugin name="cordova-plugin-advanced-http" spec="~2.0.4" />
+    <plugin name="cordova-plugin-whitelist" spec="~1.3.3" />
+    <plugin name="cordova-plugin-statusbar" spec="~2.4.2" />
+    <plugin name="cordova-plugin-device" spec="~2.0.2" />
+    <plugin name="cordova-plugin-splashscreen" spec="~5.0.2" />
+    <plugin name="cordova-plugin-ionic-webview" spec="^3.0.0" />
+    <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <plugin name="cordova-plugin-googleplus" spec="~7.0.0">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.2096319318-vf2e5h38vstun8hu032idgu45dherko2" />
+    </plugin>
+    <plugin name="cordova-plugin-facebook4" spec="~4.2.1">
         <variable name="APP_ID" value="2162055910526485" />
         <variable name="APP_NAME" value="MealDate" />
-        <variable name="FACEBOOK_HYBRID_APP_EVENTS" value="false" />
-        <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.40.0" />
     </plugin>
-    <plugin name="cordova-sqlite-storage" spec="3.1.0" />
-    <plugin name="cordova-plugin-geolocation" spec="4.0.1" />
-    <allow-navigation href="http://172.27.238.36:8101" sessionid="d4b6a549" />
+    <plugin name="cordova-sqlite-storage" spec="~3.1.0" />
+    <plugin name="cordova-plugin-geolocation" spec="~4.0.1" />
     <engine name="browser" spec="6.0.0" />
-    <engine name="ios" spec="^5.0.0" />
+    <engine name="ios" spec="^4.5.5" />
 </widget>
