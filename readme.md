@@ -4,9 +4,11 @@
 
 This project alone with our [**backend service**](https://github.com/xiaoxiao33/recommendation) are expected to be done on **April 27, 2019**.
 
-## Demo([video](https://youtu.be/cu-iRv2WdRE))
+## Demo()
 
 ![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/demo2.jpg "Demo")
+
+You can also check our [demo video](https://youtu.be/cu-iRv2WdRE) on youtube, for Chinese visitors you can [download](https://github.com/adamzjk/MealDateFrontEnd/raw/master/screenshots/demo.mp4) the video(2.8MB and last only 55s).
 
 ## Quick Install
 
