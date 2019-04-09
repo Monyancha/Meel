@@ -2,7 +2,7 @@
 
 > MeelDate is a social app that helps students around campus(or potentially everybody) find a partner to have a meal together and expand their social network.
 >
-> We'll use your location, gender, college.. and behavior records like the people and the food you like etc to provider personlized recommendations. 
+> We'll use your location, gender, college.. and behavior records like the people you like and the food you like etc.. to provider personlized recommendations. 
 >
 > It easy to invite a person out, just select the time and location. also note if you select "eat now", we emphasize the distance for recommendation.. there's lot more to be discovered, join our internal test group by [sending us a email](jingkuan.zhang@yale.edu) if you are interested!
 
