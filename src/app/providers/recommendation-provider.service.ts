@@ -77,7 +77,7 @@ export class RecommendationProviderService {
         .catch((err) => {
           reject(err);
         });
-        setTimeout(() => reject("Request timeout, please try again"), 5000);
+        setTimeout(() => reject("Error Getting Eat-now Recommendation:\nRequest timeout, please try again"), 6000);
       })
       .catch((err) => {
         reject(err);

@@ -65,8 +65,10 @@ export class RecommendationPage implements OnInit {
       return Math.trunc(dist).toString() + " mi";
     } else if(dist >= 1 && dist < 10) {
       return dist.toFixed(1) + " mi";
-    } else if(dist > 0){
+    } else if(dist > 10){
       return Math.trunc(dist * 5280).toString() + " ft";
+    } else if(dist >= 0) {
+      return "nearby";
     } else {
       return "---";
     }
@@ -87,7 +89,7 @@ export class RecommendationPage implements OnInit {
         console.log("Loading eat-now list");
         this.fetchEatNowRcmdList();
       }
-    })
+    });
   }
 
   /*

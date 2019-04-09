@@ -46,6 +46,7 @@
     "angularx-social-login": "^1.2.6",
     "animate.css": "^3.7.0",
     "cordova-browser": "6.0.0",
+    "cordova-custom-config": "^5.1.0",
     "cordova-ios": "^4.5.5",
     "cordova-plugin-advanced-http": "2.0.5",
     "cordova-plugin-device": "^2.0.2",
@@ -115,7 +116,8 @@
       "cordova-plugin-geolocation": {},
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.2096319318-vf2e5h38vstun8hu032idgu45dherko2"
-      }
+      },
+      "cordova-custom-config": {}
     },
     "platforms": [
       "browser",
