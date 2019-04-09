@@ -2,13 +2,13 @@
 
 > MeelDate is a social app that helps students around campus(or potentially everybody) find a partner to have a meal together and expand their social network.
 
-This repo is still under development… this frontend project alone with our [**backend service**](https://github.com/xiaoxiao33/recommendation) are expected to be delivered to *Apple App Store && Google Play* on **April 27, 2019**.
+This repo is still under development… this frontend project alone with our [**Backend Service**](https://github.com/xiaoxiao33/recommendation) are expected to be delivered to *Apple App Store && Google Play* on **April 27, 2019**.
 
 ## Demo
 
 ![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/demo2.jpg "Demo")
 
-You can also check our [**demo video**](https://youtu.be/cu-iRv2WdRE) on youtube, for Chinese visitors you can [**download**](https://github.com/adamzjk/MealDateFrontEnd/raw/master/screenshots/demo.mp4) the video(2.8MB and last less than 1 minute).
+You can also check out our [**Video Demo**](https://youtu.be/cu-iRv2WdRE) on youtube, for Chinese visitors you can [**Download**](https://github.com/adamzjk/MealDateFrontEnd/raw/master/screenshots/demo.mp4) the video(2.8MB and last less than 1 minute).
 
 ## Review 
 
