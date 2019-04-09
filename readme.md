@@ -18,7 +18,7 @@ We'll be really appreciated if you can help us improve this app by [**leaving us
 
 ## Quick Install
 
-(This QR code is **ONLY for Registered Developers/Testers**, for others please scroll down to build & run section to test this app).
+**ONLY for Registered Developers/Testers**
 
 ![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/replease/install.png "Scan QR code using iPhone camera to install")
 
