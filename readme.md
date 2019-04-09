@@ -2,7 +2,7 @@
 
 > MeelDate is a social app that helps students around campus(or potentially everybody) find a partner to have a meal together and expand their social network.
 
-This project alone with our [**backend service**](https://github.com/xiaoxiao33/recommendation) are expected to be done on **April 27, 2019**.
+This repo is still under development… this frontend project alone with our [**backend service**](https://github.com/xiaoxiao33/recommendation) are expected to be delivered to *Apple App Store && Google Play* on **April 27, 2019**.
 
 ## Demo
 
@@ -103,3 +103,7 @@ ionic cordova prepare ios
 # 2, Plug in your iphone into your PC
 # 3, Select Build » and select your device to run the app!	
 ```
+
+#### 4, Android Device
+
+Currently not supported(because none of our developers uses an android…)
