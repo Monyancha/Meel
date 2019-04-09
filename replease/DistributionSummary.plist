@@ -12,11 +12,11 @@
 			<key>certificate</key>
 			<dict>
 				<key>SHA1</key>
-				<string>E0CA329A4D0314D4BB73BB83EE35C5421E7D6255</string>
+				<string>1559E92D6A1B7CBBBC4A40362D0D19D95A5ECCFF</string>
 				<key>dateExpires</key>
-				<string>2/15/20</string>
+				<string>4/7/20</string>
 				<key>type</key>
-				<string>iOS Development</string>
+				<string>iOS Distribution</string>
 			</dict>
 			<key>entitlements</key>
 			<dict>

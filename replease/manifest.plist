@@ -17,13 +17,13 @@
 					<key>kind</key>
 					<string>display-image</string>
 					<key>url</key>
-					<string>https://github.com/adamzjk/MealDateFrontEnd/raw/master/replease/icon-small.png</string>
+					<string>https://github.com/adamzjk/MealDateFrontEnd/raw/master/replease/image.57x57.png</string>
 				</dict>
 				<dict>
 					<key>kind</key>
 					<string>full-size-image</string>
 					<key>url</key>
-					<string>https://github.com/adamzjk/MealDateFrontEnd/raw/master/replease/icon-full.png</string>
+					<string>https://github.com/adamzjk/MealDateFrontEnd/raw/master/replease/image.512x512.png</string>
 				</dict>
 			</array>
 			<key>metadata</key>
