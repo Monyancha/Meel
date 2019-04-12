@@ -25,6 +25,7 @@ We'll be really appreciated if you can help us improve this app by [**leaving us
 ## Update
 
 ```
+2019-04-12 07:31:00: add Yelp API
 2019-04-09 01:26:00: add OTA distribution
 2019-04-08 03:55:00: add animations
 2019-04-05 20:25:00: UI improvements

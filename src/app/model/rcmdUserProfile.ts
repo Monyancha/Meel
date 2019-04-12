@@ -3,16 +3,14 @@
 
 export class rcmdUserProfile {
 
-    public uid          : string;
-    public username     : string;
-    public avatar       : any;
+    uid          : string;
+    avatar       : any;
+    username     : string;
 
-    public gender       : string;
-    public major        : string;
-    public college      : string;
+    major        : string;
+    college      : string;
+    gender       : string;
 
-    public distance     : number;
-    
-    
+    distance     : number;
 
 }

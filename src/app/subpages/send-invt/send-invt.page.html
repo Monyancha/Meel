@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="tabs-font">Send Invitation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header class="card-header">
+      <ion-card-title class="location-title">Where</ion-card-title>
+      <ion-card-subtitle>Select on map or input an address</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-searchbar 
+    #searchbar
+    [(ngModel)]="address" 
+    (setAddress)="getAddress($event)">
+    </ion-searchbar>
+
+    <agm-map 
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false"
+    (mapClick)="mapClicked($event)"
+    [streetViewControl]=false
+    (centerChange)="mapCenterChanged($event)"
+    class="agm-map">
+
+    <agm-marker 
+      [latitude]="pinLat"
+      [longitude]="pinLng"
+      [label]="label"
+      [iconUrl]="{
+        url : '../../assets/icon/pin.png', 
+        scaledSize: { 
+          width: 24,
+          height: 36 
+        }
+      }"
+      [markerDraggable]="true">
+    </agm-marker>
+
+    <agm-marker *ngFor="let res of nearbyRest;"
+      (markerClick)="clickedMarker($event)"
+      [latitude]="res.coordinates.latitude"
+      [longitude]="res.coordinates.longitude"
+      [label]="label"
+      [iconUrl]="{
+        url : '../../assets/icon/food-pin3.png', 
+        scaledSize: { 
+          width: 30,
+          height: 30 
+        }
+      }"
+      [animation]="'DROP'"
+      [markerDraggable]="false">
+      <agm-info-window (click)="agmClicked($event)">
+        <ion-row>
+          <ion-label class="restaurant-name">{{res.name}}</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label>{{openStatus(res.is_closed)}} • {{convertRating(res.rating)}} • {{res.price}}</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label>{{res.categories[0].title}}</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label>{{res.display_phone}}</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label>{{res.location.address1}}</ion-label>
+        </ion-row>
+        <strong class="info-win-select-button" (click)="infoWinClicked(res)">Choose This</strong>
+      </agm-info-window>
+    </agm-marker>
+
+    </agm-map>
+
+  </ion-card>
+
+
+
+
+
+</ion-content>

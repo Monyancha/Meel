@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
-import {trigger, transition, style, animate, keyframes, query, stagger} from '@angular/animations';
+import { trigger, transition, style, animate, keyframes, query, stagger} from '@angular/animations';
 
 import { UserinfoService } from '../services/userinfo.service';
 import { AuthenticationService } from '../services/authentication.service';

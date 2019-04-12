@@ -26,6 +26,9 @@ export class InvitationProviderService {
     private toastService: ToastMessagingService,
   ) {}
 
+  /*
+   * API Function, send invitation body to server
+   */
   sentInvitation(ivtBody : any) {
     return new Promise((resolve, reject) => {
       this.http.post(this.authenService.apiUrl + "/eatLater/sendInvitation", 
@@ -37,6 +40,9 @@ export class InvitationProviderService {
     });
   }
 
+  /*
+   * API Function, inform server that an invitation is accepted
+   */
   acceptInvitation(ivt_id : string) {
     console.log("Sending accept invitation, id = ", ivt_id);
     return new Promise((resolve, reject) => {
@@ -55,6 +61,9 @@ export class InvitationProviderService {
     });
   }
 
+  /*
+   * API Function, fetch new invitation list (new/old etc..)
+   */
   getNewList(sub_api : string) : Promise<Invitation[]> {
     return new Promise((resolve, reject) => {
       this.http.get<any>(this.authenService.apiUrl + sub_api + this.userinfoService.user.id)
@@ -73,6 +82,9 @@ export class InvitationProviderService {
     });
   }
 
+  /*
+   * Convert formatted date into readable string
+   */
   readableDate(dateStr : string) : string {
     let date = new Date();
     let slot = dateStr.split('-');
@@ -104,6 +116,9 @@ export class InvitationProviderService {
     return front;
   }
 
+  /*
+   * Convert formatted date into readable string
+   */
   readableHour(startStr : string, endStr : string) : string {
     let start = new Date(), end = new Date();
     var slot = startStr.split('-');
@@ -112,8 +127,8 @@ export class InvitationProviderService {
     var slot = endStr.split('-');
     end.setMonth(Number(slot[1]) - 1, Number(slot[2]));
     end.setHours(Number(slot[3]), Number(slot[4]));
-    var tail = formatDate(start, "h:m aa", 'en-US');
-    tail += " to " + formatDate(end, "h:m aa", 'en-US');
+    var tail = formatDate(start, "hh:mm aa", 'en-US');
+    tail += " to " + formatDate(end, "hh:mm aa", 'en-US');
     if(start.getDay() != end.getDay())
     {
       tail += "(tmw)";

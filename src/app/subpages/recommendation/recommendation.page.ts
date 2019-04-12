@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
-import { PopoverController } from '@ionic/angular';
+// import { PopoverController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import {trigger, transition, style, animate, keyframes, query, stagger} from '@angular/animations';
+import { NavController } from '@ionic/angular';
+import { SendInvtPage } from '../send-invt/send-invt.page'
 
 import { rcmdUserProfile } from '../../model/rcmdUserProfile';
 // import { MockProviderService } from '../../providers/mockprovider.service';
-import { UserprofileComponent } from '../../components/userprofile/userprofile.component';
+// import { UserprofileComponent } from '../../components/userprofile/userprofile.component';
 import { RecommendationProviderService } from '../../providers/recommendation-provider.service';
 import { ToastMessagingService } from '../../services/toastmessaging.service';
 import { InvitationProviderService } from '../../providers/invitation-provider.service';
@@ -49,11 +51,12 @@ export class RecommendationPage implements OnInit {
 
   constructor(
     private storage: Storage, 
-    private popoverController: PopoverController,
+    // private popoverController: PopoverController,
     // private mockProvider: MockProviderService,
     private rcmdProvider: RecommendationProviderService,
     private toastService: ToastMessagingService,
     private ivtProvider : InvitationProviderService,
+    private navCtrl: NavController,
   ) {
     // this.recommendedUsers = mockProvider.getRandomUsers(8);
   }
@@ -78,15 +81,15 @@ export class RecommendationPage implements OnInit {
    * Initialize recommendation list
    */
   ngOnInit() {
-    console.log("RcmdPage: Initalize recommendation list..");
+    console.log("[RcmdPage]Initalize recommendation list..");
     this.showProgressBar = true;
     this.storage.get("time_slot")
     .then((res) => {
       if(res) {
-        console.log("Loading eat-later list, time_slot:", res);
+        console.log("[RcmdPage]Loading eat-later list, time_slot:", res);
         this.fetchEatLaterRcmdList();
       } else {
-        console.log("Loading eat-now list");
+        console.log("[RcmdPage]Loading eat-now list");
         this.fetchEatNowRcmdList();
       }
     });
@@ -103,8 +106,8 @@ export class RecommendationPage implements OnInit {
     this.storage.get("time_slot")
     .then((res) => {
       if(!res) {
-        this.toastService.presentError("Error Loading Recommendation List\n" + 
-                                        "Can't read start/end time. please try again.");
+        this.toastService.presentError("[RcmdPage]:Error Loading Recommendation List\n" + 
+                                        "Can't read time slot from storage.");
       } else {
         this.rcmdProvider.getEatLaterRcmdList(res.start, res.end)
         .then((res) => {
@@ -115,7 +118,10 @@ export class RecommendationPage implements OnInit {
         })
         .finally(() => {
           this.showProgressBar = false;
-        })
+          if(this.rcmdList.length == 0) {
+            this.toastService.presentToast("No available user found");
+          }
+        });
       }
     });
   }
@@ -130,13 +136,16 @@ export class RecommendationPage implements OnInit {
     })
     .finally(() => {
       this.showProgressBar = false;
-    })
+      if(this.rcmdList.length == 0) {
+        this.toastService.presentToast("No available user found");
+      }
+    });
   }
 
   loadData(event : Event) {
     if(this.rcmdList.length != this.rcmdProvider.rcmmd_usrs.length) {
       setTimeout(() => {
-        console.log('loading more data...');
+        console.log('[RcmdPage]loading more data...');
         this.rcmdList.concat(this.rcmdProvider.getRcmdList(this.rcmdList.length, 
                                                            this.rcmdList.length + 10));
         this.infiniteScroll.complete();
@@ -147,14 +156,19 @@ export class RecommendationPage implements OnInit {
   }
 
   async cardSelected(user : rcmdUserProfile, event : Event){
-    console.log("user" + user + " clicked");
-    const popver = await this.popoverController.create({
-      component: UserprofileComponent,
-      event: null,
-      cssClass: 'userprofile-popover',
-      componentProps: { user : user }
+    // console.log("user" + user + " clicked");
+    // const popver = await this.popoverController.create({
+    //   component: UserprofileComponent,
+    //   event: null,
+    //   cssClass: 'userprofile-popover',
+    //   componentProps: { user : user }
+    // })
+    // popver.present();
+    this.storage.set('ivt-user', rcmdUserProfile)
+    .then((res) => {
+      this.navCtrl.navigateForward('tabs/tabs/tab1/send-invt');
     })
-    popver.present();
+    .catch((err) => this.toastService.presentError(err));
   }
 
 }

@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Invitation } from '../model/invitation';
 import { rcmdUserProfile } from '../model/rcmdUserProfile';
-
 import { AuthenticationService } from '../services/authentication.service';
 import { UserinfoService } from '../services/userinfo.service';
 
@@ -12,7 +11,8 @@ import { UserinfoService } from '../services/userinfo.service';
 })
 export class RecommendationProviderService {
 
-  public rcmmd_usrs: rcmdUserProfile[] = [];
+  rcmmd_usrs: rcmdUserProfile[] = [];
+  
 
   constructor(
     private authenService : AuthenticationService,
@@ -21,6 +21,9 @@ export class RecommendationProviderService {
   ) { 
   }
 
+  /*
+   * Return a sub-list of all recommended users
+   */
   getRcmdList(start : number, end : number) : rcmdUserProfile[] 
   {
     if(start >= this.rcmmd_usrs.length) {
@@ -32,6 +35,9 @@ export class RecommendationProviderService {
     return this.rcmmd_usrs.slice(start, end);
   }
 
+  /*
+   * API Function, fetch recommendation list from server
+   */
   getEatLaterRcmdList(start: string, end : string) {
     console.log("RcmdService: Fecting (later)recommendation list..");
     return new Promise((resolve, reject) => {
@@ -52,6 +58,10 @@ export class RecommendationProviderService {
     });
   }
 
+  /*
+   * API Function, fetch recommendation list from server, this is 
+   * a bit longer than eat-later because eat now requires location.
+   */
   getEatNowRcmdList() {
     console.log("RcmdService: Fecting (now)recommendation list..");
     return new Promise((resolve, reject) => {
@@ -85,6 +95,9 @@ export class RecommendationProviderService {
     })
   }
 
+  /*
+   * Clear current list
+   */
   clearAll() {
     this.rcmmd_usrs = [];
   }

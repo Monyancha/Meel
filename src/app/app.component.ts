@@ -4,7 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 // Added Feb 22, 2019: init auth service
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AuthenticationService } from './services/authentication.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class AppComponent {
 
     // Added Feb 22, 2019: init auth service
     private authenticationService: AuthenticationService,
-    private router: Router
+    private navCtrl: NavController,
 
   ) {
     this.initializeApp();
@@ -35,9 +35,10 @@ export class AppComponent {
       // route to tabs page automatically without login if the auth successs
       this.authenticationService.authenticationState.subscribe(state => {
         if (state) {
-          this.router.navigate(['tabs']);
+          // this.navCtrl.navigateForward(['tabs']);
+          this.navCtrl.navigateForward(['tabs/tabs/tab1/send-invt']);
         } else {
-          this.router.navigate(['login']);
+          this.navCtrl.navigateBack(['login']);
           // this.router.navigate(['tabs/tabs/tab1']);
         }
       });

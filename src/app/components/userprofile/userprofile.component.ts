@@ -29,8 +29,8 @@ export class UserprofileComponent implements OnInit {
 
   // Map Params
   zoom: number  = 15;
-  lat: number   = 41.3128;
-  lng: number   = -72.9251;
+  // lat: number   = 41.3128;
+  // lng: number   = -72.9251;
   pin: marker = 
   {
     lat: 41.3128,
@@ -47,10 +47,13 @@ export class UserprofileComponent implements OnInit {
     private userinfoService : UserinfoService,
     private popoverControler : PopoverController,
     private ivtProvider : InvitationProviderService,
-  ) { }
+  ) { 
+  }
 
   ngOnInit() {
     this.ivtee = this.navParams.get('user');
+    this.pin.lat = this.userinfoService.user.latitude;
+    this.pin.lng = this.userinfoService.user.longitude;
   }
 
   closePopover() {

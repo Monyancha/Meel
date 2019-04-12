@@ -17,7 +17,11 @@ const routes: Routes = [
           {
             path: 'recommendation',
             loadChildren: '../subpages/recommendation/recommendation.module#RecommendationPageModule'
-          }
+          },
+          { 
+            path: 'send-invt', 
+            loadChildren: '../subpages/send-invt/send-invt.module#SendInvtPageModule'
+          },
         ]
       },
       {

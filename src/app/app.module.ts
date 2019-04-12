@@ -70,7 +70,8 @@ import { AgmCoreModule } from '@agm/core';
     IonicStorageModule.forRoot(),
     // SocialLoginModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCYq0XB4TWCDdKS9gWGaeb2B4q0HeVTS5M'
+      apiKey: 'AIzaSyCYq0XB4TWCDdKS9gWGaeb2B4q0HeVTS5M',
+      libraries: ["places"]
     })
   ],
   // --- Feb 22, 2019: New Import ---

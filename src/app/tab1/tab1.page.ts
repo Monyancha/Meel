@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { DateselectComponent } from '../components/dateselect/dateselect.component';
 import { PopoverController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 import { UserinfoService } from '../services/userinfo.service';
 
@@ -17,7 +18,8 @@ export class Tab1Page {
   constructor(
     private userinfoService : UserinfoService,
     private popoverController: PopoverController,
-    private router: Router,
+    private navCtrl: NavController,
+    private storage: Storage,
     ) {}
 
 
@@ -27,19 +29,21 @@ export class Tab1Page {
 
   ngOnInit() {
     // Upload Current Location
-    console.log("Tab1: Uploading user location...");
+    console.log("[Tab1]:Uploading user location...");
     this.userinfoService.uploadLocation()
     .then((res) => {
-      console.log("User location updated", res);
+      console.log("[Tab1]:User location updated", res);
     })
     .catch((err) => {
-      console.log("Failed to upload location", err);
+      console.log("[Tab1]:Failed to upload location", err);
     });
   }
 
   eatNowClicked() {
-    this.router.navigate(['tabs/tabs/tab1/recommendation']);
-    console.log('eatNowClicked');
+    console.log('[Tab1]:eatNowClicked');
+    this.storage.remove('time_slot').finally(() => {
+      this.navCtrl.navigateForward(['tabs/tabs/tab1/recommendation']);
+    });
   }
 
   async presentDateselelectPopover(ev: any) {

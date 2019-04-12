@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { NavParams, PopoverController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 import { ToastMessagingService } from '../../services/toastmessaging.service';
@@ -14,7 +14,7 @@ import { RecommendationProviderService } from '../../providers/recommendation-pr
 })
 export class DateselectComponent implements OnInit {
 
-  day = "today";
+  day = "tomorrow";
   hour = "13:30";
 
   pop : PopoverController = undefined;
@@ -22,7 +22,7 @@ export class DateselectComponent implements OnInit {
   constructor(
     private rcmdService : RecommendationProviderService,
     private navParams : NavParams,
-    private router : Router,
+    private navCtrl: NavController,
     private toastMessager: ToastMessagingService,
     private storage: Storage, 
     private popoverControler : PopoverController,
@@ -53,9 +53,9 @@ export class DateselectComponent implements OnInit {
       // Store date
       this.storage.set("time_slot", {"start" : start, "end" : end} )
       .then(() => {
-        this.router.navigate(['tabs/tabs/tab1/recommendation']);
+        this.navCtrl.navigateForward(['tabs/tabs/tab1/recommendation']);
         this.popoverControler.dismiss();
-      });  
+      }); 
     }
   }
 
