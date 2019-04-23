@@ -20,9 +20,9 @@ export class YelpRcmdService {
     console.log("yelp-rcmd: Refreshing yelp restaurants: ", lat, lng);
     return new Promise((resolve, reject) => {
       var timer = setTimeout(() => {
-        reject("Yelp search timeout");
+        reject("Fecting restaurants failed due to timeout.");
         console.log("yelp-rcmd: Refresh timeout");
-      }, 8000);
+      }, 10000);
       this.http.get("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search", {
         headers: {
           "accept": "application/json",
@@ -37,7 +37,7 @@ export class YelpRcmdService {
           'latitude': lat.toString(),
           'longitude': lng.toString(),
           'limit' : "20",
-          'radius' : "2000"
+          'radius' : "3000"
         }
       })
       .toPromise()

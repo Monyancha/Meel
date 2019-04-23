@@ -8,10 +8,10 @@ agm-map {
 .title {
     font-size: 25px;
     font-weight: 800;
-    font-family: 'Montserrat', sans-serif;
-
+    // font-family: 'Montserrat', sans-serif;
+    // font-family: 'Dosis', sans-serif;
     margin-left: 16px;
-    margin-top: 16px;
+    margin-top: 12px;
 }
 
 .meet-date {
@@ -19,7 +19,7 @@ agm-map {
     margin-bottom: 0px;
     font-size: 13px;
     color: #383a3e;
-    font-weight: 100;
+    font-weight: 300;
 }
 
 .meet-time {
@@ -27,7 +27,7 @@ agm-map {
     margin-bottom: 10px;
     font-size: 13px;
     color: #383a3e;
-    font-weight: 100;
+    font-weight: 300;
 }
 
 .contact-info-header {
@@ -38,7 +38,7 @@ agm-map {
     margin-bottom: 2px;
     margin-left: 16px;
     font-size: 19px;
-    font-weight: 300;
+    font-weight: 500;
     color: #1e2023;
 }
 
@@ -46,14 +46,15 @@ agm-map {
     text-align: center;
     border-color: transparent;
     --background: transparent;
-    --background-activated: #CCCCCC; 
+    --background-activated: transparent; 
     box-shadow: none;
     
     height: 36px;
     width: 80%;
     display: block;
+
     margin-top: 0px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     margin-left: auto;
     margin-right: auto;
 

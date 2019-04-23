@@ -127,8 +127,8 @@ export class InvitationProviderService {
     var slot = endStr.split('-');
     end.setMonth(Number(slot[1]) - 1, Number(slot[2]));
     end.setHours(Number(slot[3]), Number(slot[4]));
-    var tail = formatDate(start, "hh:mm aa", 'en-US');
-    tail += " to " + formatDate(end, "hh:mm aa", 'en-US');
+    var tail = formatDate(start, "hh:mm aa", "en-US");
+    tail += " to " + formatDate(end, "hh:mm aa", "en-US");
     if(start.getDay() != end.getDay())
     {
       tail += "(tmw)";

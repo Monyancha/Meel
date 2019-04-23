@@ -4,27 +4,27 @@ import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  
   // { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
-
   { 
     path: 'login', 
     loadChildren: './login/login.module#LoginPageModule',
   },
-
   {
     path: 'tabs', 
     canActivate: [AuthGuard],
     loadChildren: './tabs/tabs.module#TabsPageModule'
     // loadChildren: './tabs/tabs.router.module#TabsPageRoutingModule'  
   },
-
-  { 
-    path: 'chatroom', 
-    canActivate: [AuthGuard],
-    loadChildren: './chatroom/chatroom.module#ChatroomPageModule' 
-  },
-
+  // { 
+  //   path: 'chatroom', 
+  //   canActivate: [AuthGuard],
+  //   loadChildren: './chatroom/chatroom.module#ChatroomPageModule' 
+  // },
+  // { 
+  //   path: 'inbox', 
+  //   canActivate: [AuthGuard],
+  //   loadChildren: './inbox/inbox.module#InboxPageModule' 
+  // },
 ];
 
 @NgModule({

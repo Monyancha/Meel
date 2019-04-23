@@ -1,7 +1,7 @@
 
 
 .agm-map {
-    height: 400px;
+    height: 300px;
 }
 
 .search_form {
@@ -13,17 +13,31 @@
     padding-bottom: 0;
 }
 
-.location-title {
-    font-family: Copperplate, "Copperplate Gothic Light";
-    font-weight: 500;
+.card-title {
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.card-subtitle {
+    font-weight: 600;
+    font-size: 11px;
 }
 
 .restaurant-name {
     font-family: Apple Chancery, cursive;
     font-weight: 600;
     color: #1e2023;
-    font-size: 16px;
+    font-size: 14px;
 }
+
+.restaurant-info {
+    font-weight: 300;
+    color: #1e2023;
+    font-size: 12px;
+    font-family: 'Raleway', sans-serif;
+}
+
 
 .info-win-select-button {
     font-weight: 600;
@@ -33,4 +47,26 @@
     display: block;
     margin-left: 15px;
     margin-top: 8px;
+}
+
+.review-label {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Raleway', sans-serif;
+}
+
+.send-button {
+    min-height: 57px;
+    border-radius: 8px;
+    width: 90%;
+
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+    letter-spacing: 8px;
+    color: #383a3e;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16) !important;
 }

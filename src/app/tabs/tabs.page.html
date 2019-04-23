@@ -1,26 +1,31 @@
+
+
 <ion-tabs>
 
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="tab1">
       <ion-icon name="nutrition"></ion-icon>
-      <ion-label>Eat!</ion-label>
+      <!-- <ion-label>Eat</ion-label> -->
     </ion-tab-button>
 
     <ion-tab-button tab="tab2">
-      <ion-icon name="list-box"></ion-icon>
-      <ion-label>Invitations</ion-label>
-      <!-- <ion-badge *ngIf="this.ivtService.acpt_ivts.length">{{this.ivtService.acpt_ivts.length}}</ion-badge> -->
-    </ion-tab-button>
+        <ion-icon name="mail"></ion-icon>
+        <!-- <ion-label>Inbox</ion-label> -->
+        <!-- <ion-badge *ngIf="this.ivtService.acpt_ivts.length">{{this.ivtService.acpt_ivts.length}}</ion-badge> -->
+      </ion-tab-button>
 
-    <ion-tab-button tab="chatroom">
-      <ion-icon name="chatboxes"></ion-icon>
-      <ion-label>Chat</ion-label>
+    <ion-tab-button tab="ivt-page">
+      <ion-icon name="calendar"></ion-icon>
+      <!-- <ion-label>Invitations</ion-label> -->
     </ion-tab-button>
 
     <ion-tab-button tab="tab3">
       <ion-icon name="contact"></ion-icon>
-      <ion-label>Settings</ion-label>
+      <!-- <ion-label>Settings</ion-label> -->
     </ion-tab-button>
   </ion-tab-bar>
 
 </ion-tabs>
+
+
+

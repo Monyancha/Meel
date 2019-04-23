@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.yalemealdate" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MeelDate</name>
+<widget id="io.ionic.yalemealdate" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Meel</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
@@ -101,6 +101,7 @@
     </plugin>
     <plugin name="cordova-sqlite-storage" spec="~3.1.0" />
     <plugin name="cordova-plugin-geolocation" spec="~4.0.1" />
+    <plugin name="cordova-custom-config" spec="~5.1.0" />
     <engine name="browser" spec="6.0.0" />
     <engine name="ios" spec="^4.5.5" />
 </widget>

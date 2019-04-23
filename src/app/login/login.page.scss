@@ -10,7 +10,6 @@
   /* Settings font weight
   =========================================*/
   $settings-font-weight-header: 300;
-  $settings-font-weight-button: 700;
   $settings-font-weight-input-field: 400;
   $settings-font-weight-input-placeholder: 400;
   $settings-font-weight-description: 400;
@@ -110,8 +109,8 @@ ion-content {
 
                 letter-spacing: 2px;
                 color: $settings-text-color-button;
-                font-size: $settings-font-size-button;
-                font-weight: $settings-font-weight-button;
+                font-size: 12px;
+                font-weight: 600;
                 background: #687DFC !important;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16) !important;
             }
@@ -134,7 +133,7 @@ ion-content {
 
     color: #687DFC;
     font-size: $settings-font-size-description;
-    font-weight: $settings-font-weight-description;
+    font-weight: 500;
 }
 
 .test-button {
@@ -188,8 +187,6 @@ ion-content {
     margin-bottom: 5%;
 }
 
-
-
 body { padding: 2em; }
 
 
@@ -233,6 +230,8 @@ body { padding: 2em; }
   /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
   text-shadow: 0 -1px 0 #354C8C;
   color: #FFF;
+  font-size: 12px;
+  font-weight: 500;
 }
 .loginBtn--facebook:before {
   border-right: #364e92 1px solid;

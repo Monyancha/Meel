@@ -31,6 +31,10 @@ export class DateselectComponent implements OnInit {
 
   ngOnInit() {}
 
+  /*
+   * Confirm Clicked: get the selected date, save it in storage and continue
+   * to recommendation page.
+   */
   async confirm() {
     // Format date
     let date = new Date();

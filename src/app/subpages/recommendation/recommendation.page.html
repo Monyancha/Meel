@@ -55,6 +55,12 @@
     </div></div>
   </ion-list>
 
+  <ion-footer padding *ngIf="showNoMoreLabel">
+    <div text-center>
+      <ion-label color="medium">can't find more users..</ion-label>
+    </div>
+  </ion-footer>
+
   <ion-infinite-scroll (ionInfinite)="loadData($event)" threshold="100px">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"

@@ -7,9 +7,10 @@
 
 <ion-content>
 
-  <ion-card>  
+  <ion-card style="box-shadow: none;">  
     <ion-grid>
-      <ion-row>
+
+      <!-- <ion-row>
         <ion-col size="4" align-items-center>
           <ion-avatar class="userphoto">
             <img src="../../assets/img/avatar.png">
@@ -18,31 +19,41 @@
         <ion-col size="8">
           <ion-input [(ngModel)]="userinfoService.user.username" class="username" value="Gandalf the Grey"></ion-input>
         </ion-col>
+      </ion-row> -->
+
+      <ion-row>
+        <ion-avatar class="userphoto">
+          <img src="../../assets/img/avatar.png">
+        </ion-avatar>
       </ion-row>
-      <ion-textarea [(ngModel)]="userinfoService.user.description" row="3" class="description" value="shortly describe yourself..."></ion-textarea>
+
+      <ion-row>
+        <ion-input 
+        [(ngModel)]="userinfoService.user.username" 
+        class="username" 
+        value="Gandalf the Grey">
+      </ion-input>
+      </ion-row>
+
+      <ion-row>
+        <ion-input 
+          [(ngModel)]="userinfoService.user.description" 
+          class="description" 
+          value="shortly describe yourself...">
+        </ion-input>
+      </ion-row>
+      
     </ion-grid>
   </ion-card>
 
   <ion-card>
     <ion-item lines="none">
-      <ion-icon name="checkmark" slot="start"></ion-icon>
-      <ion-label>I'm available</ion-label>
+      <ion-icon name="flame" slot="start"></ion-icon>
+      <ion-label class="my-ion-label">I'm available</ion-label>
       <ion-toggle [(ngModel)]="userinfoService.user.availability" color="light" checked></ion-toggle>
     </ion-item>
     <ion-card-content class="sub-content">
-        By selecting this, you agree to show your infomation to others and you can receive invitations.
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-item lines="none">
-      <ion-icon name="pin" slot="start"></ion-icon>
-      <ion-label>Share my location</ion-label>
-      <ion-toggle [(ngModel)]="userinfoService.user.shareGPS" color="light" checked></ion-toggle>
-    </ion-item>
-
-    <ion-card-content class="sub-content">
-        Your exact location (as distance to others) will be shown if this toggle is on.
+        If selected, we will recommendation people that are also available.
     </ion-card-content>
   </ion-card>
 
@@ -74,6 +85,32 @@
       <ion-label class="sub-label">Email</ion-label>
       <ion-input disabled="true" [(ngModel)]="userinfoService.user.email" class="sub-input" slot="end" placeholder="example@yale.edu"></ion-input>
     </ion-item>
+
+  </ion-card>
+
+  <ion-card>
+
+    <ion-card-header class="profile-header">
+      <ion-card-subtitle>Privacy</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-item lines="none">
+      <ion-icon name="eye" slot="start"></ion-icon>
+      <ion-label class="my-ion-label">Show me on Meel</ion-label>
+      <ion-toggle [(ngModel)]="userinfoService.user.visibility" color="light" checked></ion-toggle>
+    </ion-item>
+    <ion-card-content class="sub-content">
+        While turned off, you will not be shown in others recommendation list.
+    </ion-card-content>
+
+    <ion-item lines="none">
+      <ion-icon name="pin" slot="start"></ion-icon>
+      <ion-label class="my-ion-label">Share my location</ion-label>
+      <ion-toggle [(ngModel)]="userinfoService.user.shareGPS" color="light" checked></ion-toggle>
+    </ion-item>
+    <ion-card-content class="sub-content">
+        Your exact location (as distance to others) will be used for recommendation if this toggle is on.
+    </ion-card-content>
 
   </ion-card>
 

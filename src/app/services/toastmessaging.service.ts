@@ -31,17 +31,17 @@ export class ToastMessagingService {
     if (this.currentToast) {
       await this.currentToast.dismiss();
     }
-    let timeToShow = 2048;
-    if(color == 'danger') timeToShow *= 2;
+    let timeToShow = 4000;
+    if(color == 'danger') timeToShow = 6000;
     this.currentToast = await this.toastController.create({
       color: color,
       message: msg,
       duration: timeToShow,
-      showCloseButton: false,
+      showCloseButton: (color == 'danger'),
       cssClass: "basic-toast-style",
       position: 'top',
     });
-    this.currentToast.present();
+    await this.currentToast.present();
     console.log("ToastmessagingService: " + msg);
   }
 

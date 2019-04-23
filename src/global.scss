@@ -16,9 +16,14 @@
 //     --ion-background-color:#d7d8da;
 // }
 
+* {
+    font-family: 'Raleway', sans-serif;
+}
+
 .tabs-font {
-    font-family: Copperplate, "Copperplate Gothic Light";
-    font-weight: 100;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .datesel-popover {
@@ -50,4 +55,5 @@
 
 .basic-toast-style {
     --width: 80%;
+    font-size: 13px;
 }

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="tabs-font">My Invitations</ion-title>
+    <ion-title class="tabs-font">Inbox</ion-title>
     <ion-progress-bar *ngIf="showProgressBar" type="indeterminate"></ion-progress-bar>
   </ion-toolbar>
 </ion-header>
@@ -9,7 +9,10 @@
 
   <!-- Default Segment -->
   <ion-row class="segment-row">
-    <ion-segment (ionChange)="segmentChanged()" value="sent" [(ngModel)]="selectedValue">
+    <ion-segment 
+    (ionChange)="segmentChanged()" 
+    value="sent" 
+    [(ngModel)]="selectedValue">
       <ion-segment-button style="width: 20%;" value="sent">
         <ion-label>Sent</ion-label>
       </ion-segment-button>
@@ -23,10 +26,10 @@
   </ion-row>
 
   <ion-list>
-      <div [@cardAnimation]="invitations">
-      <div *ngFor="let ivt of invitations">
-      <ion-item lines="none">
-        
+    <div [@cardAnimation]="invitations">
+    <div *ngFor="let ivt of invitations">
+      
+      <ion-item lines="none">  
         <ion-card class="listCards ion-activatable" (click)="cardSelected(ivt, $event)">  
           <ion-ripple-effect></ion-ripple-effect>
           <ion-row class="mainrow">
@@ -48,7 +51,7 @@
                 <ion-label class="subtext">{{this.ivtService.readableHour(ivt.start, ivt.end)}}</ion-label>
               </ion-row>
             </ion-col>
-  
+
             <ion-col size="2" align-items-center>
               <!-- <ion-row style="margin-top:10px;">
                 <ion-icon name="pin" class="distanceIcon"></ion-icon>
@@ -61,16 +64,16 @@
           </ion-row>
         </ion-card>
       </ion-item>
-      </div></div>
-    </ion-list>
+
+    </div>
+    </div>
+  </ion-list>
   
-    <ion-infinite-scroll (ionInfinite)="loadData($event)" threshold="100px">
-      <ion-infinite-scroll-content
-        loadingSpinner="bubbles"
-        loadingText="Loading more data...">
-      </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-
-
+  <ion-infinite-scroll (ionInfinite)="loadData($event)" threshold="100px">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

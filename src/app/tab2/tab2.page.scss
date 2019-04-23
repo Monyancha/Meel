@@ -22,6 +22,7 @@
     font-weight: 500;
     color: #1e2023;
     text-align: left;
+    font-family: 'Raleway', sans-serif;
 }
 
 .subtext {
@@ -29,6 +30,7 @@
     font-weight: 400;
     color: #86888f;
     text-align: left;
+    font-family: 'Raleway', sans-serif;
 }
 
 .distanceIcon {
@@ -46,8 +48,7 @@
 }
 
 .listCards {
-    // box-shadow: none;
-    // color: #f5f6f9;
+    box-shadow: 0px 3px 10px 2px #f5f6f9;
 
     display: block;
     margin-top: 10px;

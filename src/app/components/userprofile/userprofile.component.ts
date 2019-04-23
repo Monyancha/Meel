@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MouseEvent } from '@agm/core';
 import { formatDate } from '@angular/common';
 
-import { rcmdUserProfile } from '../../model/rcmdUserProfile'
+import { rcmdUserProfile } from '../../model/rcmdUserProfile';
 import { ToastMessagingService } from '../../services/toastmessaging.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserinfoService } from '../../services/userinfo.service';

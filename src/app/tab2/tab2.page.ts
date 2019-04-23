@@ -113,7 +113,6 @@ export class Tab2Page {
         this.showProgressBar = false;
       });
     })
-
   }
 
   /*

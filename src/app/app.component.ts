@@ -36,13 +36,14 @@ export class AppComponent {
       this.authenticationService.authenticationState.subscribe(state => {
         if (state) {
           // this.navCtrl.navigateForward(['tabs']);
-          this.navCtrl.navigateForward(['tabs/tabs/tab1/send-invt']);
+          this.navCtrl.navigateRoot(['tabs'], {animated : true, animationDirection : 'forward'});
+          // this.navCtrl.navigateForward(['tabs/tabs/inbox']);
         } else {
-          this.navCtrl.navigateBack(['login']);
+          // this.navCtrl.navigateBack(['login']);
+          this.navCtrl.navigateRoot(['login'], {animated : true, animationDirection : 'back'});
           // this.router.navigate(['tabs/tabs/tab1']);
         }
       });
-
     });
   }
 }

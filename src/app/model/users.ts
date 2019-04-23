@@ -15,6 +15,7 @@ export class User {
 
     // Privacy
     availability    = true;
+    visibility      = true;
     shareGPS        = false;
     latitude        = 0;
     longitude       = 0;

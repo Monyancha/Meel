@@ -11,8 +11,8 @@
 
   <ion-card>
     <ion-card-header class="card-header">
-      <ion-card-title class="location-title">Where</ion-card-title>
-      <ion-card-subtitle>Select on map or input an address</ion-card-subtitle>
+      <ion-card-title class="card-title">Location</ion-card-title>
+      <ion-card-subtitle class="card-subtitle">Select on map or input an address</ion-card-subtitle>
     </ion-card-header>
 
     <ion-searchbar 
@@ -65,16 +65,16 @@
           <ion-label class="restaurant-name">{{res.name}}</ion-label>
         </ion-row>
         <ion-row>
-          <ion-label>{{openStatus(res.is_closed)}} • {{convertRating(res.rating)}} • {{res.price}}</ion-label>
+          <ion-label class="restaurant-info">{{openStatus(res.is_closed)}} • {{convertRating(res.rating)}} • {{res.price}}</ion-label>
         </ion-row>
         <ion-row>
-          <ion-label>{{res.categories[0].title}}</ion-label>
+          <ion-label class="restaurant-info">{{res.categories[0].title}}</ion-label>
         </ion-row>
         <ion-row>
-          <ion-label>{{res.display_phone}}</ion-label>
+          <ion-label class="restaurant-info">{{res.display_phone}}</ion-label>
         </ion-row>
         <ion-row>
-          <ion-label>{{res.location.address1}}</ion-label>
+          <ion-label class="restaurant-info">{{res.location.address1}}</ion-label>
         </ion-row>
         <strong class="info-win-select-button" (click)="infoWinClicked(res)">Choose This</strong>
       </agm-info-window>
@@ -84,8 +84,49 @@
 
   </ion-card>
 
+  <ion-card>
+    <ion-card-header class="card-header">
+        <ion-card-title class="card-title">Message</ion-card-title>
+        <ion-card-subtitle class="card-subtitle">Say something about this</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content style="padding-top: 0;">
+      <ion-textarea 
+      placeholder="Enter more information here..." 
+      [(ngModel)]="messageForReceiver"
+      rows="2">
+      </ion-textarea>
+    </ion-card-content>
+  </ion-card>
 
+  <ion-card>
+    <ion-card-header class="card-header">
+        <ion-card-title class="card-title">Review</ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="padding-top: 0;">
 
+      <ion-item lines="none">
+        <ion-icon name="pin" slot="start"></ion-icon>
+        <ion-label class="review-label">{{selectedAddr}}</ion-label>
+      </ion-item>
 
+      <ion-item lines="none">
+        <ion-icon name="calendar" slot="start"></ion-icon>
+        <ion-label class="review-label">{{display_date}}</ion-label>
+      </ion-item>
 
+      <ion-item lines="none">
+        <ion-icon name="time" slot="start"></ion-icon>
+        <ion-label class="review-label">{{display_time}}</ion-label>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-row style="margin-bottom:20px;">
+      <ion-button 
+      class="send-button" 
+      color="light" 
+      (click)="sentIvt()">SEND</ion-button>
+  </ion-row>
+  
 </ion-content>

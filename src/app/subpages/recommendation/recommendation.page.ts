@@ -47,7 +47,8 @@ export class RecommendationPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   rcmdList: rcmdUserProfile[];
-  private showProgressBar = true;
+  showProgressBar = true;
+  showNoMoreLabel = false;
 
   constructor(
     private storage: Storage, 
@@ -112,15 +113,15 @@ export class RecommendationPage implements OnInit {
         this.rcmdProvider.getEatLaterRcmdList(res.start, res.end)
         .then((res) => {
           this.rcmdList = this.rcmdProvider.getRcmdList(0, 10);
+          if(this.rcmdList.length == this.rcmdProvider.rcmmd_usrs.length) {
+            this.showNoMoreLabel = true;
+          }
         })
         .catch((err) => {
           this.toastService.presentError(err);
         })
         .finally(() => {
           this.showProgressBar = false;
-          if(this.rcmdList.length == 0) {
-            this.toastService.presentToast("No available user found");
-          }
         });
       }
     });
@@ -130,15 +131,15 @@ export class RecommendationPage implements OnInit {
     this.rcmdProvider.getEatNowRcmdList()
     .then((res) => {
       this.rcmdList = this.rcmdProvider.getRcmdList(0, 10);
+      if(this.rcmdList.length == this.rcmdProvider.rcmmd_usrs.length) {
+        this.showNoMoreLabel = true;
+      }
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
       this.showProgressBar = false;
-      if(this.rcmdList.length == 0) {
-        this.toastService.presentToast("No available user found");
-      }
     });
   }
 
@@ -152,6 +153,7 @@ export class RecommendationPage implements OnInit {
       }, 300);
     } else {
       this.infiniteScroll.complete();
+      this.showNoMoreLabel = true;
     }
   }
 
@@ -164,7 +166,7 @@ export class RecommendationPage implements OnInit {
     //   componentProps: { user : user }
     // })
     // popver.present();
-    this.storage.set('ivt-user', rcmdUserProfile)
+    this.storage.set('ivt-user', user)
     .then((res) => {
       this.navCtrl.navigateForward('tabs/tabs/tab1/send-invt');
     })
