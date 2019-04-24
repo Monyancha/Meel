@@ -2,13 +2,13 @@
 export class User {
     // Core Info
     id              = "-1";
-    username        = 'no_value';
-    password        = 'no_value';
+    username        = "null";
+    password        = "null";
 
     // Basic Info
-    email           = "no_value";
-    college         = "no_value";
-    major           = "no_value";
+    email           = "null";
+    college         = "null";
+    major           = "null";
     gender          = "other";
     yearOfEntry     = "-1";
     age             = "-1";
@@ -16,13 +16,13 @@ export class User {
     // Privacy
     availability    = true;
     visibility      = true;
-    shareGPS        = false;
+    shareGPS        = true;
     latitude        = 0;
     longitude       = 0;
 
     // Todos
-    description     = "no_value";
-    image:          any;
+    description     = "describe yourself..";
+    imageUrl : any  = "../../assets/img/avatar.png";
 
     constructor() {};
 

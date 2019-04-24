@@ -1,32 +1,48 @@
 
 
-.info {
-    margin-top: 10px;
-    margin-left: 16px;
-    margin-right: 16px;
-    font-size: 16;
-    font-weight: 300;
-    color: #383a3e;
+.userphoto,
+.userphoto > img {
+    border-radius: 50%;
+    height: 148px;
+    width: 128px;
+    margin: auto;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
-.trans-button {
-    text-align: center;
-    border-color: transparent;
-    --background: transparent;
-    --background-activated: #CCCCCC; 
-    box-shadow: none;
-    
-    width: 40%;
-    display: block;
-    margin-top: 8px;
+.username {
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
-
-    font-size: 16px;
+    display: block;
+    
+    text-align: center;
+    color: black;
+    font-size: 22px;
     font-weight: 500;
 }
 
-agm-map {
-    height: 300px;
-    // width: 100px;
+.sublabel {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+    text-align: center;
+    color: black;
+    font-size: 12px;
+    font-weight: 200;
 }
+
+.description {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    display: block;
+
+    text-align: center;
+    color: black;
+    font-size: 12px;
+    font-weight: 200;
+}
+
+

@@ -16,6 +16,9 @@ export class Invitation {
     rName:              string;
     sName:              string;
 
+    message:            string;
+    restaurant:         string;
+
     constructor() {};
 
     private randomStr(lengthOfCode: number) {

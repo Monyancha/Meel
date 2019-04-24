@@ -22,8 +22,9 @@
       </ion-row> -->
 
       <ion-row>
-        <ion-avatar class="userphoto">
-          <img src="../../assets/img/avatar.png">
+        <!-- <input type="file" id="imageUploader" accept="image/*" style="display:none" (change)="processFile(imageInput)"> -->
+        <ion-avatar class="userphoto" (click)="photoClicked()">
+          <img [src]="sanitizer.bypassSecurityTrustUrl(imageUrl)">
         </ion-avatar>
       </ion-row>
 

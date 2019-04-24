@@ -129,7 +129,38 @@ export class UserinfoService {
     });
   }
 
+  /* 
+   * 
+   */
+  getUserProfile(user_id : string) : Promise<User> {
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(this.authService.apiUrl + '/userProfile/' + user_id)
+      .toPromise()
+      .then((res) => {
+        var usr = res as User;
+        usr.availability  = res.availability == "T";
+        usr.shareGPS      = res.shared_gps == "T";
+        usr.yearOfEntry   = res.year.toString();
+        usr.age           = res.age.toString();
+        console.log("[getUserProfile] Response received: ", usr);
+        resolve(usr);
+      })
+      .catch((err) => reject(err));
+      setTimeout(() => reject("Request timeout, please try again") , 3000);
+    });
+  }
+
   /*
+   *
+   */
+  getUserAvatar(user_id ? : string) : string {
+    if(!user_id) {
+      user_id = this.user.id;
+    }
+    return this.authService.apiUrl + "/userProfile/" + user_id + "/image";
+  }
+
+  /* 
    * Post current user profile to server side
    */
   uploadUserProfile() {
@@ -151,14 +182,14 @@ export class UserinfoService {
 
   }
 
-  /*
+  /* 
    * Clean current user when logout
    */
   cleanUserProfile() {
     this.user = new User;
   }
 
-  /*
+  /* 
    * Test function..
    */
   test() : Promise<Geoposition> {

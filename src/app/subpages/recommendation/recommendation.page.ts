@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
-// import { PopoverController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import {trigger, transition, style, animate, keyframes, query, stagger} from '@angular/animations';
 import { NavController } from '@ionic/angular';
@@ -12,6 +12,8 @@ import { rcmdUserProfile } from '../../model/rcmdUserProfile';
 import { RecommendationProviderService } from '../../providers/recommendation-provider.service';
 import { ToastMessagingService } from '../../services/toastmessaging.service';
 import { InvitationProviderService } from '../../providers/invitation-provider.service';
+import { UserprofileComponent } from '../../components/userprofile/userprofile.component';
+import { UserinfoService } from '../../services/userinfo.service';
 
 @Component({
   selector: 'app-recommendation',
@@ -52,12 +54,13 @@ export class RecommendationPage implements OnInit {
 
   constructor(
     private storage: Storage, 
-    // private popoverController: PopoverController,
+    private popoverController: PopoverController,
     // private mockProvider: MockProviderService,
     private rcmdProvider: RecommendationProviderService,
     private toastService: ToastMessagingService,
     private ivtProvider : InvitationProviderService,
     private navCtrl: NavController,
+    private userinfoService: UserinfoService,
   ) {
     // this.recommendedUsers = mockProvider.getRandomUsers(8);
   }
@@ -157,7 +160,7 @@ export class RecommendationPage implements OnInit {
     }
   }
 
-  async cardSelected(user : rcmdUserProfile, event : Event){
+  async cardSelected(user : rcmdUserProfile, event : Event) {
     // console.log("user" + user + " clicked");
     // const popver = await this.popoverController.create({
     //   component: UserprofileComponent,
@@ -171,6 +174,19 @@ export class RecommendationPage implements OnInit {
       this.navCtrl.navigateForward('tabs/tabs/tab1/send-invt');
     })
     .catch((err) => this.toastService.presentError(err));
+  }
+
+  async avatarClicked(ruser : rcmdUserProfile) {
+    const popver = await this.popoverController.create({
+      component: UserprofileComponent,
+      event: null,
+      cssClass: 'userprofile-popover',
+      animated: false,
+      componentProps: { 
+        targetId : ruser.uid,
+       }
+    });
+    popver.present();
   }
 
 }

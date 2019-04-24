@@ -8,7 +8,11 @@
     <ion-label class="title">Rendezvous</ion-label>
   </ion-row>
 
-  <ion-list-header>Meetup Location</ion-list-header>
+  <ion-list-header class="contact-info-header">Meetup Location</ion-list-header>
+
+  <ion-row>
+    <ion-label class="restaurant">{{this.invitation.restaurant}}</ion-label>
+  </ion-row>
 
   <agm-map 
   [latitude]="lat"
@@ -36,11 +40,18 @@
   </ion-row>
 
   <ion-row>
-    <ion-label class="meet-date">{{this.ivtProvider.readableDate(this.invitation.start)}}</ion-label>
+    <ion-label class="subtext">{{this.ivtProvider.readableDate(this.invitation.start)}}</ion-label>
   </ion-row>
+
   <ion-row>
-    <ion-label class="meet-time">{{this.ivtProvider.readableHour(this.invitation.start, this.invitation.end)}}</ion-label>
+    <ion-label class="subtext">{{this.ivtProvider.readableHour(this.invitation.start, this.invitation.end)}}</ion-label>
   </ion-row>
+
+  <ion-row>
+    <ion-label class="subtext">Message: {{this.invitation.message}}</ion-label>
+  </ion-row>
+
+  <div style="margin-bottom:10px"></div>
 
   <ion-row>
     <ion-button 

@@ -10,6 +10,7 @@ import { ToastMessagingService } from '../../services/toastmessaging.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserinfoService } from '../../services/userinfo.service';
 import { InvitationProviderService } from '../../providers/invitation-provider.service';
+import { User } from '../../model/users';
 
 interface marker {
 	lat: number;
@@ -25,19 +26,8 @@ interface marker {
 })
 export class UserprofileComponent implements OnInit {
 
-  private ivtee : rcmdUserProfile;
-
-  // Map Params
-  zoom: number  = 15;
-  // lat: number   = 41.3128;
-  // lng: number   = -72.9251;
-  pin: marker = 
-  {
-    lat: 41.3128,
-    lng: -72.9251,
-    label: '',
-    draggable: true
-  }
+  targetId : string;
+  targetUsr : User = new User;
 
   constructor(
     public storage: Storage, 
@@ -51,59 +41,19 @@ export class UserprofileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ivtee = this.navParams.get('user');
-    this.pin.lat = this.userinfoService.user.latitude;
-    this.pin.lng = this.userinfoService.user.longitude;
+    this.targetId = this.navParams.get('targetId');
+    console.log("[Userprofile] target ID = ", this.targetId);
+    this.userinfoService.getUserProfile(this.targetId)
+    .then((res) => {
+      this.targetUsr = res;
+      console.log("[Userprofile] target user: ", this.targetUsr);
+    })
   }
 
   closePopover() {
     this.popoverControler.dismiss();
   }
 
-  mapClicked($event: MouseEvent) {
-    this.pin.lat = $event.coords.lat;
-    this.pin.lng = $event.coords.lng;
-    console.log(this.pin.lat, this.pin.lng);
-  }
-
-  yesClicked() {
-    this.storage.get("time_slot").then((res) => {
-      var start : string, end : string;
-      if(!res) {
-        let date = new Date();
-        date.setMinutes(date.getMinutes() + 30);
-        start = formatDate(date, "yyyy-MM-dd-HH-mm", 'en-US');
-        date.setHours(date.getHours() + 1);
-        end = formatDate(date, "yyyy-MM-dd-HH-mm", 'en-US');
-      } else {
-        start = res.start;
-        end = res.end;
-      }
-      let ivtBody = {
-        "senderId": this.userinfoService.user.id, 
-        "receiverId": this.ivtee.uid,
-        "start": start,
-        "end": end,
-        "longitude": this.pin.lng,
-        "latitude": this.pin.lat,
-        "status": "ACTIVE",
-      };
-      console.log("Sending invitation body:", ivtBody);
-      this.ivtProvider.sentInvitation(ivtBody)
-      .then((res) => {
-        this.toastMessager.presentToast('Invitation sent!');
-      })
-      .catch((err) => {
-        this.toastMessager.presentError(err);
-      });
-    })
-    .catch(err => this.toastMessager.presentError(err))
-    .finally(() => this.closePopover());
-  }
-
-  waitClicked() {
-    this.closePopover();
-  }
 
 }
 

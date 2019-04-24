@@ -30,17 +30,18 @@
     <div *ngFor="let ivt of invitations">
       
       <ion-item lines="none">  
-        <ion-card class="listCards ion-activatable" (click)="cardSelected(ivt, $event)">  
+        <ion-card class="listCards ion-activatable">  
           <ion-ripple-effect></ion-ripple-effect>
           <ion-row class="mainrow">
   
-            <ion-col size="4" align-items-center>
+            <ion-col size="4" align-items-center (click)="avatarClicked(ivt)">
               <ion-avatar class="userphoto">
-                <img src="../../assets/img/avatar.png">
+                <img [src]="userAvatarUrl(ivt)">
+                <!-- <img src="../../assets/img/avatar.png"> -->
               </ion-avatar>
             </ion-col>
   
-            <ion-col size="6">
+            <ion-col size="6" (click)="cardSelected(ivt, $event)">
               <ion-row>
                 <ion-label class="username">{{displayName(ivt)}}</ion-label>
               </ion-row>

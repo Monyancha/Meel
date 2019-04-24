@@ -254,6 +254,8 @@ export class SendInvtPage implements OnInit {
       "longitude": this.pinLng,
       "latitude": this.pinLat,
       "status": "ACTIVE",
+      "message": this.messageForReceiver,
+      "restaurant": this.selectedAddr,
     };
     console.log("Sending invitation body:", ivtBody);
     this.ivtService.sentInvitation(ivtBody)

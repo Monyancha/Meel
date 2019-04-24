@@ -40,6 +40,12 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AgmCoreModule } from '@agm/core';
 // --- March 23, 2019: GPS && Maps ---
 
+// --- March 23, 2019: GPS && Maps ---
+// import { ImagePicker } from '@ionic-native/image-picker/ngx';
+// import { Camera } from '@ionic-native/camera/ngx';
+import { Crop } from '@ionic-native/crop/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+// --- March 23, 2019: GPS && Maps ---
 
 
 @NgModule({
@@ -71,7 +77,7 @@ import { AgmCoreModule } from '@agm/core';
     // SocialLoginModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCYq0XB4TWCDdKS9gWGaeb2B4q0HeVTS5M',
-      libraries: ["places"]
+      libraries: ["places"],
     })
   ],
   // --- Feb 22, 2019: New Import ---
@@ -87,6 +93,10 @@ import { AgmCoreModule } from '@agm/core';
     },
     Geolocation,
     // Facebook,
+    // ImagePicker,
+    // Camera,
+    Crop,
+    FileTransfer,
   ],
   bootstrap: [AppComponent]
 })

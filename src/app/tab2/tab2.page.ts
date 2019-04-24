@@ -8,8 +8,10 @@ import {trigger, transition, style, animate, keyframes, query, stagger} from '@a
 import { ToastMessagingService } from '../services/toastmessaging.service';
 import { Invitation } from '../model/invitation';
 import { RendeavourComponent } from '../components/rendeavour/rendeavour.component';
+import { UserprofileComponent } from '../components/userprofile/userprofile.component';
 import { InvitationProviderService } from '../providers/invitation-provider.service';
 import { UserinfoService } from '../services/userinfo.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-tab2',
@@ -55,6 +57,7 @@ export class Tab2Page {
     private toastService: ToastMessagingService,
     private popoverController: PopoverController,
     private userinfoService: UserinfoService,
+    private autheService: AuthenticationService,
   ) {
   }
 
@@ -93,8 +96,18 @@ export class Tab2Page {
     }
   }
 
-  /*
-   *
+  userAvatarUrl(ivt : Invitation) : string {
+    let uId : string;
+    if(ivt.senderId == this.userinfoService.user.id) {
+      uId = ivt.receiverId.toString();
+    } else {
+      uId = ivt.senderId.toString();
+    }
+    return this.autheService.apiUrl + "/userProfile/" + uId + "/image";
+  }
+
+  /* 
+   * 
    */ 
   loadNewInvitations(api_url : string) {
     this.showProgressBar = true;
@@ -142,4 +155,29 @@ export class Tab2Page {
     popver.present();
   }
 
+  /*
+   *
+   */
+  async avatarClicked(ivt : Invitation) {
+    console.log("[tab2] User Profile Selected:", ivt);
+    var targetId : string;
+    if(ivt.senderId == this.userinfoService.user.id) {
+      targetId = ivt.receiverId;
+    } else {
+      targetId = ivt.senderId;
+    }
+    const popver = await this.popoverController.create({
+      component: UserprofileComponent,
+      event: null,
+      cssClass: 'userprofile-popover',
+      animated: false,
+      componentProps: { 
+        targetId : targetId,
+       }
+    })
+    popver.present();
+  }
+
 }
+
+

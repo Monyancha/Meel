@@ -2,37 +2,23 @@
 
 <ion-content>
 
-  <ion-list-header>Select a meet-up location</ion-list-header>
-
-  <agm-map 
-  [latitude]="pin.lat"
-  [longitude]="pin.lng"
-  [zoom]="zoom"
-  [disableDefaultUI]="false"
-  [zoomControl]="false"
-  (mapClick)="mapClicked($event)">
-
-  <agm-marker 
-      [latitude]="pin.lat"
-      [longitude]="pin.lng"
-      [label]="pin.label"
-      [markerDraggable]="pin.draggable">
-    <agm-info-window>
-      <strong>Meet-up here</strong>
-    </agm-info-window>
-  </agm-marker>
-
-  </agm-map>
-
   <ion-row>
-    <ion-label class="info">Invite {{ivtee.username}} to join your meal?</ion-label>
+    <ion-avatar class="userphoto">
+      <img [src]="userinfoService.getUserAvatar(this.targetId)">
+    </ion-avatar>
   </ion-row>
 
   <ion-row>
-    <ion-button class="trans-button" style="color: #633ce0;" (click)="yesClicked()">Yes</ion-button>
-    <ion-button class="trans-button" style="color: #d33939;" (click)="waitClicked()">Wait</ion-button>
+    <ion-label class="username">{{this.targetUsr.username}}</ion-label>
+  </ion-row>
+
+  <ion-row>
+    <ion-label class="sublabel">{{this.targetUsr.college}} | {{this.targetUsr.major}} </ion-label>
+  </ion-row>
+
+  <ion-row>
+    <ion-label class="description">{{this.targetUsr.description}}</ion-label>
   </ion-row>
 
 </ion-content>
-
 
