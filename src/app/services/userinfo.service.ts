@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
 
 import {User} from '../model/users';
@@ -12,6 +12,10 @@ import { ToastMessagingService } from '../services/toastmessaging.service';
   providedIn: 'root'
 })
 export class UserinfoService {
+
+  /*
+   * Service for handling APIs related to user profile
+   */
 
   public user = new User;
 
@@ -49,6 +53,9 @@ export class UserinfoService {
     return this.geolocation.getCurrentPosition();
   }
 
+  /*
+   * Upload user's geographic location to server
+   */
   uploadLocation() {
     return new Promise((resolve, reject) => {
       this.getCurrentPosition()
@@ -73,28 +80,6 @@ export class UserinfoService {
       });
     });
   }
-
-  /*
-   * Update user's GPS location
-   */
-  // updateUserPosition() {
-  //   return new Promise((resolve, reject) => {
-  //     this.geolocation.getCurrentPosition()
-  //     .then((resp) => {
-  //       this.user.longitude = resp.coords.latitude;
-  //       this.user.latitude = resp.coords.longitude;
-  //       this.setToken();
-  //       console.log("User geolocation updated.");
-  //       resolve(true);
-  //     })
-  //     .catch((err) => {
-  //       this.toastMessager.presentError("Failed to fetch location");
-  //       console.log("Error: User geolocation update failed: ", err);
-  //       reject(err);
-  //     });
-  //     setTimeout(() => reject("Request timeout, please try again") , 3000);
-  //   });
-  // }
 
   /*
    * Get latest user profile data from server side
@@ -130,7 +115,7 @@ export class UserinfoService {
   }
 
   /* 
-   * 
+   * API function for fetching user profile
    */
   getUserProfile(user_id : string) : Promise<User> {
     return new Promise((resolve, reject) => {
@@ -151,7 +136,7 @@ export class UserinfoService {
   }
 
   /*
-   *
+   * Get user profile picture url
    */
   getUserAvatar(user_id ? : string) : string {
     if(!user_id) {
@@ -187,13 +172,6 @@ export class UserinfoService {
    */
   cleanUserProfile() {
     this.user = new User;
-  }
-
-  /* 
-   * Test function..
-   */
-  test() : Promise<Geoposition> {
-    return this.geolocation.getCurrentPosition();
   }
 
 }

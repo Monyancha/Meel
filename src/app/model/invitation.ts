@@ -1,6 +1,10 @@
 
 
 export class Invitation {
+
+   /*
+    * Invitation Body
+    */
     
     invitationId:       string;
 

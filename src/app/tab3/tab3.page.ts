@@ -1,8 +1,7 @@
-import { Component, SecurityContext, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
-import { trigger, transition, style, animate, keyframes, query, stagger} from '@angular/animations';
 
 import { UserinfoService } from '../services/userinfo.service';
 import { AuthenticationService } from '../services/authentication.service';
@@ -11,19 +10,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 
 import { Crop } from '@ionic-native/crop/ngx';
-// import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
-  animations: [
-    trigger('cardEnter', [
-      transition('* => *', [
-      ])
-    ])
-  ]
 })
 export class Tab3Page {
 
@@ -37,19 +29,18 @@ export class Tab3Page {
     public ionicDb: Storage, 
     private toastMessager: ToastMessagingService,
     private autheService: AuthenticationService,
-    private router: Router,
-    private http: HttpClient,
     private userinfoService: UserinfoService,
-    private sanitizer: DomSanitizer,
-    // private imagePicker: ImagePicker,
     private crop: Crop,
     private transfer: FileTransfer,
+    private sanitizer : DomSanitizer,
   ) {
     this.imageUrl = this.userinfoService.getUserAvatar();
   }
 
+  /*
+   * Select a new profile photo
+   */
   photoClicked() {
-    // document.getElementById("imageUploader").click();
     const camera: any = navigator['camera'];
     camera.getPicture(
     (imageData) => {
@@ -76,7 +67,7 @@ export class Tab3Page {
   }
 
   /*
-   * 
+   * Crop and compress image
    */
   preprocessImage(imageUrl : string) : Promise<string> {
     return new Promise((resolve, reject) => {
@@ -104,11 +95,12 @@ export class Tab3Page {
       mimeType: "image/*",
       headers: {}
     }
+    this.toastMessager.presentToast("Uploading... please wait for a few seconds for image to show up.");
     let uploadUrl = this.autheService.apiUrl + "/userProfile/" + this.userinfoService.user.id + "/imageUpload";
     fileTransfer.upload(imageUrl, uploadUrl, options)
     .then((res) => {
-      console.log("Uploaded Successfully", res);
-      this.toastMessager.presentToast("Uploading... please wait for a few seconds for image to show up.");
+      console.log("Uploaded Successfully", res.response);
+      this.toastMessager.presentToast("Server Response: ", res.response);
     }, (err) => {
       console.log("File transfer error:", err);
       this.toastMessager.presentError("Failed to upload. please try reducing your image size.");
@@ -116,7 +108,7 @@ export class Tab3Page {
   }
 
   /*
-   * Convert file url to iOS readable format.
+   * Convert file url to a safe and readable format.
    */
   private convertFileSrc(url: string): string {
     if (!url) {
@@ -152,6 +144,9 @@ export class Tab3Page {
     });
   }
 
+  /*
+   *
+   */
   emailClicked() {
     this.toastMessager.presentToast("Changing email is not allowed here, please contact our developer.");
   }

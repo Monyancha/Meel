@@ -2,23 +2,18 @@
 
 <ion-content>
 
-  <ion-row>
-    <ion-avatar class="userphoto">
-      <img [src]="userinfoService.getUserAvatar(this.targetId)">
-    </ion-avatar>
-  </ion-row>
+  <div class="crop">
+    <img alt class="userphoto" [src]="userinfoService.getUserAvatar(this.targetId)">
+  </div>
 
-  <ion-row>
-    <ion-label class="username">{{this.targetUsr.username}}</ion-label>
-  </ion-row>
 
-  <ion-row>
-    <ion-label class="sublabel">{{this.targetUsr.college}} | {{this.targetUsr.major}} </ion-label>
-  </ion-row>
-
-  <ion-row>
-    <ion-label class="description">{{this.targetUsr.description}}</ion-label>
-  </ion-row>
+  <ion-card-header class="card-header">
+    <ion-card-title class="username">{{this.targetUsr.username}}</ion-card-title>
+    <ion-card-subtitle class="sublabel">{{this.targetUsr.gender}}</ion-card-subtitle>
+    <ion-card-subtitle class="sublabel">{{this.targetUsr.college}}</ion-card-subtitle>
+    <ion-card-subtitle class="sublabel">{{this.targetUsr.major}}</ion-card-subtitle>
+    <ion-card-subtitle class="description">{{this.targetUsr.description}}</ion-card-subtitle>
+  </ion-card-header>
 
 </ion-content>
 

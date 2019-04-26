@@ -15,23 +15,20 @@ import { ToastMessagingService } from '../services/toastmessaging.service';
 export class LoginPage implements OnInit {
   @Input() events: any;
 
-  public username: string;
-  public password: string;
+  username: string;
+  password: string;
 
-  private inputPlaceholder = " Email";
-  private mainButtonText = "LOGIN";
-  private createAccountText = "Don't have an account?";
-  private termTexts = "";
-
-  private currentLoadingCtrl: any;
+  inputPlaceholder = " Email";
+  mainButtonText = "LOGIN";
+  createAccountText = "Don't have an account?";
+  termTexts = "";
+  currentLoadingCtrl: any;
 
   constructor(
-    private ionicDb: Storage, 
     private toastMessager: ToastMessagingService,
     private userinfoService : UserinfoService,
     private authService: AuthenticationService,
     private loadingController: LoadingController,
-    private http: HttpClient,
     ) { 
   }
 
@@ -45,7 +42,6 @@ export class LoginPage implements OnInit {
   private loginWithUserId(user_id) {
     console.log('Loging with id:' + user_id);
     this.userinfoService.user.id = user_id.toString();
-    // Fetch user profile
     console.log('this.userinfoService.user.id = ', this.userinfoService.user.id);
     this.userinfoService.getLatestUserProfile().then(() => {
       this.userinfoService.setToken().then((res) => {
@@ -129,8 +125,6 @@ export class LoginPage implements OnInit {
     if(email == "adamzjk" && password == "adamzjk") {
       this.loginWithUserId('admin_user_adamzjk');
     } else if ( this.checkEmail(email) && this.checkPassword(password)){
-      // todo 03221355 password entryption
-      // Sending Requests
       if(this.mainButtonText == "LOGIN"){
         this.login(email, password)
       } else {
@@ -173,11 +167,9 @@ export class LoginPage implements OnInit {
     this.toastMessager.presentToast("Function not implemented")
   }
 
-  dismissLoadingPopover() {
-    console.log("Dismissing Popover..");
-    return this.currentLoadingCtrl.dismiss();
-  }
-
+  /*
+   * Present a small loading window
+   */
   async presentLoadingPopover() {
     this.currentLoadingCtrl = await this.loadingController.create({
       spinner: 'crescent',
@@ -189,7 +181,12 @@ export class LoginPage implements OnInit {
     return this.currentLoadingCtrl.present();
   }
 
-  test() {
+  /*
+   * Dismiss a small loading window
+   */
+  dismissLoadingPopover() {
+    console.log("Dismissing Popover..");
+    return this.currentLoadingCtrl.dismiss();
   }
 
 }

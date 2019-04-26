@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { formatDate } from '@angular/common';
 
 
 import { Invitation } from '../model/invitation';
-import { rcmdUserProfile } from '../model/rcmdUserProfile';
-import { ToastMessagingService } from '../services/toastmessaging.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { UserinfoService } from '../services/userinfo.service';
-import { endTimeRange } from '@angular/core/src/profile/wtf_impl';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InvitationProviderService {
+
+  /*
+   * Invitation Provider
+   *  provide sent/received/accepted and past invitation list ...
+   *  provide APIs for sent/accept/decline etc
+   */
 
   public sent_ivts: Invitation[] = [];
   public recv_ivts: Invitation[] = [];
@@ -23,7 +26,6 @@ export class InvitationProviderService {
     private authenService : AuthenticationService,
     private http : HttpClient,
     private userinfoService : UserinfoService,
-    private toastService: ToastMessagingService,
   ) {}
 
   /*
@@ -83,7 +85,7 @@ export class InvitationProviderService {
   }
 
   /*
-   * Convert formatted date into readable string
+   * Convert a formatted date into readable string to display
    */
   readableDate(dateStr : string) : string {
     let date = new Date();
@@ -117,22 +119,27 @@ export class InvitationProviderService {
   }
 
   /*
-   * Convert formatted date into readable string
+   * Convert formatted date into readable string to display
    */
   readableHour(startStr : string, endStr : string) : string {
     let start = new Date(), end = new Date();
+    
     var slot = startStr.split('-');
     start.setMonth(Number(slot[1]) - 1, Number(slot[2]));
     start.setHours(Number(slot[3]), Number(slot[4]));
-    var slot = endStr.split('-');
+    
+    slot = endStr.split('-');
     end.setMonth(Number(slot[1]) - 1, Number(slot[2]));
     end.setHours(Number(slot[3]), Number(slot[4]));
+
     var tail = formatDate(start, "hh:mm aa", "en-US");
     tail += " to " + formatDate(end, "hh:mm aa", "en-US");
+
     if(start.getDay() != end.getDay())
     {
       tail += "(tmw)";
     }
+    
     return tail;
   }
 

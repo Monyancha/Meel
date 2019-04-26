@@ -37,7 +37,7 @@ export class AppComponent {
         if (state) {
           // this.navCtrl.navigateForward(['tabs']);
           this.navCtrl.navigateRoot(['tabs'], {animated : true, animationDirection : 'forward'});
-          this.navCtrl.navigateForward(['tabs/tabs/tab2']);
+          // this.navCtrl.navigateForward(['tabs/tabs/tab1']);
         } else {
           // this.navCtrl.navigateBack(['login']);
           this.navCtrl.navigateRoot(['login'], {animated : true, animationDirection : 'back'});

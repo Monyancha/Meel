@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
@@ -46,9 +46,20 @@ import { AuthenticationService } from '../services/authentication.service';
 export class Tab2Page {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
+  /*
+   * Selected value in segment component
+   */
   selectedValue = 'sent';
+
+  /*
+   * ngIf for progress bar
+   */
   showProgressBar = false;
-  private invitations: Invitation[];
+
+  /*
+   * invitation list
+   */
+  invitations: Invitation[];
 
   constructor(
     private ivtService : InvitationProviderService,
@@ -88,6 +99,9 @@ export class Tab2Page {
     await this.loadNewInvitations(api_url);
   }
 
+  /*
+   * display other's name 
+   */
   displayName(ivt : Invitation) : string {
     if(ivt.senderId == this.userinfoService.user.id) {
       return ivt.rName;
@@ -96,6 +110,9 @@ export class Tab2Page {
     }
   }
 
+  /*
+   * Get url for other's profile image
+   */
   userAvatarUrl(ivt : Invitation) : string {
     let uId : string;
     if(ivt.senderId == this.userinfoService.user.id) {
@@ -107,7 +124,7 @@ export class Tab2Page {
   }
 
   /* 
-   * 
+   * refresh list
    */ 
   loadNewInvitations(api_url : string) {
     this.showProgressBar = true;
@@ -129,7 +146,7 @@ export class Tab2Page {
   }
 
   /*
-   *
+   * TODO: add infinite scroll 
    */ 
   loadData(event : Event) {
     // todo: load more data if any...
@@ -137,7 +154,7 @@ export class Tab2Page {
   }
 
   /*
-   *
+   * Present a popup of rendeavour details when a card is clicked
    */ 
   async cardSelected(ivt : Invitation, event : Event) {
     console.log("Inviation " + ivt.invitationId + " selected");
@@ -156,7 +173,7 @@ export class Tab2Page {
   }
 
   /*
-   *
+   * Present a popup of user information when an avatar is clicked
    */
   async avatarClicked(ivt : Invitation) {
     console.log("[tab2] User Profile Selected:", ivt);

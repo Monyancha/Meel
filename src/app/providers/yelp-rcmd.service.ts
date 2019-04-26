@@ -8,6 +8,11 @@ import { UserinfoService } from '../services/userinfo.service';
 })
 export class YelpRcmdService {
 
+  /*
+   * Provider for Yelp restaurant recommendation
+   */
+
+  // todo: load key from local file
   apiKey = "dWdzPKk5F7O45Zw1WXKXSPfqQNRHBGQzPVeLYTShNmLehA_TbI0UmPXYzOw_xSmK9mHW6LMcXQ8W3tM2rbNEZGI08R_PePt73N1I2UkfuiAR7-y50u6R-TiojU2wXHYx"
 
   constructor(
@@ -16,6 +21,9 @@ export class YelpRcmdService {
   ) { 
   }
 
+  /*
+   * API call to yelp
+   */
   getNearbyRestaurant(lat : number, lng : number) : Promise<Object[]> {
     console.log("yelp-rcmd: Refreshing yelp restaurants: ", lat, lng);
     return new Promise((resolve, reject) => {

@@ -25,6 +25,7 @@ We'll be really appreciated if you can help us improve this app by [**leaving us
 ## Update
 
 ```
+2019-04-26 14:56:00: more comments
 2019-04-12 07:31:00: add profile photos
 2019-04-12 07:31:00: add Yelp API
 2019-04-09 01:26:00: add OTA distribution

@@ -1,6 +1,6 @@
 {
   "name": "mealdate",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": "JKZ",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -67,7 +67,6 @@
     "cordova-plugin-googleplus": "~7.0.0",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
     "cordova-plugin-ionic-webview": "4.0.1",
-    "cordova-plugin-simple-image-resizer": "git+https://github.com/protonet/cordova-plugin-image-resizer.git",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-telerik-imagepicker": "2.3.2",
@@ -141,8 +140,7 @@
       "cordova-plugin-telerik-imagepicker": {
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": " "
       },
-      "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-simple-image-resizer": {}
+      "cordova-plugin-ionic-webview": {}
     },
     "platforms": [
       "browser",

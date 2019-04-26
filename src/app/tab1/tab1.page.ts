@@ -21,14 +21,11 @@ export class Tab1Page {
     private navCtrl: NavController,
     private storage: Storage,
     ) {}
-
-
-  // schedule(){
-  //   this.presentDateselelectPopover();
-  // }
-
+  
+  /*
+   * Upload user location when we init the app
+   */
   ngOnInit() {
-    // Upload Current Location
     console.log("[Tab1]:Uploading user location...");
     this.userinfoService.uploadLocation()
     .then((res) => {
@@ -39,6 +36,9 @@ export class Tab1Page {
     });
   }
 
+  /*
+   * Navigate to RCMD page
+   */
   eatNowClicked() {
     console.log('[Tab1]:eatNowClicked');
     this.storage.remove('time_slot').finally(() => {
@@ -46,6 +46,9 @@ export class Tab1Page {
     });
   }
 
+  /*
+   * Open a data-select popup window
+   */
   async presentDateselelectPopover(ev: any) {
     if(this.curPopover) {
       await this.curPopover.dismiss()
@@ -60,6 +63,9 @@ export class Tab1Page {
     await this.curPopover.present();
   }
 
+  /*
+   * 
+   */
   async dismissDateselectPopover() {
     this.curPopover.dismiss().then(() => this.curPopover = undefined);
   }

@@ -33,24 +33,6 @@ const routes: Routes = [
           },
         ]
       },
-      // {
-      //   path: 'chatroom',
-      //   children: [
-      //     {
-      //       path: '',
-      //       loadChildren: '../chatroom/chatroom.module#ChatroomPageModule'
-      //     }
-      //   ]
-      // },
-      // {
-      //   path: 'inbox',
-      //   children: [
-      //     {
-      //       path: '',
-      //       loadChildren: '../inbox/inbox.module#InboxPageModule' 
-      //     }
-      //   ]
-      // },
       { 
         path: 'ivt-page', 
         children: [

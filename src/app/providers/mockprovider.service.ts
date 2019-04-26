@@ -8,6 +8,10 @@ import { Invitation } from '../model/invitation';
 })
 export class MockProviderService {
 
+  /*
+   * Mock Provider used for tesing
+   */
+
   private _mock_users: User[] = [];
   private _mock_invitations: Invitation[] = [];
 

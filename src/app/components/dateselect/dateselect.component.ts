@@ -14,6 +14,11 @@ import { RecommendationProviderService } from '../../providers/recommendation-pr
 })
 export class DateselectComponent implements OnInit {
 
+  /*
+   * This is the date selection page used to pick up
+   * a date for eat-later purpose
+   */
+
   day = "tomorrow";
   hour = "13:30";
 

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.yalemealdate" version="1.2.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.ionic.yalemealdate" version="1.2.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Meel</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -80,6 +80,9 @@
         </custom-config-file>
         <custom-config-file parent="NSLocationWhenInUseUsageDescription" platform="ios" target="*-Info.plist">
             <string>This app will now only track your location when the screen is on and the app is displayed.</string>
+        </custom-config-file>
+        <custom-config-file parent="NSPhotoLibraryUsageDescription" platform="ios" target="*-Info.plist">
+            <string>We need to access your photos so you can upload your profile image.</string>
         </custom-config-file>
         <custom-config-file mode="add" parent="ITSAppUsesNonExemptEncryption" platform="ios" target="*-Info.plist">
             <false />

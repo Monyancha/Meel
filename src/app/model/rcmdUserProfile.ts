@@ -3,6 +3,10 @@
 
 export class rcmdUserProfile {
 
+    /*
+     * User profile body from recommendations list
+     */
+
     uid          : string;
     avatar       : any;
     username     : string;

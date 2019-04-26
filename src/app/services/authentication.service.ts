@@ -52,7 +52,7 @@ export class AuthenticationService {
   }
 
   /*
-   * 
+   * Getter for TOEN_KEY
    */
   getTokenKey() {
     return this.ionicDb.get(this.TOKEN_KEY);
@@ -135,7 +135,7 @@ export class AuthenticationService {
   }
 
   /*
-   * todo
+   * commented because backend does not support this yet
    */
   loginWithFacebook(){
     // // Login with permissions
@@ -176,11 +176,6 @@ export class AuthenticationService {
     //     console.log('Error logging into Facebook', e);
     // });
   }
-
-  /** Log a HeroService message with the MessageService */
-  private log(message: string) {
-    console.log(message);
-  }
-
+  
 }
 

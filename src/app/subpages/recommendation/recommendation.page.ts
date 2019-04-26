@@ -2,13 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import {trigger, transition, style, animate, keyframes, query, stagger} from '@angular/animations';
+import { trigger, transition, style, animate, keyframes, query, stagger } from '@angular/animations';
 import { NavController } from '@ionic/angular';
-import { SendInvtPage } from '../send-invt/send-invt.page'
 
 import { rcmdUserProfile } from '../../model/rcmdUserProfile';
-// import { MockProviderService } from '../../providers/mockprovider.service';
-// import { UserprofileComponent } from '../../components/userprofile/userprofile.component';
 import { RecommendationProviderService } from '../../providers/recommendation-provider.service';
 import { ToastMessagingService } from '../../services/toastmessaging.service';
 import { InvitationProviderService } from '../../providers/invitation-provider.service';
@@ -58,13 +55,14 @@ export class RecommendationPage implements OnInit {
     // private mockProvider: MockProviderService,
     private rcmdProvider: RecommendationProviderService,
     private toastService: ToastMessagingService,
-    private ivtProvider : InvitationProviderService,
     private navCtrl: NavController,
-    private userinfoService: UserinfoService,
   ) {
     // this.recommendedUsers = mockProvider.getRandomUsers(8);
   }
-
+  
+  /*
+   * Convert distance in mile to a readable distance
+   */
   convertDistance(dist : number) : string {
     if(dist >= 1000) {
       return (dist / 1000).toFixed(1) + "k mi";
@@ -130,6 +128,9 @@ export class RecommendationPage implements OnInit {
     });
   }
 
+  /*
+   * Call API to fetch latest RCMD list
+   */
   fetchEatNowRcmdList() {
     this.rcmdProvider.getEatNowRcmdList()
     .then((res) => {
@@ -146,6 +147,9 @@ export class RecommendationPage implements OnInit {
     });
   }
 
+  /*
+   * Load more data
+   */
   loadData(event : Event) {
     if(this.rcmdList.length != this.rcmdProvider.rcmmd_usrs.length) {
       setTimeout(() => {
@@ -160,22 +164,20 @@ export class RecommendationPage implements OnInit {
     }
   }
 
+  /*
+   * Navigate to send-invt page if a card is clicked
+   */
   async cardSelected(user : rcmdUserProfile, event : Event) {
-    // console.log("user" + user + " clicked");
-    // const popver = await this.popoverController.create({
-    //   component: UserprofileComponent,
-    //   event: null,
-    //   cssClass: 'userprofile-popover',
-    //   componentProps: { user : user }
-    // })
-    // popver.present();
     this.storage.set('ivt-user', user)
-    .then((res) => {
+    .then(() => {
       this.navCtrl.navigateForward('tabs/tabs/tab1/send-invt');
     })
     .catch((err) => this.toastService.presentError(err));
   }
 
+  /*
+   * If an avatar is clicked, present a popup window of user information
+   */
   async avatarClicked(ruser : rcmdUserProfile) {
     const popver = await this.popoverController.create({
       component: UserprofileComponent,

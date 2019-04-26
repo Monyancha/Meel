@@ -18,7 +18,6 @@ import { IonicStorageModule } from '@ionic/storage'; // Storage
 // --- Feb 24, 2019: For RESTful API Service ---
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { TokenInterceptor } from './services/interceptor.service';
 // --- Feb 24, 2019: For RESTful API Service ---
 
 // --- March 9, 2019: Animations ---
@@ -86,11 +85,6 @@ import { FileTransfer } from '@ionic-native/file-transfer/ngx';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    },
     Geolocation,
     // Facebook,
     // ImagePicker,

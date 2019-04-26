@@ -1,5 +1,6 @@
 
 export class User {
+
     // Core Info
     id              = "-1";
     username        = "null";
@@ -50,6 +51,9 @@ export class User {
         this.description    = 'test_description_' + this.randomStr(32);
     }
 
+    /*
+     * convert str to bool
+     */
     private boolToStr(value : boolean) {
         if(value){
             return 'T'
@@ -58,6 +62,9 @@ export class User {
         }
     }
 
+    /*
+     * For update profile purpose
+     */
     public toJSON() {
         return {
                 "uid":              this.id,

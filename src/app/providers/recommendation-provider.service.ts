@@ -11,8 +11,12 @@ import { UserinfoService } from '../services/userinfo.service';
 })
 export class RecommendationProviderService {
 
+  /*
+   * Recommendation Provider
+   *    Provide APIs for fetching recommendation list
+   */
+
   rcmmd_usrs: rcmdUserProfile[] = [];
-  
 
   constructor(
     private authenService : AuthenticationService,

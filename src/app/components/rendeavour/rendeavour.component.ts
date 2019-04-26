@@ -22,7 +22,11 @@ interface marker {
 })
 export class RendeavourComponent implements OnInit {
 
-  // Invitation Params
+  /*
+   * Invitation page that shows details of an invitation
+   */
+
+
   invitation : Invitation;
   pageStatus : string;
 
@@ -45,6 +49,9 @@ export class RendeavourComponent implements OnInit {
     private userinfoService: UserinfoService,
   ) { }
 
+  /*
+   * Need to show/hide certain buttons for different types of invitation
+   */
   async ngOnInit() {
     this.plantform.ready().then(() => {
       this.invitation = this.navParams.get('invitation');
@@ -62,6 +69,9 @@ export class RendeavourComponent implements OnInit {
     });
   }
 
+  /*
+   * Display other's name
+   */
   displayName(ivt : Invitation) : string {
     if(ivt.senderId == this.userinfoService.user.id) {
       return ivt.rName;
@@ -70,17 +80,24 @@ export class RendeavourComponent implements OnInit {
     }
   }
 
+  /*
+   * 
+   */
   closePopover() {
     this.popoverControler.dismiss();
   }
 
+  /*
+   * Accept button click function.
+   */
   acceptInvitation(ivt_id : string) {
     this.ivtProvider.acceptInvitation(ivt_id)
-    .then((res) => {
+    .then(() => {
       this.toastMessager.presentToast('Accepted!');
       this.navParams.get('refresh')();
     })
     .catch((err) => {
+      console.log("Failed to accept invitation", err);
       this.toastMessager.presentToast('Failed to accept invitation');
     })
     .finally(() => {
@@ -88,10 +105,16 @@ export class RendeavourComponent implements OnInit {
     });
   }
 
+  /*
+   * Decline button click function
+   */
   declineInvitation(ivt_id : string) {
     this.toastMessager.presentToast('Sorry, the decline function is not implemented yet..');
   }
 
+  /*
+   * Cancel button click function
+   */
   cancelInvitation(ivt_id : string) {
     this.toastMessager.presentToast('Sorry, the cancelelation function is not implemented yet..');
     // this.closePopover();
