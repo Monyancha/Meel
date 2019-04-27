@@ -94,7 +94,3 @@ ionic cordova prepare ios
 # 2, Plug in your iphone into your PC
 # 3, Select Build » and select your device to run the app!	
 ```
-
-#### 4, Android Device
-
-Currently not supported(because none of our developers uses an android…)
