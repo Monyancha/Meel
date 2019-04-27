@@ -2,25 +2,15 @@
 
 > MeelDate is a social app that helps students around campus(or potentially everybody) find a partner to have a meal together and expand their social network.
 
-This repo is still under development… this frontend project alone with our [**Backend Service**](https://github.com/xiaoxiao33/recommendation) are expected to be delivered to *Apple App Store && Google Play* on **April 27, 2019**.
+## Demo(build 1.2.2)
 
-## Demo(test-build-04090335)
-
-![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/demo2.jpg "Demo")
+![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/demo2.png"Demo")
 
 To invite somebody out, just select the time and location, also note if you select "eat now", we'll emphasize the distance for recommendation, if you select "eat later", we will use a plethora of other informations including your gender, college.. and some behavior records like the people you like to provider a better and more personlized recommendation.
 
-You can also check out our [**Video Demo**](https://youtu.be/mXjbKRyk4Zs), for Chinese visitors please go [**Here**](https://showmore.com/zh/u/mwk2n6s) for video. There're lots more to be discovered! Join our internal test group by just [sending us a email](jingkuan.zhang@yale.edu) if you are interested!
-
-## Our App, You Decide
-
-We'll be really appreciated if you can help us improve this app by [**leaving us your valuable feedback**](https://docs.google.com/forms/d/e/1FAIpQLSewlLvO2ZD1CiCeyDEw006TvVNfwBP0HOwXAutI-XjXQj-BkQ/viewform?vc=0&c=0&w=1), (only have 10 short choice questions)😄☺️😊🙏🤣😙😚🤑
-
 ## Quick Install
 
-**ONLY for Registered Developers/Testers**
-
-![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/replease/install.png "Scan QR code using iPhone camera to install")
+![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/install.png"Scan QR code to install")
 
 ## Update
 

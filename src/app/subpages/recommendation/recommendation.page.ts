@@ -50,6 +50,7 @@ export class RecommendationPage implements OnInit {
   showNoMoreLabel = false;
 
   constructor(
+    public userinfoService : UserinfoService,
     private storage: Storage, 
     private popoverController: PopoverController,
     // private mockProvider: MockProviderService,
@@ -154,8 +155,7 @@ export class RecommendationPage implements OnInit {
     if(this.rcmdList.length != this.rcmdProvider.rcmmd_usrs.length) {
       setTimeout(() => {
         console.log('[RcmdPage]loading more data...');
-        this.rcmdList.concat(this.rcmdProvider.getRcmdList(this.rcmdList.length, 
-                                                           this.rcmdList.length + 10));
+        this.rcmdList = this.rcmdList.concat(this.rcmdProvider.getRcmdList(this.rcmdList.length,  this.rcmdList.length + 10));
         this.infiniteScroll.complete();
       }, 300);
     } else {

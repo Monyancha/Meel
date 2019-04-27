@@ -13,6 +13,7 @@ import { ToastMessagingService } from '../../services/toastmessaging.service'
 import { InvitationProviderService } from '../../providers/invitation-provider.service';
 import { rcmdUserProfile } from '../../model/rcmdUserProfile';
 
+declare var google: any;
 
 @Component({
   selector: 'app-send-invt',
@@ -62,6 +63,7 @@ export class SendInvtPage implements OnInit {
   selectedAddr : string = "Pin on Map";
   ivtee : rcmdUserProfile;
   
+
   start : string;
   end   : string;
   display_date : string;
@@ -135,7 +137,7 @@ export class SendInvtPage implements OnInit {
         this.autocomplete.addListener("place_changed", () => {
           this.ngZone.run(() => {
             let place: google.maps.places.PlaceResult = this.autocomplete.getPlace();
-            if (place.geometry && place.geometry) {
+            if (place.geometry) {
               this.lat = place.geometry.location.lat();
               this.lng = place.geometry.location.lng();
             }
