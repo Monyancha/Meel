@@ -8,10 +8,6 @@
 
 To invite somebody out, just select the time and location, also note if you select "eat now", we'll emphasize the distance for recommendation, if you select "eat later", we will use a plethora of other informations including your gender, college.. and some behavior records like the people you like to provider a better and more personlized recommendation.
 
-## Quick Install
-
-![alt text](https://github.com/adamzjk/Meel/raw/master/screenshots/install2.png)
-
 ## Update
 
 ```
