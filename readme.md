@@ -1,16 +1,16 @@
-# MeelDate
+# Meel
 
-> MeelDate is a social app that helps students around campus(or potentially everybody) find a partner to have a meal together and expand their social network.
+> Meel is a social app that helps students around campus(or potentially everybody) find a partner to have a meal together and expand their social network.
 
 ## Demo(build 1.2.2)
 
-![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/demo2.png"Demo")
+![alt text](https://github.com/adamzjk/Meel/raw/master/screenshots/demo.png"Demo")
 
 To invite somebody out, just select the time and location, also note if you select "eat now", we'll emphasize the distance for recommendation, if you select "eat later", we will use a plethora of other informations including your gender, college.. and some behavior records like the people you like to provider a better and more personlized recommendation.
 
 ## Quick Install
 
-![alt text](https://github.com/adamzjk/MealDateFrontEnd/blob/master/screenshots/install.png"Scan QR code to install")
+![alt text](https://github.com/adamzjk/Meel/raw/master/screenshots/install.png"Scan QR code to install")
 
 ## Update
 
