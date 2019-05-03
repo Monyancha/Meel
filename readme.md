@@ -2,6 +2,8 @@
 
 > Meel is a social app that helps students around campus(or potentially everybody) find a partner to have a meal together and expand their social network.
 
+This is a course project for Yale CSPC 539 and no longer under development & maintenance.
+
 ## Demo(build 1.2.2)
 
 ![alt text](https://github.com/adamzjk/Meel/raw/master/screenshots/demo.png)
